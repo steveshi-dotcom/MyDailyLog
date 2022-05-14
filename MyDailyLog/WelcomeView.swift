@@ -7,9 +7,37 @@
 
 import SwiftUI
 
+// Welcome view when the user first open the app, title + shortDescription
 struct WelcomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            // Stack backgroundImage(libraryBooks) on bottom
+            // then warm linear gradient color in the middle
+            // (title + description) vertically centered, in the top stack
+            ZStack {
+                Image("noah-eleazar-9p6R1IDCXNg-unsplash")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                    .frame(width: UIScreen.main.bounds.width,
+                           height: UIScreen.main.bounds.height)
+                LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.3), .purple.opacity(0.4)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .ignoresSafeArea(.all)
+                VStack(alignment: .center, spacing: 20) {
+                    Spacer()
+                    Text("My Daily Log")
+                        .font(.system(size: 60))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                    Text("Capture short snapshots and \nlog your day to day")
+                        .font(.system(size: 25))
+                        .fontWeight(.medium)
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                    Spacer()
+                }
+            }
+        }
     }
 }
 

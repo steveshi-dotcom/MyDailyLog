@@ -1,1 +1,1 @@
-#MyDailyLog
+MyDailyLog

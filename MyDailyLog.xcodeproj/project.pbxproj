@@ -14,6 +14,7 @@
 		0F4DC3BF2830069B0031B624 /* MyDailyLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3BE2830069B0031B624 /* MyDailyLogTests.swift */; };
 		0F4DC3C92830069B0031B624 /* MyDailyLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3C82830069B0031B624 /* MyDailyLogUITests.swift */; };
 		0F4DC3CB2830069B0031B624 /* MyDailyLogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3CA2830069B0031B624 /* MyDailyLogUITestsLaunchTests.swift */; };
+		0F4DC3D82830087E0031B624 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC3D72830087E0031B624 /* Readme.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		0F4DC3C42830069B0031B624 /* MyDailyLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDailyLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4DC3C82830069B0031B624 /* MyDailyLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyLogUITests.swift; sourceTree = "<group>"; };
 		0F4DC3CA2830069B0031B624 /* MyDailyLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0F4DC3D72830087E0031B624 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		0F4DC3A12830069B0031B624 = {
 			isa = PBXGroup;
 			children = (
+				0F4DC3D72830087E0031B624 /* Readme.md */,
 				0F4DC3AC2830069B0031B624 /* MyDailyLog */,
 				0F4DC3BD2830069B0031B624 /* MyDailyLogTests */,
 				0F4DC3C72830069B0031B624 /* MyDailyLogUITests */,
@@ -233,6 +236,7 @@
 			files = (
 				0F4DC3B52830069B0031B624 /* Preview Assets.xcassets in Resources */,
 				0F4DC3B22830069B0031B624 /* Assets.xcassets in Resources */,
+				0F4DC3D82830087E0031B624 /* Readme.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

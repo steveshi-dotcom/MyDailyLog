@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
-    @State private var loginBtn: Bool = false
-    @State private var registerBtn: Bool = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
@@ -26,11 +26,23 @@ struct LoginView: View {
                 .border(.black , width: 1)
                 .padding()
 
-            Button("Login") {}
+            Button("Login") {
+                login()
+            }
             Text("Or")
             Button("new? create an account") {}
             Spacer()
             Spacer()
+        }
+    }
+    
+    func login() {
+        Auth.auth().signIn(withEmail: username, password: password) { result, error in
+            if error != nil {
+                print("No")
+            } else {
+                print("Yes")
+            }
         }
     }
 }

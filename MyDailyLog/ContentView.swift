@@ -9,25 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
-            Group {
-                TabView {
-                    HomeView()
-                        .tabItem {
-                            Label("Home", systemImage: "house")
-                        }
-                    CreationView()
-                        .tabItem() {
-                            Label("New", systemImage: "plus")
-                        }
-                    ProfileView()
-                        .tabItem() {
-                            Label("Profile", systemImage: "person")
-                        }
-                }
-                .tabViewStyle(.automatic)
-            }
-        }
+        LoginView()
+//        NavigationView {
+//            Group {
+//                TabView {
+//                    HomeView()
+//                        .tabItem {
+//                            Label("Home", systemImage: "house")
+//                        }
+//                    CreationView()
+//                        .tabItem() {
+//                            Label("New", systemImage: "plus")
+//                        }
+//                    ProfileView()
+//                        .tabItem() {
+//                            Label("Profile", systemImage: "person")
+//                        }
+//                }
+//                .tabViewStyle(.automatic)
+//            }
+//        }
     }
 }
 

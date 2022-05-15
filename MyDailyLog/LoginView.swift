@@ -10,40 +10,75 @@ import Firebase
 import FirebaseAuth
 
 struct LoginView: View {
+    let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     @State private var username: String = ""
     @State private var password: String = ""
+    @FocusState private var focusState: Bool
     
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
-            Spacer()
-            Text("My Daily Log")
-                .font(.system(size: 50))
-                .fontWeight(.bold)
-            TextField("username or email", text: $username)
-                .border(.black , width: 1)
-                .padding()
-            TextField("password", text: $password)
-                .border(.black , width: 1)
-                .padding()
-
-            Button("Login") {
-                login()
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.5), .purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .ignoresSafeArea(.all)
+            VStack(alignment: .center, spacing: 15) {
+                Spacer()
+                Text("My Daily Log")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                TextField("email adress or phone number", text: $username)
+                    .padding()
+                    .background(lightGreyColor)
+                    .foregroundColor(.black)
+                    .cornerRadius(5.0)
+                    .padding(.bottom, 7.5)
+                    .padding(.top, 5)
+                    .autocapitalization(.none)
+                SecureField("Password", text: $password)
+                    .padding()
+                    .background(lightGreyColor)
+                    .foregroundColor(.black)
+                    .cornerRadius(5.0)
+                    .padding(.bottom, 7.5)
+                    .focused($focusState)
+                HStack(alignment: .top) {   // Make Forgot password btn on right edge
+                    Text("Hello")
+                    Button(action: forgotPassword) {
+                        Text("Forgot password?")
+                    }
+                }
+                
+                Button("Log In") {
+                    attemptLogin()
+                    focusState.toggle()
+                }.buttonStyle(.bordered)
+                HStack {
+                    Text("Or")
+                }
+                Spacer()
+                Spacer()
             }
-            Text("Or")
-            Button("new? create an account") {}
-            Spacer()
-            Spacer()
+            .padding()
         }
     }
     
-    func login() {
+    func attemptLogin() {
         Auth.auth().signIn(withEmail: username, password: password) { result, error in
             if error != nil {
-                print("No")
+                print("Invalid credentials")
+                loginFailure()
             } else {
-                print("Yes")
+                print("Valid credentials")
+                loginSucess()
             }
         }
+    }
+    func loginFailure() {
+        
+    }
+    func loginSucess() {
+        
+    }
+    func forgotPassword() {
+        
     }
 }
 

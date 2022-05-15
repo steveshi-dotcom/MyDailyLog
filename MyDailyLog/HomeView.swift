@@ -7,14 +7,26 @@
 
 import SwiftUI
 
-struct HomePage: View {
+struct HomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                
+                Button("Next Log", role: .none) {
+                    nextLog()
+                }
+                
+            }
+        }
+    }
+    
+    func nextLog() {
+        
     }
 }
 
-struct HomePage_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomePage()
+        HomeView()
     }
 }

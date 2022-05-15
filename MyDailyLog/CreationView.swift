@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct CreationPage: View {
+struct CreationView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, Creation!")
     }
 }
 
-struct CreationPage_Previews: PreviewProvider {
+struct CreationView_Previews: PreviewProvider {
     static var previews: some View {
-        CreationPage()
+        CreationView()
     }
 }

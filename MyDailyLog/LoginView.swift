@@ -29,30 +29,37 @@ struct LoginView: View {
                     .background(lightGreyColor)
                     .foregroundColor(.black)
                     .cornerRadius(5.0)
-                    .padding(.bottom, 7.5)
-                    .padding(.top, 5)
                     .autocapitalization(.none)
+                    .foregroundColor(.primary)
                 SecureField("Password", text: $password)
                     .padding()
                     .background(lightGreyColor)
                     .foregroundColor(.black)
                     .cornerRadius(5.0)
-                    .padding(.bottom, 7.5)
                     .focused($focusState)
-                HStack(alignment: .top) {   // Make Forgot password btn on right edge
-                    Text("Hello")
+                HStack {
+                    Spacer()
                     Button(action: forgotPassword) {
                         Text("Forgot password?")
                     }
                 }
-                
-                Button("Log In") {
+                Button {
+                    guard !username.isEmpty && !password.isEmpty else {
+                        print("Empty credentials")
+                        return
+                    }
                     attemptLogin()
                     focusState.toggle()
-                }.buttonStyle(.bordered)
-                HStack {
-                    Text("Or")
+                } label: {
+                    Text("Log In")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(width: 300, height: 60)
+                        .background(Color.blue)
+                        .cornerRadius(30.0)
                 }
+                .padding(.bottom, 10)
+                labelledDivider(label: "or")
                 Spacer()
                 Spacer()
             }
@@ -71,14 +78,39 @@ struct LoginView: View {
             }
         }
     }
-    func loginFailure() {
+    func loginFailure() {   // Move to ContentView
         
     }
-    func loginSucess() {
+    func loginSucess() {    // Stay on LoginView
         
     }
-    func forgotPassword() {
+    func forgotPassword() { // Move to RecoveryView
         
+    }
+}
+
+struct labelledDivider: View {
+    let label: String
+    let horizontalPadding: CGFloat
+    let color: Color
+    
+    init(label: String, horizontalPadding: CGFloat = 10, color: Color = .gray) {
+        self.label = label
+        self.horizontalPadding = horizontalPadding
+        self.color = color
+    }
+    
+    var body: some View {
+        HStack {
+            line
+            Text(label).foregroundColor(color)
+            line
+        }
+    }
+    var line: some View {
+        VStack {
+            Divider().background(color)
+        }.padding(horizontalPadding)
     }
 }
 

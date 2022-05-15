@@ -24,6 +24,7 @@
 		0F4DC42D28315B660031B624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC42C28315B660031B624 /* GoogleService-Info.plist */; };
 		0F4DC42E28315B660031B624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC42C28315B660031B624 /* GoogleService-Info.plist */; };
 		0F4DC42F28315B660031B624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC42C28315B660031B624 /* GoogleService-Info.plist */; };
+		0F97FC5D2831A20700E822AF /* RecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC5C2831A20700E822AF /* RecoveryView.swift */; };
 		33AD0D72B5E59E545E8FD678 /* Pods_MyDailyLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A30690F0494EE5944119C2 /* Pods_MyDailyLog.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		0F4DC3E128300E5F0031B624 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0F4DC3E328300F2C0031B624 /* roughtDraft-design-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roughtDraft-design-2.png"; sourceTree = "<group>"; };
 		0F4DC42C28315B660031B624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0F97FC5C2831A20700E822AF /* RecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryView.swift; sourceTree = "<group>"; };
 		14A30690F0494EE5944119C2 /* Pods_MyDailyLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDailyLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E0F5A8ECE876D1DFCEA150F /* Pods-MyDailyLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.release.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.release.xcconfig"; sourceTree = "<group>"; };
 		E6B2868AF3B50DC0D762220B /* Pods-MyDailyLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.debug.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */,
 				0F4DC3D928300DEB0031B624 /* WelcomeView.swift */,
 				0F4DC3DB28300E020031B624 /* LoginView.swift */,
+				0F97FC5C2831A20700E822AF /* RecoveryView.swift */,
 				0F4DC3DD28300E260031B624 /* HomeView.swift */,
 				0F4DC3DF28300E520031B624 /* CreationView.swift */,
 				0F4DC3E128300E5F0031B624 /* ProfileView.swift */,
@@ -345,6 +348,7 @@
 				0F4DC3DC28300E020031B624 /* LoginView.swift in Sources */,
 				0F4DC3AE2830069B0031B624 /* MyDailyLogApp.swift in Sources */,
 				0F4DC3E028300E520031B624 /* CreationView.swift in Sources */,
+				0F97FC5D2831A20700E822AF /* RecoveryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

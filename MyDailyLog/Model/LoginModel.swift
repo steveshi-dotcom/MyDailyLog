@@ -15,6 +15,7 @@ class LoginModel: ObservableObject {
         credentials.username.isEmpty || credentials.password.isEmpty
     }
     
+    
     func login(completion: @escaping (Bool) -> Void) {
         LoginService.shared.login(credentials: credentials) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
@@ -27,4 +28,19 @@ class LoginModel: ObservableObject {
             }
         }
     }
+    
+    func resetPassword(withEmail email: String, completion: @escaping (Bool) -> Void) {
+        LoginService.shared.resetPassword(email: email) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
+            print("LOGIN MODEL: \(result)")
+            switch result {
+            case .success:
+                completion(true)
+            case .failure:
+                error = .failedRecovery
+                completion(false)
+            }
+        }
+    }
+    
+    
 }

@@ -14,65 +14,70 @@ struct LoginView: View {
     @EnvironmentObject var authentification: Authentification
     @FocusState private var focusState: Bool
     @State private var loadingLogin: Bool = false
+    @State private var recoverPassword: Bool = false
     
     let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
-        ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.5), .purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea(.all)
-            VStack(alignment: .center, spacing: 15) {
-                Spacer()
-                Text("My Daily Log")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                TextField("email adress or phone number", text: $loginM.credentials.username)
-                    .padding()
-                    .background(lightGreyColor)
-                    .foregroundColor(.black)
-                    .cornerRadius(5.0)
-                    .autocapitalization(.none)
-                    .keyboardType(.emailAddress)
-                    .foregroundColor(.primary)
-                SecureField("Password", text: $loginM.credentials.password)
-                    .padding()
-                    .background(lightGreyColor)
-                    .foregroundColor(.black)
-                    .cornerRadius(5.0)
-                    .focused($focusState)
-                HStack {
+        VStack {
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.5), .purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .ignoresSafeArea(.all)
+                VStack(alignment: .center, spacing: 15) {
                     Spacer()
-                    Button(action: forgotPassword) {
-                        Text("Forgot password?")
+                    Text("My Daily Log")
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                    TextField("email adress or phone number", text: $loginM.credentials.username)
+                        .padding()
+                        .background(lightGreyColor)
+                        .foregroundColor(.black)
+                        .cornerRadius(5.0)
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
+                        .foregroundColor(.primary)
+                    SecureField("Password", text: $loginM.credentials.password)
+                        .padding()
+                        .background(lightGreyColor)
+                        .foregroundColor(.black)
+                        .cornerRadius(5.0)
+                        .focused($focusState)
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            recoverPassword = true
+                        }) {
+                            Text("Forgot password?")
+                        }
                     }
-                }
-                Button {
-                    loadingLogin.toggle()
-                    focusState.toggle()
-                    loginM.login { result in
-                        print("LoginView: \(result)")
-                        authentification.updateValidation(result)
+                    Button {
+                        loadingLogin.toggle()
+                        focusState.toggle()
+                        loginM.login { result in
+                            print("LoginView: \(result)")
+                            authentification.updateValidation(result)
+                        }
+                        loadingLogin.toggle()
+                    } label: {
+                        loadingView(loadingLogin)
                     }
-                    loadingLogin.toggle()
-                } label: {
-                    loadingView(loadingLogin)
+                    .padding(.bottom, 10)
+                    labelledDivider(label: "or")
+                    Spacer()
+                    Spacer()
                 }
-                .padding(.bottom, 10)
-                labelledDivider(label: "or")
-                Spacer()
-                Spacer()
+                .padding()
             }
-            .padding()
+            .alert(item: $loginM.error) {error in
+                Alert(title: Text("Invalid Login"), message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Email or Password inccorect, Please try again."))
+            }
         }
-        .alert(item: $loginM.error) {error in
-            Alert(title: Text("Invalid Login"),
-                  message:Text(error.localizedDescription))
+        .sheet(isPresented: $recoverPassword) {
+            RecoveryView()
         }
-    }
-    func forgotPassword() { // Move to RecoveryView
-        
     }
 }
 
+// Loading Icon when the user clicked on log in //NOT WORKING, maybe everything loads too fast
 struct loadingView: View {
     var showLoading: Bool = false
     

@@ -10,14 +10,12 @@ import SwiftUI
 class Authentification: ObservableObject {
     @Published var isValidated: Bool = false
     
-    enum AuthentificationError: Error, LocalizedError, Identifiable {
-        case invalidCredentials
+    enum AuthentificationError: String, Error, LocalizedError, Identifiable {
+        case invalidCredentials = "Email or Password inccorect, Please try again."
+        case failedRecovery = "Password recovery failed"
         
         var id: String {
             self.localizedDescription
-        }
-        var errorDescription: String? {
-            return NSLocalizedString("Email or Password inccorect, Please try again", comment: "")
         }
     }
     

@@ -10,11 +10,11 @@ import Firebase
 import FirebaseAuth
 
 struct LoginView: View {
-    let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @FocusState private var focusState: Bool
+    @StateObject private var loginM = LoginModel()
+    @EnvironmentObject var authentification: Authentification
     
+    @FocusState private var focusState: Bool
+    let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.5), .purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -24,14 +24,15 @@ struct LoginView: View {
                 Text("My Daily Log")
                     .font(.largeTitle)
                     .fontWeight(.semibold)
-                TextField("email adress or phone number", text: $username)
+                TextField("email adress or phone number", text: $loginM.credentials.username)
                     .padding()
                     .background(lightGreyColor)
                     .foregroundColor(.black)
                     .cornerRadius(5.0)
                     .autocapitalization(.none)
+                    .keyboardType(.emailAddress)
                     .foregroundColor(.primary)
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $loginM.credentials.password)
                     .padding()
                     .background(lightGreyColor)
                     .foregroundColor(.black)
@@ -44,12 +45,11 @@ struct LoginView: View {
                     }
                 }
                 Button {
-                    guard !username.isEmpty && !password.isEmpty else {
-                        print("Empty credentials")
-                        return
-                    }
-                    attemptLogin()
+                    print("Clicked")
                     focusState.toggle()
+                    loginM.login { result in
+                        authentification.updateValidation(result)
+                    }
                 } label: {
                     Text("Log In")
                         .font(.headline)
@@ -66,40 +66,22 @@ struct LoginView: View {
             .padding()
         }
     }
-    
-    func attemptLogin() {
-        Auth.auth().signIn(withEmail: username, password: password) { result, error in
-            if error != nil {
-                print("Invalid credentials")
-                loginFailure()
-            } else {
-                print("Valid credentials")
-                loginSucess()
-            }
-        }
-    }
-    func loginFailure() {   // Move to ContentView
-        
-    }
-    func loginSucess() {    // Stay on LoginView
-        
-    }
     func forgotPassword() { // Move to RecoveryView
         
     }
 }
 
+// An divider with text in the middle   -----??-----
 struct labelledDivider: View {
     let label: String
     let horizontalPadding: CGFloat
     let color: Color
     
-    init(label: String, horizontalPadding: CGFloat = 10, color: Color = .gray) {
+    init(label: String, horizontalPadding: CGFloat = 10, color: Color = .black) {
         self.label = label
         self.horizontalPadding = horizontalPadding
         self.color = color
     }
-    
     var body: some View {
         HStack {
             line

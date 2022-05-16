@@ -10,12 +10,20 @@ import Firebase
 
 @main
 struct MyDailyLogApp: App {
+    @StateObject var authentification = Authentification()
+    
     init() {
         FirebaseApp.configure()
     }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if authentification.isValidated {
+                ContentView()
+                    .environmentObject(authentification)
+            } else {
+                LoginView()
+                    .environmentObject(authentification)
+            }
         }
     }
 }

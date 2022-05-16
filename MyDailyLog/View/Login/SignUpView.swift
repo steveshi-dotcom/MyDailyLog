@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuthUI
 
 struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
@@ -57,7 +58,7 @@ struct SignUpView: View {
                         .padding(.bottom, 10)
                     Button {
                         focusState.toggle()
-                        guard newPassword == confirmPassword && !newEmail.isEmpty else {
+                        guard newPassword == confirmPassword && FUIAuthBaseViewController.isValidEmail(newEmail) else {
                             showPwdIssue.toggle()
                             return
                         }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuthUI
 
 struct RecoveryView: View {
     @Environment(\.dismiss) var dismiss
@@ -36,6 +37,9 @@ struct RecoveryView: View {
                         .padding(.bottom, 10)
                     Button {
                         focusState.toggle()
+                        guard FUIAuthBaseViewController.isValidEmail(recoverEmail) else {
+                            return;
+                        }
                         loginM.resetPassword(withEmail: recoverEmail) { result in
                             if result {
                                 dismiss()

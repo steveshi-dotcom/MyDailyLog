@@ -24,6 +24,5 @@ class Authentification: ObservableObject {
         withAnimation {
             isValidated = success
         }
-        print(isValidated)
     }
 }

@@ -8,27 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var authenticated: Bool = false
     var body: some View {
-        LoginView()
-//        NavigationView {
-//            Group {
-//                TabView {
-//                    HomeView()
-//                        .tabItem {
-//                            Label("Home", systemImage: "house")
-//                        }
-//                    CreationView()
-//                        .tabItem() {
-//                            Label("New", systemImage: "plus")
-//                        }
-//                    ProfileView()
-//                        .tabItem() {
-//                            Label("Profile", systemImage: "person")
-//                        }
-//                }
-//                .tabViewStyle(.automatic)
-//            }
-//        }
+        if authenticated {
+            LoginView()
+        } else {
+            NavigationView {
+                Group {
+                    TabView {
+                        HomeView()
+                            .tabItem {
+                                Label("Home", systemImage: "house")
+                            }
+                        CreationView()
+                            .tabItem() {
+                                Label("New", systemImage: "plus")
+                            }
+                        ProfileView()
+                            .tabItem() {
+                                Label("Profile", systemImage: "person")
+                            }
+                    }
+                    .tabViewStyle(.automatic)
+                }
+            }
+        }
     }
 }
 

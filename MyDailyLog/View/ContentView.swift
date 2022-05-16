@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var loggedIn: Authentification
+
     var body: some View {
         NavigationView {
             Group {

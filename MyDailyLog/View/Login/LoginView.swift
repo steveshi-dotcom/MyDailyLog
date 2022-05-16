@@ -12,8 +12,9 @@ import FirebaseAuth
 struct LoginView: View {
     @StateObject private var loginM = LoginModel()
     @EnvironmentObject var authentification: Authentification
-    
     @FocusState private var focusState: Bool
+    @State private var loadingLogin: Bool = false
+    
     let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
         ZStack {
@@ -45,18 +46,15 @@ struct LoginView: View {
                     }
                 }
                 Button {
+                    loadingLogin.toggle()
                     focusState.toggle()
                     loginM.login { result in
                         print("LoginView: \(result)")
                         authentification.updateValidation(result)
                     }
+                    loadingLogin.toggle()
                 } label: {
-                    Text("Log In")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 60)
-                        .background(Color.blue)
-                        .cornerRadius(30.0)
+                    loadingView(loadingLogin)
                 }
                 .padding(.bottom, 10)
                 labelledDivider(label: "or")
@@ -72,6 +70,26 @@ struct LoginView: View {
     }
     func forgotPassword() { // Move to RecoveryView
         
+    }
+}
+
+struct loadingView: View {
+    var showLoading: Bool = false
+    
+    init(_ showLoading: Bool = false){
+        self.showLoading = showLoading
+    }
+    var body: some View {
+        if !showLoading {
+            Text("Log In")
+                .font(.headline)
+                .foregroundColor(.white)
+                .frame(width: 300, height: 60)
+                .background(Color.blue)
+                .cornerRadius(30.0)
+        } else {
+            ProgressView()
+        }
     }
 }
 

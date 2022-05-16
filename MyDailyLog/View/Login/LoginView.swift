@@ -45,9 +45,9 @@ struct LoginView: View {
                     }
                 }
                 Button {
-                    print("Clicked")
                     focusState.toggle()
                     loginM.login { result in
+                        print("LoginView: \(result)")
                         authentification.updateValidation(result)
                     }
                 } label: {

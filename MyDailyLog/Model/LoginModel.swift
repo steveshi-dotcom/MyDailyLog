@@ -6,23 +6,24 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseAuth
 
 class LoginModel: ObservableObject {
     @Published var credentials = Credentials()
+    @Published var error: Authentification.AuthentificationError?
     
     var disableLogin: Bool {
         credentials.username.isEmpty || credentials.password.isEmpty
     }
     
     func login(completion: @escaping (Bool) -> Void) {
-        Auth.auth().signIn(withEmail: credentials.username, password: credentials.password) { [unowned self] result, error in
-            if error != nil {
-                credentials = Credentials()
-                completion(false)
-            } else {
+        LoginService.shared.login(credentials: credentials) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
+            switch result {
+            case .success:
                 completion(true)
+            case.failure(let authError):
+                credentials = Credentials()
+                error = authError
+                completion(false)
             }
         }
     }

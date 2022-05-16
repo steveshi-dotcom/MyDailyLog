@@ -31,7 +31,6 @@ class LoginModel: ObservableObject {
     
     func resetPassword(withEmail email: String, completion: @escaping (Bool) -> Void) {
         LoginService.shared.resetPassword(email: email) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
-            print("LOGIN MODEL: \(result)")
             switch result {
             case .success:
                 completion(true)

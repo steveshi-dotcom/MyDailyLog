@@ -25,7 +25,7 @@ struct RecoveryView: View {
                     Text("Recover Password")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                    TextField("email adress or phone number", text: $loginM.credentials.username)
+                    TextField("email adress or phone number", text: $recoverEmail)
                         .padding()
                         .background(lightGreyColor)
                         .foregroundColor(.black)
@@ -37,9 +37,8 @@ struct RecoveryView: View {
                     Button {
                         focusState.toggle()
                         loginM.resetPassword(withEmail: recoverEmail) { result in
-                            print(result)
                             if result {
-                                
+                                dismiss()
                             }
                         }
                     } label: {

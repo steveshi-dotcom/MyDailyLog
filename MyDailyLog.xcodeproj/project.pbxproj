@@ -243,6 +243,8 @@
 				0F4DC3A62830069B0031B624 /* Sources */,
 				0F4DC3A72830069B0031B624 /* Frameworks */,
 				0F4DC3A82830069B0031B624 /* Resources */,
+				CD1486A9C4112ED58DBE2308 /* [CP] Embed Pods Frameworks */,
+				93433EA7435540874BADCFE3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -364,6 +366,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		93433EA7435540874BADCFE3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD1486A9C4112ED58DBE2308 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EB2B1996FC81C11730BA6EAD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

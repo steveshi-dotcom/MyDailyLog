@@ -31,10 +31,8 @@ class LoginService {
                        resetCompletion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email, completion: { (error) in
             if let _ = error {
-                print("Error")
                 resetCompletion(.failure(.failedRecovery))
             } else {
-                print("Sucess")
                 resetCompletion(.success(true))
             }
         })

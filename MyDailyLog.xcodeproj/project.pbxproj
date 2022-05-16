@@ -99,7 +99,6 @@
 		0F4DC3A12830069B0031B624 = {
 			isa = PBXGroup;
 			children = (
-				0F4DC42C28315B660031B624 /* GoogleService-Info.plist */,
 				0F4DC3E328300F2C0031B624 /* roughtDraft-design-2.png */,
 				0F4DC3D72830087E0031B624 /* Readme.md */,
 				0F4DC3AC2830069B0031B624 /* MyDailyLog */,
@@ -124,6 +123,7 @@
 		0F4DC3AC2830069B0031B624 /* MyDailyLog */ = {
 			isa = PBXGroup;
 			children = (
+				0F4DC42C28315B660031B624 /* GoogleService-Info.plist */,
 				0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */,
 				0F4DC3AF2830069B0031B624 /* ContentView.swift */,
 				0F97FC5F2831CC9800E822AF /* Home */,

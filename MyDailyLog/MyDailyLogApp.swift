@@ -11,18 +11,29 @@ import Firebase
 @main
 struct MyDailyLogApp: App {
     @StateObject var authentification = Authentification()
+    @State private var showWelcome: Bool = true
     
     init() {
         FirebaseApp.configure()
     }
     var body: some Scene {
         WindowGroup {
-            if authentification.isValidated {
-                ContentView()
-                    .environmentObject(authentification)
+            if showWelcome {
+                WelcomeView().onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4, execute: {
+                        showWelcome = false
+                    })
+                }
             } else {
-                LoginView()
-                    .environmentObject(authentification)
+                VStack {
+                    if authentification.isValidated {
+                        ContentView()
+                            .environmentObject(authentification)
+                    } else {
+                        LoginView()
+                            .environmentObject(authentification)
+                    }
+                }
             }
         }
     }

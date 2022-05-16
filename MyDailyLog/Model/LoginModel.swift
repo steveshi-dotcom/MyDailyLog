@@ -21,9 +21,9 @@ class LoginModel: ObservableObject {
             switch result {
             case .success:
                 completion(true)
-            case.failure(let authError):
+            case.failure(let iError):
                 credentials = Credentials()
-                error = authError
+                error = iError
                 completion(false)
             }
         }
@@ -34,12 +34,24 @@ class LoginModel: ObservableObject {
             switch result {
             case .success:
                 completion(true)
-            case .failure:
-                error = .failedRecovery
+            case .failure(let iError):
+                error = iError
                 completion(false)
             }
         }
     }
     
+    func signup(withEmail email: String, withPassword password: String, completion: @escaping (Bool) -> Void) {
+        LoginService.shared.signUp(withEmail: email, withPassword: password) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
+            switch result {
+            case .success:
+                completion(true)
+            case .failure(let iError):
+                error = iError
+                completion(false)
+            }
+        }
+    }
     
+    //
 }

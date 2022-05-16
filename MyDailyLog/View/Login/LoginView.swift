@@ -15,6 +15,7 @@ struct LoginView: View {
     @FocusState private var focusState: Bool
     @State private var loadingLogin: Bool = false
     @State private var recoverPassword: Bool = false
+    @State private var signUpAccount: Bool = false
     
     let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
@@ -53,7 +54,6 @@ struct LoginView: View {
                         loadingLogin.toggle()
                         focusState.toggle()
                         loginM.login { result in
-                            print("LoginView: \(result)")
                             authentification.updateValidation(result)
                         }
                         loadingLogin.toggle()
@@ -62,6 +62,16 @@ struct LoginView: View {
                     }
                     .padding(.bottom, 10)
                     labelledDivider(label: "or")
+                    Button {
+                        signUpAccount = true
+                    } label: {
+                        Text("Sign Up")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .frame(width: 300, height: 60)
+                            .background(Color.white)
+                            .cornerRadius(30.0)
+                    }
                     Spacer()
                     Spacer()
                 }
@@ -73,6 +83,9 @@ struct LoginView: View {
         }
         .sheet(isPresented: $recoverPassword) {
             RecoveryView()
+        }
+        .sheet(isPresented: $signUpAccount) {
+            SignUpView()
         }
     }
 }

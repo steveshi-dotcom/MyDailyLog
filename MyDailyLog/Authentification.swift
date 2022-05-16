@@ -13,6 +13,7 @@ class Authentification: ObservableObject {
     enum AuthentificationError: String, Error, LocalizedError, Identifiable {
         case invalidCredentials = "Email or Password inccorect, Please try again."
         case failedRecovery = "Password recovery failed"
+        case signupFailure = "Account signup failed"
         
         var id: String {
             self.localizedDescription

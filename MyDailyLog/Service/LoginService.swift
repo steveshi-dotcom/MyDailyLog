@@ -15,13 +15,11 @@ class LoginService {
     // Loggin in with the provided credentials
     func login(credentials: Credentials,
                completion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            Auth.auth().signIn(withEmail: credentials.username, password: credentials.password) {result, error in
-                if let _ = error {
-                    completion(.failure(.invalidCredentials))
-                } else {
-                    completion(.success(true))
-                }
+        Auth.auth().signIn(withEmail: credentials.username, password: credentials.password) {result, error in
+            if let _ = error {
+                completion(.failure(.invalidCredentials))
+            } else {
+                completion(.success(true))
             }
         }
     }
@@ -40,17 +38,13 @@ class LoginService {
     
     // Signing up for an account with the provided information
     func signUp(withEmail email: String, withPassword password: String,
-                completion: @escaping (Result<Bool, Error>) -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                if let iError = error {
-                    completion(.failure(iError))
-                } else {
-                    completion(.success(true))
-                }
+                completion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let _ = error {
+                completion(.failure(.signupFailure))
+            } else {
+                completion(.success(true))
             }
         }
     }
-    
-    //
 }

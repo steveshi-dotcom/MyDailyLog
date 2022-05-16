@@ -17,7 +17,7 @@ class Authentification: ObservableObject {
             self.localizedDescription
         }
         var errorDescription: String? {
-            return NSLocalizedString("Email or Password inccorect", comment: "")
+            return NSLocalizedString("Email or Password inccorect, Please try again", comment: "")
         }
     }
     

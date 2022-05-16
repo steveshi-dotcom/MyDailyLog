@@ -65,6 +65,10 @@ struct LoginView: View {
             }
             .padding()
         }
+        .alert(item: $loginM.error) {error in
+            Alert(title: Text("Invalid Login"),
+                  message:Text(error.localizedDescription))
+        }
     }
     func forgotPassword() { // Move to RecoveryView
         

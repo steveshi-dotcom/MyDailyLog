@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var authenticated: Bool = false
+    @State private var authenticated: Bool = false // Add userDefault
     var body: some View {
         if authenticated {
             LoginView()

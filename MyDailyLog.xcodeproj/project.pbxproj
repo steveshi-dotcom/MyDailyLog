@@ -32,7 +32,7 @@
 		0F97FC722832ED3600E822AF /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC712832ED3600E822AF /* SignUpView.swift */; };
 		0F97FC742833303600E822AF /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC732833303600E822AF /* DatabaseManager.swift */; };
 		0F97FC762833D1E100E822AF /* CreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC752833D1E100E822AF /* CreationModel.swift */; };
-		0F97FC782833D8A000E822AF /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC772833D8A000E822AF /* BlogPost.swift */; };
+		0F97FC782833D8A000E822AF /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC772833D8A000E822AF /* Log.swift */; };
 		0F97FC7A2833DD0800E822AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC792833DD0800E822AF /* User.swift */; };
 		0F97FC7C2833E18E00E822AF /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC7B2833E18E00E822AF /* StorageManager.swift */; };
 		33AD0D72B5E59E545E8FD678 /* Pods_MyDailyLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A30690F0494EE5944119C2 /* Pods_MyDailyLog.framework */; };
@@ -82,7 +82,7 @@
 		0F97FC712832ED3600E822AF /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		0F97FC732833303600E822AF /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		0F97FC752833D1E100E822AF /* CreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationModel.swift; sourceTree = "<group>"; };
-		0F97FC772833D8A000E822AF /* BlogPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
+		0F97FC772833D8A000E822AF /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		0F97FC792833DD0800E822AF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F97FC7B2833E18E00E822AF /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		14A30690F0494EE5944119C2 /* Pods_MyDailyLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDailyLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				0F97FC792833DD0800E822AF /* User.swift */,
-				0F97FC772833D8A000E822AF /* BlogPost.swift */,
+				0F97FC772833D8A000E822AF /* Log.swift */,
 				0F97FC622831DF7600E822AF /* Credentials.swift */,
 				0F97FC642831E0B000E822AF /* LoginModel.swift */,
 				0F97FC752833D1E100E822AF /* CreationModel.swift */,
@@ -451,7 +451,7 @@
 				0F4DC3B02830069B0031B624 /* ContentView.swift in Sources */,
 				0F4DC3DA28300DEB0031B624 /* WelcomeView.swift in Sources */,
 				0F97FC7C2833E18E00E822AF /* StorageManager.swift in Sources */,
-				0F97FC782833D8A000E822AF /* BlogPost.swift in Sources */,
+				0F97FC782833D8A000E822AF /* Log.swift in Sources */,
 				0F97FC632831DF7600E822AF /* Credentials.swift in Sources */,
 				0F4DC3E228300E5F0031B624 /* ProfileView.swift in Sources */,
 				0F97FC652831E0B000E822AF /* LoginModel.swift in Sources */,

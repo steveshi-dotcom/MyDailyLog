@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct BlogPost {
-    let title: String
+struct Log {
+    let id: String
     let timeStamp: TimeInterval
     let headerImageUrl: URL?
     let text: String

@@ -14,16 +14,16 @@ class DatabaseManager {
     
     private init() {}
     
-    func insertBlog(blogPost: BlogPost, user: User, completion: @escaping (Bool) -> Void) {
+    func insertBlog(blogPost: Log, user: User, completion: @escaping (Bool) -> Void) {
         
     }
-    func deleteBlog(blogPost: BlogPost, user: User, completion: @escaping (Bool) -> Void) {
+    func deleteBlog(blogPost: Log, user: User, completion: @escaping (Bool) -> Void) {
         
     }
-    func getAllPost(completion: @escaping ([BlogPost]) -> Void) {
+    func getAllPost(completion: @escaping ([Log]) -> Void) {
         
     }
-    func getPost(forUser user: User, completion: @escaping (BlogPost) -> Void) {
+    func getPost(forUser user: User, completion: @escaping (Log) -> Void) {
         
     }
     func insertUser(user: User, completion: @escaping (Bool) -> Void) {

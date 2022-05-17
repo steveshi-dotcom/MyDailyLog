@@ -13,12 +13,14 @@ struct CreationView: View {
         VStack {
             TextField("Word", text: $userText)
             Button("Add") {
-                add()
+                createLog()
             }
         }
     }
-    func add() {
-
+    func createLog() {
+        let newLog = Log(id: UUID().uuidString, timeStamp: Date().timeIntervalSince1970, headerImageUrl: nil, text: userText)
+        
+        
     }
 }
 

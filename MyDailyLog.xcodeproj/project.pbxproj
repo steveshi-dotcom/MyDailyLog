@@ -25,7 +25,6 @@
 		0F4DC42E28315B660031B624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC42C28315B660031B624 /* GoogleService-Info.plist */; };
 		0F4DC42F28315B660031B624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC42C28315B660031B624 /* GoogleService-Info.plist */; };
 		0F97FC5D2831A20700E822AF /* RecoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC5C2831A20700E822AF /* RecoveryView.swift */; };
-		0F97FC632831DF7600E822AF /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC622831DF7600E822AF /* Credentials.swift */; };
 		0F97FC652831E0B000E822AF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC642831E0B000E822AF /* LoginModel.swift */; };
 		0F97FC672831E5BA00E822AF /* Authentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC662831E5BA00E822AF /* Authentification.swift */; };
 		0F97FC6A2832778B00E822AF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC692832778B00E822AF /* LoginManager.swift */; };
@@ -75,7 +74,6 @@
 		0F4DC3E328300F2C0031B624 /* roughtDraft-design-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roughtDraft-design-2.png"; sourceTree = "<group>"; };
 		0F4DC42C28315B660031B624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F97FC5C2831A20700E822AF /* RecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryView.swift; sourceTree = "<group>"; };
-		0F97FC622831DF7600E822AF /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		0F97FC642831E0B000E822AF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		0F97FC662831E5BA00E822AF /* Authentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentification.swift; sourceTree = "<group>"; };
 		0F97FC692832778B00E822AF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
@@ -147,7 +145,8 @@
 				0F97FC662831E5BA00E822AF /* Authentification.swift */,
 				0F97FC602831DEE800E822AF /* Model */,
 				0F97FC612831DEFD00E822AF /* View */,
-				0F97FC682832772E00E822AF /* Service */,
+				0F97FC7D2833EE1400E822AF /* ViewModel */,
+				0F97FC682832772E00E822AF /* Managers */,
 				0F4DC42C28315B660031B624 /* GoogleService-Info.plist */,
 				0F4DC3B12830069B0031B624 /* Assets.xcassets */,
 				0F4DC3B32830069B0031B624 /* Preview Content */,
@@ -206,9 +205,6 @@
 			children = (
 				0F97FC792833DD0800E822AF /* User.swift */,
 				0F97FC772833D8A000E822AF /* Log.swift */,
-				0F97FC622831DF7600E822AF /* Credentials.swift */,
-				0F97FC642831E0B000E822AF /* LoginModel.swift */,
-				0F97FC752833D1E100E822AF /* CreationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,14 +219,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0F97FC682832772E00E822AF /* Service */ = {
+		0F97FC682832772E00E822AF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				0F97FC692832778B00E822AF /* LoginManager.swift */,
 				0F97FC732833303600E822AF /* DatabaseManager.swift */,
 				0F97FC7B2833E18E00E822AF /* StorageManager.swift */,
 			);
-			path = Service;
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		0F97FC7D2833EE1400E822AF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0F97FC642831E0B000E822AF /* LoginModel.swift */,
+				0F97FC752833D1E100E822AF /* CreationModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		7DE31D4EC9AC4E909EDB142C /* Frameworks */ = {
@@ -452,7 +457,6 @@
 				0F4DC3DA28300DEB0031B624 /* WelcomeView.swift in Sources */,
 				0F97FC7C2833E18E00E822AF /* StorageManager.swift in Sources */,
 				0F97FC782833D8A000E822AF /* Log.swift in Sources */,
-				0F97FC632831DF7600E822AF /* Credentials.swift in Sources */,
 				0F4DC3E228300E5F0031B624 /* ProfileView.swift in Sources */,
 				0F97FC652831E0B000E822AF /* LoginModel.swift in Sources */,
 				0F97FC7A2833DD0800E822AF /* User.swift in Sources */,

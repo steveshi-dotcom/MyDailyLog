@@ -9,7 +9,8 @@ target 'MyDailyLog' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'FirebaseUI'
-
+  pod 'Firebase/Storage'
+  pod 'FirebaseFirestore'
   
   # Pods for MyDailyLog
   

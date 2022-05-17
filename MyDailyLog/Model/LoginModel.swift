@@ -8,29 +8,22 @@
 import Foundation
 
 class LoginModel: ObservableObject {
-    @Published var credentials = Credentials()
     @Published var error: Authentification.AuthentificationError?
     
-    var disableLogin: Bool {
-        credentials.username.isEmpty || credentials.password.isEmpty
-    }
-    
-    
-    func login(completion: @escaping (Bool) -> Void) {
-        LoginService.shared.login(credentials: credentials) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
+    func login(withEmail userEmail: String, withPassword userPassword: String, completion: @escaping (Bool) -> Void) {
+        LoginManager.shared.login(withEmail: userEmail, withPassword: userPassword) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
             case .success:
                 completion(true)
             case.failure(let iError):
-                credentials = Credentials()
                 error = iError
                 completion(false)
             }
         }
     }
     
-    func resetPassword(withEmail email: String, completion: @escaping (Bool) -> Void) {
-        LoginService.shared.resetPassword(email: email) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
+    func resetPassword(withEmail userEmail: String, completion: @escaping (Bool) -> Void) {
+        LoginManager.shared.resetPassword(withEmail: userEmail) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
             case .success:
                 completion(true)
@@ -41,8 +34,8 @@ class LoginModel: ObservableObject {
         }
     }
     
-    func signup(withEmail email: String, withPassword password: String, completion: @escaping (Bool) -> Void) {
-        LoginService.shared.signUp(withEmail: email, withPassword: password) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
+    func signup(withEmail userEmail: String, withPassword userPassword: String, completion: @escaping (Bool) -> Void) {
+        LoginManager.shared.signUp(withEmail: userEmail, withPassword: userPassword) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
             case .success:
                 completion(true)
@@ -52,6 +45,4 @@ class LoginModel: ObservableObject {
             }
         }
     }
-    
-    //
 }

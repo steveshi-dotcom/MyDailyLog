@@ -11,11 +11,12 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
-                Button("Next Log", role: .none) {
-                    nextLog()
+                HStack(spacing: 10) {
+                    Text("My DailyLog")
+                    Spacer()
                 }
-                
+                Spacer()
+                Spacer()
             }
         }
     }
@@ -24,6 +25,7 @@ struct HomeView: View {
         
     }
 }
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

@@ -13,6 +13,8 @@ struct LoginView: View {
     @StateObject private var loginM = LoginModel()
     @EnvironmentObject var authentification: Authentification
     @FocusState private var focusState: Bool
+    @State private var userEmail: String = ""
+    @State private var userPassword: String = ""
     @State private var loadingLogin: Bool = false
     @State private var recoverPassword: Bool = false
     @State private var signUpAccount: Bool = false
@@ -28,18 +30,19 @@ struct LoginView: View {
                     Text("My Daily Log")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                    TextField("email adress or phone number", text: $loginM.credentials.username)
-                        .padding()
-                        .background(lightGreyColor)
+                    TextField("email adress or phone number", text: $userEmail)
+                        .font(.headline)
                         .foregroundColor(.black)
+                        .padding()
+                        .background(.white)
                         .cornerRadius(5.0)
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
-                        .foregroundColor(.primary)
-                    SecureField("Password", text: $loginM.credentials.password)
-                        .padding()
-                        .background(lightGreyColor)
+                    SecureField("Password", text: $userPassword)
+                        .font(.headline)
                         .foregroundColor(.black)
+                        .padding()
+                        .background(.white)
                         .cornerRadius(5.0)
                         .focused($focusState)
                     HStack {
@@ -53,7 +56,7 @@ struct LoginView: View {
                     Button {
                         loadingLogin.toggle()
                         focusState.toggle()
-                        loginM.login { result in
+                        loginM.login(withEmail: userEmail, withPassword: userPassword) { result in
                             authentification.updateValidation(result)
                         }
                         loadingLogin.toggle()
@@ -117,7 +120,7 @@ struct labelledDivider: View {
     let horizontalPadding: CGFloat
     let color: Color
     
-    init(label: String, horizontalPadding: CGFloat = 10, color: Color = .black) {
+    init(label: String, horizontalPadding: CGFloat = 5, color: Color = .black) {
         self.label = label
         self.horizontalPadding = horizontalPadding
         self.color = color

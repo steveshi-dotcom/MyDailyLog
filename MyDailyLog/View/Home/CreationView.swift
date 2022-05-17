@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct CreationView: View {
+    @State private var userText: String = ""
     var body: some View {
-        Text("Hello, Creation!")
+        VStack {
+            TextField("Word", text: $userText)
+            Button("Add") {
+                add()
+            }
+        }
+    }
+    func add() {
+
     }
 }
 

@@ -11,9 +11,6 @@ import SwiftUI
 struct WelcomeView: View {
     var body: some View {
         NavigationView {
-            // Stack backgroundImage(libraryBooks) on bottom
-            // then warm linear gradient color in the middle
-            // (title + description) vertically centered, in the top stack
             ZStack {
                 Image("noah-eleazar-9p6R1IDCXNg-unsplash")
                     .resizable()

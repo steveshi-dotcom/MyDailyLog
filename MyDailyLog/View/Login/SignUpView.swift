@@ -11,12 +11,12 @@ import FirebaseAuthUI
 struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var loginM = LoginModel()
+    @FocusState private var inputFocus: Bool
     @State private var newEmail: String = ""
     @State private var newPassword: String = ""
     @State private var confirmPassword: String = ""
-    @State private var showPwdIssue: Bool = false
-    @State private var showSignUpAlert: Bool = false
-    @FocusState private var focusState: Bool
+    @State private var showPasswordAlert: Bool = false
+    @State private var showRecoveryAlert: Bool = false
     
     let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
@@ -57,9 +57,9 @@ struct SignUpView: View {
                         .foregroundColor(.primary)
                         .padding(.bottom, 10)
                     Button {
-                        focusState.toggle()
+                        inputFocus.toggle()
                         guard newPassword == confirmPassword && FUIAuthBaseViewController.isValidEmail(newEmail) else {
-                            showPwdIssue.toggle()
+                            showPasswordAlert.toggle()
                             return
                         }
                         loginM.signup(withEmail: newEmail, withPassword: newPassword) { result in
@@ -83,9 +83,9 @@ struct SignUpView: View {
             }
         }
         .alert(item: $loginM.error) {error in
-            Alert(title: Text("SignUp failed"),message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Account signup failed, please try again."))
+            Alert(title: Text(error.rawValue),message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Account signup failed, please try again."))
         }
-        .alert(isPresented: $showPwdIssue) {
+        .alert(isPresented: $showPasswordAlert) {
             Alert(title: Text("Registration Error"), message: Text("Please double check the input fields to make sure they are correct."))
         }
     }

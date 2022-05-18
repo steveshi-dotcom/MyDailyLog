@@ -31,7 +31,7 @@ class LoginManager {
                        resetCompletion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
         auth.sendPasswordReset(withEmail: email, completion: { error in
             if let _ = error {
-                resetCompletion(.failure(.failedRecovery))
+                resetCompletion(.failure(.failedPasswordRecovery))
             } else {
                 resetCompletion(.success(true))
             }
@@ -43,7 +43,7 @@ class LoginManager {
                 completion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
         auth.createUser(withEmail: email, password: password) { result, error in
             if let _ = error {
-                completion(.failure(.signupFailure))
+                completion(.failure(.failedAccountSignUp))
             } else {
                 completion(.success(true))
             }

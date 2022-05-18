@@ -10,14 +10,12 @@ import Firebase
 import FirebaseAuth
 
 struct LoginView: View {
-    @StateObject private var loginM = LoginModel()
+    @StateObject private var loginVM = LoginModel()
     @EnvironmentObject var authentification: Authentification
     @FocusState private var focusState: Bool
-    @State private var userEmail: String = ""
-    @State private var userPassword: String = ""
-    @State private var loadingLogin: Bool = false
-    @State private var recoverPassword: Bool = false
-    @State private var signUpAccount: Bool = false
+    @State private var showLogin: Bool = false
+    @State private var showRecoverySheet: Bool = false
+    @State private var showSignUpSheet: Bool = false
     
     let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
@@ -30,7 +28,7 @@ struct LoginView: View {
                     Text("My Daily Log")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                    TextField("email adress or phone number", text: $userEmail)
+                    TextField("email adress or phone number", text: $loginVM.userEmail)
                         .font(.headline)
                         .foregroundColor(.black)
                         .padding()
@@ -38,7 +36,7 @@ struct LoginView: View {
                         .cornerRadius(5.0)
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
-                    SecureField("Password", text: $userPassword)
+                    SecureField("Password", text: $loginVM.userPassword)
                         .font(.headline)
                         .foregroundColor(.black)
                         .padding()
@@ -48,25 +46,25 @@ struct LoginView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            recoverPassword = true
+                            showRecoverySheet = true
                         }) {
                             Text("Forgot password?")
                         }
                     }
                     Button {
-                        loadingLogin.toggle()
+                        showLogin.toggle()
                         focusState.toggle()
-                        loginM.login(withEmail: userEmail, withPassword: userPassword) { result in
+                        loginVM.login() { result in
                             authentification.updateValidation(result)
                         }
-                        loadingLogin.toggle()
+                        showLogin.toggle()
                     } label: {
-                        loadingView(loadingLogin)
+                        loadingView(showLogin)
                     }
                     .padding(.bottom, 10)
                     labelledDivider(label: "or")
                     Button {
-                        signUpAccount = true
+                        showSignUpSheet = true
                     } label: {
                         Text("Sign Up")
                             .font(.headline)
@@ -80,14 +78,14 @@ struct LoginView: View {
                 }
                 .padding()
             }
-            .alert(item: $loginM.error) {error in
-                Alert(title: Text("Invalid Login"), message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Email or Password inccorect, Please try again."))
+            .alert(item: $loginVM.error) {error in
+                Alert(title: Text(error.rawValue), message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Double check to make sure the email/password is correct"))
             }
         }
-        .sheet(isPresented: $recoverPassword) {
+        .sheet(isPresented: $showRecoverySheet) {
             RecoveryView()
         }
-        .sheet(isPresented: $signUpAccount) {
+        .sheet(isPresented: $showSignUpSheet) {
             SignUpView()
         }
     }

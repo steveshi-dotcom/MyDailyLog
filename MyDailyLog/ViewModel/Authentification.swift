@@ -11,9 +11,9 @@ class Authentification: ObservableObject {
     @Published var isValidated: Bool = false
     
     enum AuthentificationError: String, Error, LocalizedError, Identifiable {
-        case invalidCredentials = "Email or Password inccorect, Please try again."
-        case failedRecovery = "Password recovery failed"
-        case signupFailure = "Account signup failed"
+        case invalidCredentials = "Email or Password Incorrect"
+        case failedPasswordRecovery = "Password Recovery Failed"
+        case failedAccountSignUp = "Account SignUp Failed"
         
         var id: String {
             self.localizedDescription

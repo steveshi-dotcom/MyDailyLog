@@ -9,6 +9,6 @@ import Firebase
 import FirebaseStorage
 
 class CreationModel: ObservableObject {
-    @Published var userBlog = String()
+    //@Published var currentLog = Log()?
     
 }

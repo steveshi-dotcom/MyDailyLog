@@ -9,8 +9,10 @@ import Foundation
 
 class LoginModel: ObservableObject {
     @Published var error: Authentification.AuthentificationError?
+    @Published var userEmail = ""
+    @Published var userPassword = ""
     
-    func login(withEmail userEmail: String, withPassword userPassword: String, completion: @escaping (Bool) -> Void) {
+    func login(completion: @escaping (Bool) -> Void) {
         LoginManager.shared.login(withEmail: userEmail, withPassword: userPassword) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
             case .success:
@@ -22,7 +24,7 @@ class LoginModel: ObservableObject {
         }
     }
     
-    func resetPassword(withEmail userEmail: String, completion: @escaping (Bool) -> Void) {
+    func resetPassword(completion: @escaping (Bool) -> Void) {
         LoginManager.shared.resetPassword(withEmail: userEmail) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
             case .success:
@@ -32,6 +34,7 @@ class LoginModel: ObservableObject {
                 completion(false)
             }
         }
+        userEmail = ""
     }
     
     func signup(withEmail userEmail: String, withPassword userPassword: String, completion: @escaping (Bool) -> Void) {

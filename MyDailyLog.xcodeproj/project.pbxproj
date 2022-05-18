@@ -142,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */,
-				0F97FC662831E5BA00E822AF /* Authentification.swift */,
 				0F97FC602831DEE800E822AF /* Model */,
 				0F97FC612831DEFD00E822AF /* View */,
 				0F97FC7D2833EE1400E822AF /* ViewModel */,
@@ -193,6 +192,7 @@
 		0F97FC5F2831CC9800E822AF /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0F4DC3AF2830069B0031B624 /* ContentView.swift */,
 				0F4DC3DD28300E260031B624 /* HomeView.swift */,
 				0F4DC3DF28300E520031B624 /* CreationView.swift */,
 				0F4DC3E128300E5F0031B624 /* ProfileView.swift */,
@@ -212,7 +212,6 @@
 		0F97FC612831DEFD00E822AF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0F4DC3AF2830069B0031B624 /* ContentView.swift */,
 				0F97FC5E2831CC8D00E822AF /* Login */,
 				0F97FC5F2831CC9800E822AF /* Home */,
 			);
@@ -232,6 +231,7 @@
 		0F97FC7D2833EE1400E822AF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0F97FC662831E5BA00E822AF /* Authentification.swift */,
 				0F97FC642831E0B000E822AF /* LoginModel.swift */,
 				0F97FC752833D1E100E822AF /* CreationModel.swift */,
 			);

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct CreationView: View {
+    @StateObject private var userLog = CreationModel()
     @State private var userText: String = ""
+    
     var body: some View {
         VStack {
             TextField("Word", text: $userText)
@@ -18,9 +20,7 @@ struct CreationView: View {
         }
     }
     func createLog() {
-        let newLog = Log(id: UUID().uuidString, timeStamp: Date().timeIntervalSince1970, headerImageUrl: nil, text: userText)
-        
-        
+        //let newLog = Log(id: UUID().uuidString, timeStamp: Date().timeIntervalSince1970, headerImageUrl: nil, text: $userLog.currentLog.text)
     }
 }
 

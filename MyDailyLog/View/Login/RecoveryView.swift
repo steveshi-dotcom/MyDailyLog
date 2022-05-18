@@ -1,4 +1,4 @@
-//
+// 
 //  RecoveryView.swift
 //  MyDailyLog
 //
@@ -10,10 +10,9 @@ import FirebaseAuthUI
 
 struct RecoveryView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject private var loginM = LoginModel()
-    @State private var recoverEmail: String = ""
+    @ObservedObject private var loginVM = LoginModel()
+    @FocusState private var inputFocus: Bool
     @State private var showRecoveryAlert: Bool = false
-    @FocusState private var focusState: Bool
     
     let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
@@ -26,7 +25,7 @@ struct RecoveryView: View {
                     Text("Recover Password")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                    TextField("email adress or phone number", text: $recoverEmail)
+                    TextField("email adress or phone number", text: $loginVM.userEmail)
                         .padding()
                         .background(lightGreyColor)
                         .foregroundColor(.black)
@@ -36,11 +35,11 @@ struct RecoveryView: View {
                         .foregroundColor(.primary)
                         .padding(.bottom, 10)
                     Button {
-                        focusState.toggle()
-                        guard FUIAuthBaseViewController.isValidEmail(recoverEmail) else {
+                        inputFocus.toggle()
+                        guard FUIAuthBaseViewController.isValidEmail(loginVM.userEmail) else {
                             return;
                         }
-                        loginM.resetPassword(withEmail: recoverEmail) { result in
+                        loginVM.resetPassword() { result in
                             if result {
                                 dismiss()
                             }
@@ -60,8 +59,8 @@ struct RecoveryView: View {
                 .padding()
             }
         }
-        .alert(item: $loginM.error) {error in
-            Alert(title: Text("Recovery Failed"),message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Password recovery failed, Please try again."))
+        .alert(item: $loginVM.error) {error in
+            Alert(title: Text(error.rawValue),message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Password recovery failed, Please try again."))
         }
     }
 }

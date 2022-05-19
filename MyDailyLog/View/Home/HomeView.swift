@@ -11,13 +11,11 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack(spacing: 10) {
-                    Text("My DailyLog")
-                    Spacer()
-                }
+                HomeTopView()
                 Spacer()
                 Spacer()
             }
+            .navigationBarHidden(true)
         }
     }
     

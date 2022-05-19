@@ -6,9 +6,10 @@
 //
 
 import Firebase
-import FirebaseStorage
+import FirebaseAuth
 
 class CreationModel: ObservableObject {
-    //@Published var currentLog = Log()?
+    @Published var CreationModel = [Log]()
+    
     
 }

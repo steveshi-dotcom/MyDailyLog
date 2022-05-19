@@ -8,19 +8,36 @@
 import SwiftUI
 
 struct CreationView: View {
-    @StateObject private var userLog = CreationModel()
-    @State private var userText: String = ""
+    @StateObject private var creationVM = CreationModel()
+    @State private var showingImagePicker: Bool = false
+    @State private var logImage: UIImage?
+    @State private var logText: String = ""
     
     var body: some View {
-        VStack {
-            TextField("Word", text: $userText)
-            Button("Add") {
-                createLog()
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.fixed(175), spacing:10),
+                                    GridItem(.fixed(175), spacing:10)]) {
+                    Image("sam")
+                        .resizable()
+                        .scaledToFit()
+                    Image("sam")
+                        .resizable()
+                        .scaledToFit()
+                }
+                
             }
+            .navigationTitle("Hello")
+            .navigationBarItems(
+                trailing:
+                    Button(action: { showingImagePicker.toggle()}) {
+                        Image(systemName: "plus.circle")
+                    }
+            )
         }
-    }
-    func createLog() {
-        //let newLog = Log(id: UUID().uuidString, timeStamp: Date().timeIntervalSince1970, headerImageUrl: nil, text: $userLog.currentLog.text)
+        .sheet(isPresented: $showingImagePicker) {
+            CreationPhotoPickerView()
+        }
     }
 }
 

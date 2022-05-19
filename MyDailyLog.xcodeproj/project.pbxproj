@@ -34,6 +34,10 @@
 		0F97FC782833D8A000E822AF /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC772833D8A000E822AF /* Log.swift */; };
 		0F97FC7A2833DD0800E822AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC792833DD0800E822AF /* User.swift */; };
 		0F97FC7C2833E18E00E822AF /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC7B2833E18E00E822AF /* StorageManager.swift */; };
+		0FC268E12835C34F00091933 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC268E02835C34F00091933 /* HomeModel.swift */; };
+		0FC268E32835C35900091933 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC268E22835C35900091933 /* ProfileModel.swift */; };
+		0FC268E52835C7CD00091933 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC268E42835C7CD00091933 /* HomeTopView.swift */; };
+		0FD3329E2835D3E4005D2029 /* CreationPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */; };
 		33AD0D72B5E59E545E8FD678 /* Pods_MyDailyLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A30690F0494EE5944119C2 /* Pods_MyDailyLog.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +87,10 @@
 		0F97FC772833D8A000E822AF /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		0F97FC792833DD0800E822AF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F97FC7B2833E18E00E822AF /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		0FC268E02835C34F00091933 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		0FC268E22835C35900091933 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		0FC268E42835C7CD00091933 /* HomeTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
+		0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPhotoPickerView.swift; sourceTree = "<group>"; };
 		14A30690F0494EE5944119C2 /* Pods_MyDailyLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDailyLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E0F5A8ECE876D1DFCEA150F /* Pods-MyDailyLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.release.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.release.xcconfig"; sourceTree = "<group>"; };
 		E6B2868AF3B50DC0D762220B /* Pods-MyDailyLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.debug.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.debug.xcconfig"; sourceTree = "<group>"; };
@@ -195,7 +203,9 @@
 				0F4DC3AF2830069B0031B624 /* ContentView.swift */,
 				0F4DC3DD28300E260031B624 /* HomeView.swift */,
 				0F4DC3DF28300E520031B624 /* CreationView.swift */,
+				0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */,
 				0F4DC3E128300E5F0031B624 /* ProfileView.swift */,
+				0FC268E42835C7CD00091933 /* HomeTopView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -234,6 +244,8 @@
 				0F97FC662831E5BA00E822AF /* Authentification.swift */,
 				0F97FC642831E0B000E822AF /* LoginModel.swift */,
 				0F97FC752833D1E100E822AF /* CreationModel.swift */,
+				0FC268E02835C34F00091933 /* HomeModel.swift */,
+				0FC268E22835C35900091933 /* ProfileModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -454,13 +466,16 @@
 			files = (
 				0F4DC3DE28300E260031B624 /* HomeView.swift in Sources */,
 				0F4DC3B02830069B0031B624 /* ContentView.swift in Sources */,
+				0FC268E12835C34F00091933 /* HomeModel.swift in Sources */,
 				0F4DC3DA28300DEB0031B624 /* WelcomeView.swift in Sources */,
+				0FC268E32835C35900091933 /* ProfileModel.swift in Sources */,
 				0F97FC7C2833E18E00E822AF /* StorageManager.swift in Sources */,
 				0F97FC782833D8A000E822AF /* Log.swift in Sources */,
 				0F4DC3E228300E5F0031B624 /* ProfileView.swift in Sources */,
 				0F97FC652831E0B000E822AF /* LoginModel.swift in Sources */,
 				0F97FC7A2833DD0800E822AF /* User.swift in Sources */,
 				0F97FC742833303600E822AF /* DatabaseManager.swift in Sources */,
+				0FC268E52835C7CD00091933 /* HomeTopView.swift in Sources */,
 				0F97FC762833D1E100E822AF /* CreationModel.swift in Sources */,
 				0F4DC3DC28300E020031B624 /* LoginView.swift in Sources */,
 				0F97FC6A2832778B00E822AF /* LoginManager.swift in Sources */,
@@ -468,6 +483,7 @@
 				0F4DC3AE2830069B0031B624 /* MyDailyLogApp.swift in Sources */,
 				0F4DC3E028300E520031B624 /* CreationView.swift in Sources */,
 				0F97FC672831E5BA00E822AF /* Authentification.swift in Sources */,
+				0FD3329E2835D3E4005D2029 /* CreationPhotoPickerView.swift in Sources */,
 				0F97FC5D2831A20700E822AF /* RecoveryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

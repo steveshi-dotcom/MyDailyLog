@@ -14,33 +14,16 @@ class DatabaseManager {
     
     private init() {}
     
-    func dummyTest() {
-        // Add a new document with a generated ID
-        var ref: DocumentReference? = nil
-        ref = db.collection("users").addDocument(data: [
-            "first": "Ada",
-            "last": "Lovelace",
-            "born": 1815
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-
-    }
-    
-    func insertBlog(blogPost: Log, user: User, completion: @escaping (Bool) -> Void) {
+    func insertLog(log: Log, user: User, completion: @escaping (Bool) -> Void) {
         
     }
-    func deleteBlog(blogPost: Log, user: User, completion: @escaping (Bool) -> Void) {
+    func deleteLog(log: Log, user: User, completion: @escaping (Bool) -> Void) {
         
     }
-    func getAllPost(completion: @escaping ([Log]) -> Void) {
+    func getLog(forUser user: User, completion: @escaping (Log) -> Void) {
         
     }
-    func getPost(forUser user: User, completion: @escaping (Log) -> Void) {
+    func getAllLog(completion: @escaping ([Log]) -> Void) {
         
     }
     func insertUser(user: User, completion: @escaping (Bool) -> Void) {

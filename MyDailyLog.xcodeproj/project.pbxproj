@@ -21,7 +21,6 @@
 		0F4DC3DE28300E260031B624 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3DD28300E260031B624 /* HomeView.swift */; };
 		0F4DC3E028300E520031B624 /* CreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3DF28300E520031B624 /* CreationView.swift */; };
 		0F4DC3E228300E5F0031B624 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3E128300E5F0031B624 /* ProfileView.swift */; };
-		0F4DC3E428300F2C0031B624 /* roughtDraft-design-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC3E328300F2C0031B624 /* roughtDraft-design-2.png */; };
 		0F4DC42D28315B660031B624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC42C28315B660031B624 /* GoogleService-Info.plist */; };
 		0F4DC42E28315B660031B624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC42C28315B660031B624 /* GoogleService-Info.plist */; };
 		0F4DC42F28315B660031B624 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC42C28315B660031B624 /* GoogleService-Info.plist */; };
@@ -77,7 +76,6 @@
 		0F4DC3DD28300E260031B624 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0F4DC3DF28300E520031B624 /* CreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationView.swift; sourceTree = "<group>"; };
 		0F4DC3E128300E5F0031B624 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		0F4DC3E328300F2C0031B624 /* roughtDraft-design-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roughtDraft-design-2.png"; sourceTree = "<group>"; };
 		0F4DC42C28315B660031B624 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F97FC5C2831A20700E822AF /* RecoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryView.swift; sourceTree = "<group>"; };
 		0F97FC642831E0B000E822AF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 		0F4DC3A12830069B0031B624 = {
 			isa = PBXGroup;
 			children = (
-				0F4DC3E328300F2C0031B624 /* roughtDraft-design-2.png */,
 				0F4DC3D72830087E0031B624 /* Readme.md */,
 				0F4DC3AC2830069B0031B624 /* MyDailyLog */,
 				0F4DC3BD2830069B0031B624 /* MyDailyLogTests */,
@@ -404,7 +401,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F4DC3E428300F2C0031B624 /* roughtDraft-design-2.png in Resources */,
 				0F4DC42F28315B660031B624 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

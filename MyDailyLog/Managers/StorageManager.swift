@@ -10,7 +10,7 @@ import FirebaseStorage
 
 class StorageManager {
     static let shared = StorageManager()
-    private let container = Storage.storage().reference()
+    private let storage = Storage.storage().reference()
     
     private init() {}
     
@@ -18,7 +18,14 @@ class StorageManager {
         
     }
     
-    func uploadBlogHeaderImage(image: UIImage?, completion: @escaping (Bool) -> Void) {
-        
+    func uploadLogHeaderImage(log: Log, completion: @escaping (Bool) -> Void) {
+        let fileRef = storage.child("images/\(log.id).jpg")
+        let uploadTask = fileRef.putData(log.headerImageUrl, metadata: nil) { metadata, err in
+            if err == nil && metadata != nil {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
 }

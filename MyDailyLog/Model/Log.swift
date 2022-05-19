@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Log {
+struct Log: Codable, Identifiable {
     let id: String
     let timeStamp: TimeInterval
-    let headerImageUrl: URL?
-    let text: String
+    let headerImageUrl: Data
+    let headerImageCap: String
+    let bodyText: String
 }

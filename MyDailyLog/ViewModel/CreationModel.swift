@@ -15,7 +15,6 @@ class CreationModel: ObservableObject {
     var canTakePictures: Bool {
         UIImagePickerController.isSourceTypeAvailable(.camera)
     }
-    
     func handleAddedImage(_ image: UIImage) {
         DispatchQueue.main.async {
             if self.images.count == 0 {
@@ -25,7 +24,6 @@ class CreationModel: ObservableObject {
             }
         }
     }
-    
     func handleResults(_ results: [PHPickerResult]) {
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] imageObject, error in
@@ -37,7 +35,11 @@ class CreationModel: ObservableObject {
         }
     }
     
-    func saveLog(completion: @escaping (Bool) -> Void) {
-        
+    func saveLog(withLog newLog: Log, completion: @escaping (Bool) -> Void) {
+        let currUser = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
+        DatabaseManager.shared.insertLog(log: newLog, email: currUser) { result in
+            completion(result)
+        }
     }
+    
 }

@@ -18,7 +18,11 @@ class CreationModel: ObservableObject {
     
     func handleAddedImage(_ image: UIImage) {
         DispatchQueue.main.async {
-            self.images.append(image)
+            if self.images.count == 0 {
+                self.images.append(image)
+            } else {
+                self.images[0] = image
+            }
         }
     }
     
@@ -33,5 +37,7 @@ class CreationModel: ObservableObject {
         }
     }
     
-    
+    func saveLog(completion: @escaping (Bool) -> Void) {
+        
+    }
 }

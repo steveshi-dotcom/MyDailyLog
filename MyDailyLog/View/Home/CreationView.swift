@@ -9,9 +9,9 @@ import SwiftUI
 
 struct CreationView: View {
     @StateObject private var creationVM = CreationModel()
-    @State private var showingImagePicker: Bool = false
     @State private var showingCameraPicker: Bool = false
     @State private var logImage: UIImage?
+    @State private var logImageCap: String = ""
     @State private var logText: String = ""
     
     var body: some View {
@@ -23,11 +23,11 @@ struct CreationView: View {
                             Image(uiImage: creationVM.images[$0])
                                 .resizable()
                                 .scaledToFill()
+                            TextField("What are your thoughts at this moment?", text: $logImageCap)
                         }
                     }
-                
             }
-            .navigationTitle("Hello")
+            .navigationTitle("New Log")
             .navigationBarItems(
                 trailing:
                     ImagesBtn
@@ -38,12 +38,19 @@ struct CreationView: View {
                 creationVM.handleAddedImage($0)
             }
         }
+        
+        
     }
     private var ImagesBtn: some View {
         HStack {
             if creationVM.canTakePictures {
                 Button(action: { showingCameraPicker.toggle() }) {
                     Image(systemName: "camera")
+                }
+            }
+            Button("Save Progress") {
+                creationVM.saveLog() { result in
+                    
                 }
             }
         }

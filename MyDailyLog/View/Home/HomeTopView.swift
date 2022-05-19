@@ -19,7 +19,7 @@ struct HomeTopView: View {
                 .fontWeight(.medium)
             Spacer()
             Text(currUser ?? "Anon.Panda")
-        }
+        }.padding()
     }
 }
 

@@ -10,33 +10,42 @@ import SwiftUI
 struct CreationView: View {
     @StateObject private var creationVM = CreationModel()
     @State private var showingImagePicker: Bool = false
+    @State private var showingCameraPicker: Bool = false
     @State private var logImage: UIImage?
     @State private var logText: String = ""
     
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: [GridItem(.fixed(175), spacing:10),
-                                    GridItem(.fixed(175), spacing:10)]) {
-                    Image("sam")
-                        .resizable()
-                        .scaledToFit()
-                    Image("sam")
-                        .resizable()
-                        .scaledToFit()
-                }
+                LazyVGrid(
+                    columns: Array(repeating: GridItem(.fixed(175), spacing: 10), count: 2)) {
+                        ForEach(creationVM.images.indices, id: \.self) {
+                            Image(uiImage: creationVM.images[$0])
+                                .resizable()
+                                .scaledToFill()
+                        }
+                    }
                 
             }
             .navigationTitle("Hello")
             .navigationBarItems(
                 trailing:
-                    Button(action: { showingImagePicker.toggle()}) {
-                        Image(systemName: "plus.circle")
-                    }
+                    ImagesBtn
             )
         }
-        .sheet(isPresented: $showingImagePicker) {
-            CreationPhotoPickerView()
+        .sheet(isPresented: $showingCameraPicker) {
+            CreationCameraPickerView(isPresented: $showingCameraPicker) {
+                creationVM.handleAddedImage($0)
+            }
+        }
+    }
+    private var ImagesBtn: some View {
+        HStack {
+            if creationVM.canTakePictures {
+                Button(action: { showingCameraPicker.toggle() }) {
+                    Image(systemName: "camera")
+                }
+            }
         }
     }
 }

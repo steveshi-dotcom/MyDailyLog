@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F24BA8428366F1300F0B4D9 /* CreationCameraPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F24BA8328366F1300F0B4D9 /* CreationCameraPickerView.swift */; };
 		0F4DC3AE2830069B0031B624 /* MyDailyLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */; };
 		0F4DC3B02830069B0031B624 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3AF2830069B0031B624 /* ContentView.swift */; };
 		0F4DC3B22830069B0031B624 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC3B12830069B0031B624 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F24BA8328366F1300F0B4D9 /* CreationCameraPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationCameraPickerView.swift; sourceTree = "<group>"; };
 		0F4DC3AA2830069B0031B624 /* MyDailyLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDailyLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyLogApp.swift; sourceTree = "<group>"; };
 		0F4DC3AF2830069B0031B624 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F24BA85283674B000F0B4D9 /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				0F24BA8328366F1300F0B4D9 /* CreationCameraPickerView.swift */,
+				0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
 		0F4DC3A12830069B0031B624 = {
 			isa = PBXGroup;
 			children = (
@@ -203,7 +214,7 @@
 				0F4DC3AF2830069B0031B624 /* ContentView.swift */,
 				0F4DC3DD28300E260031B624 /* HomeView.swift */,
 				0F4DC3DF28300E520031B624 /* CreationView.swift */,
-				0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */,
+				0F24BA85283674B000F0B4D9 /* Creation */,
 				0F4DC3E128300E5F0031B624 /* ProfileView.swift */,
 				0FC268E42835C7CD00091933 /* HomeTopView.swift */,
 			);
@@ -472,6 +483,7 @@
 				0F97FC7C2833E18E00E822AF /* StorageManager.swift in Sources */,
 				0F97FC782833D8A000E822AF /* Log.swift in Sources */,
 				0F4DC3E228300E5F0031B624 /* ProfileView.swift in Sources */,
+				0F24BA8428366F1300F0B4D9 /* CreationCameraPickerView.swift in Sources */,
 				0F97FC652831E0B000E822AF /* LoginModel.swift in Sources */,
 				0F97FC7A2833DD0800E822AF /* User.swift in Sources */,
 				0F97FC742833303600E822AF /* DatabaseManager.swift in Sources */,
@@ -648,6 +660,7 @@
 				DEVELOPMENT_TEAM = WGVRJ4U92U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -680,6 +693,7 @@
 				DEVELOPMENT_TEAM = WGVRJ4U92U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

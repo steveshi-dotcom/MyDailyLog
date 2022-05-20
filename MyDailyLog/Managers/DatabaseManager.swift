@@ -27,7 +27,7 @@ class DatabaseManager {
     // and store the image in FireStorage since the file size would be too big. Ex: one image captured
     // with jpg compressed to 0.8 is roughly 1.95mb, could possibly make that smaller but would reduce quality
     func insertLog(log: Log, email: String, completion: @escaping (Bool) -> Void) {
-        let userEmail = email
+        let replacedEmail = email
             .replacingOccurrences(of: ".", with: "_")
             .replacingOccurrences(of: "@", with: "_")
         let data: [String: Any] = [
@@ -39,12 +39,12 @@ class DatabaseManager {
         ]
         db
             .collection("users")
-            .document(userEmail)
+            .document(replacedEmail)
             .collection("logs")
             .document(log.id)
             .setData(data) { err in // If there are no error with storing the log text info then attempt to store the image within Storage
                 if err == nil {
-                    StorageManager.shared.uploadLogHeaderImage(log: log, withEmail: email) { (result: Result<Bool, StorageManager.StorageError>) in
+                    StorageManager.shared.uploadLogHeaderImage(log: log, withEmail: replacedEmail) {(result: Result<Bool, StorageManager.StorageError>) in
                         switch result {
                         case .success:
                             completion(true)
@@ -61,9 +61,12 @@ class DatabaseManager {
     
     // Insert an order within the path users/userEmail/logPost/userMetaData, each logPost collection will have one distinct userMetaData doc
     func insertUser(user: User, completion: @escaping (Result<Bool, FireStoreError>) -> Void) {
+        let replacedEmail = user.userEmail
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: "@", with: "_")
         db
             .collection("users")
-            .document(user.userEmail)
+            .document(replacedEmail)
             .collection("logs")
             .document("userMetaData")
             .setData(["userName": user.userName, "userEmail": user.userEmail]) { err in // TODO: Figure out why using the user model won't work
@@ -77,8 +80,11 @@ class DatabaseManager {
     
     // Deleting the user by simply deleting the email field thus deleting all information in the subcollection logPosts
     func deleteUser(user: User, completion: @escaping (Result<Bool, FireStoreError>) -> Void) {
+        let replacedEmail = user.userEmail
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: "@", with: "_")
         db.collection("users")
-            .document(user.userEmail)
+            .document(replacedEmail)
             .delete() { err in
                 if err != nil {
                     completion(.failure(.failedUpload))

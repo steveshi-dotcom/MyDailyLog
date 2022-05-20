@@ -37,11 +37,18 @@ class LoginModel: ObservableObject {
         userEmail = ""
     }
     
-    func signup(withEmail userEmail: String, withPassword userPassword: String, completion: @escaping (Bool) -> Void) {
+    func signup(withName name: String, withEmail userEmail: String, withPassword userPassword: String, completion: @escaping (Bool) -> Void) {
         LoginManager.shared.signUp(withEmail: userEmail, withPassword: userPassword) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
             case .success:
-                completion(true)
+                DatabaseManager.shared.insertUser(user: User(userName: name, userEmail: userEmail)) { (result: Result<Bool, DatabaseManager.FireStoreError>) in
+                    switch result {
+                    case .success:
+                        completion(true)
+                    case .failure:
+                        completion(false)
+                    }
+                }
             case .failure(let iError):
                 error = iError
                 completion(false)

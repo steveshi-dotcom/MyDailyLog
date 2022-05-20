@@ -70,7 +70,7 @@ struct SignUpView: View {
                             showPasswordAlert.toggle()
                             return
                         }
-                        loginM.signup(withEmail: newEmail, withPassword: newPassword) { result in
+                        loginM.signup(withName: newName, withEmail: newEmail, withPassword: newPassword) { result in
                             if result {
                                 dismiss()
                             }

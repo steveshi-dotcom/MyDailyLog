@@ -23,11 +23,7 @@ class StorageManager {
     
     private init() {}
     
-    func uploadUserInfo(userEmail: String, completion: @escaping (Bool) -> Void) {
-        
-    }
-    
-    func uploadLogHeaderImage(log: Log, completion: @escaping (Result<Bool, StorageError>) -> Void) {
+    func uploadLogHeaderImage(log: Log, withEmail email: String, completion: @escaping (Result<Bool, StorageError>) -> Void) {
         let fileRef = storage.child("images/\(log.id).jpg")
         let _ = fileRef.putData(log.headerImageUrl, metadata: nil) { metadata, err in
             if err == nil && metadata != nil {
@@ -36,8 +32,8 @@ class StorageManager {
                 completion(.failure(.failedUpload))
             }
         }
-        
     }
+    
     func getLogHeaderImage(withID id: String, completion: @escaping (Result<UIImage, StorageError>) -> Void) {
         let fileRef = storage.child("images\(id).jpg")
         let _ = fileRef.getData(maxSize: .max) { data, err in
@@ -48,12 +44,9 @@ class StorageManager {
                         return
                     }
                 }
-                
             }
             completion(.failure(.failedRetrieval))
         }
     }
-    
-    //
 }
 

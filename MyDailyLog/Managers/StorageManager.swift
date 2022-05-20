@@ -12,20 +12,48 @@ class StorageManager {
     static let shared = StorageManager()
     private let storage = Storage.storage().reference()
     
+    enum StorageError: String, Error, LocalizedError, Identifiable {
+        case failedUpload = "Failed to upload data to Firebase Storage"
+        case failedRetrieval = "Failed to retrieve data from Firebase Storage"
+        
+        var id: String {
+            self.localizedDescription
+        }
+    }
+    
     private init() {}
     
     func uploadUserInfo(userEmail: String, completion: @escaping (Bool) -> Void) {
         
     }
     
-    func uploadLogHeaderImage(log: Log, completion: @escaping (Bool) -> Void) {
+    func uploadLogHeaderImage(log: Log, completion: @escaping (Result<Bool, StorageError>) -> Void) {
         let fileRef = storage.child("images/\(log.id).jpg")
-        let uploadTask = fileRef.putData(log.headerImageUrl, metadata: nil) { metadata, err in
+        let _ = fileRef.putData(log.headerImageUrl, metadata: nil) { metadata, err in
             if err == nil && metadata != nil {
-                completion(true)
+                completion(.success(true))
             } else {
-                completion(false)
+                completion(.failure(.failedUpload))
             }
         }
+        
     }
+    func getLogHeaderImage(withID id: String, completion: @escaping (Result<UIImage, StorageError>) -> Void) {
+        let fileRef = storage.child("images\(id).jpg")
+        let _ = fileRef.getData(maxSize: .max) { data, err in
+            if err == nil && data != nil {
+                if let image = UIImage(data: data!) {
+                    DispatchQueue.main.async {
+                        completion(.success(image))
+                        return
+                    }
+                }
+                
+            }
+            completion(.failure(.failedRetrieval))
+        }
+    }
+    
+    //
 }
+

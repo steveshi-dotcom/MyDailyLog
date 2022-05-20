@@ -12,6 +12,7 @@ struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var loginM = LoginModel()
     @FocusState private var inputFocus: Bool
+    @State private var newName: String = ""
     @State private var newEmail: String = ""
     @State private var newPassword: String = ""
     @State private var confirmPassword: String = ""
@@ -29,6 +30,13 @@ struct SignUpView: View {
                     Text("Register for an account")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
+                    TextField("name", text: $newName)
+                        .padding()
+                        .background(lightGreyColor)
+                        .foregroundColor(.black)
+                        .cornerRadius(5.0)
+                        .foregroundColor(.primary)
+                        .padding(.bottom, 10)
                     TextField("email address", text: $newEmail)
                         .padding()
                         .background(lightGreyColor)

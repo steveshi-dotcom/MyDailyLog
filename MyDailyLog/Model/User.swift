@@ -10,4 +10,9 @@ import Foundation
 struct User {
     var userName: String
     var userEmail: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userName
+        case userEmail
+    }
 }

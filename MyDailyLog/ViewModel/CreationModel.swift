@@ -9,7 +9,6 @@ import Firebase
 import PhotosUI
 
 class CreationModel: ObservableObject {
-    @Published var CreationModel = [Log]()
     @Published var images: [UIImage] = []
     
     var canTakePictures: Bool {

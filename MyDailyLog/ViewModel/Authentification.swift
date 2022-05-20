@@ -8,7 +8,7 @@
 import SwiftUI
 
 class Authentification: ObservableObject {
-    @Published var isValidated: Bool = false
+    @Published var isValidated: Bool = true
     
     enum AuthentificationError: String, Error, LocalizedError, Identifiable {
         case invalidCredentials = "Email or Password Incorrect"

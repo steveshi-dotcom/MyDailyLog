@@ -21,7 +21,7 @@ struct CreationView: View {
             ScrollView {
                 LazyVGrid(
                     columns: Array(repeating: GridItem(.fixed(175), spacing: 5), count: 2)) {
-                        ZStack {
+                        ZStack(alignment: .center) {
                             if creationVM.images.count != 0 {
                                 Image(uiImage: creationVM.images[0])
                                     .resizable()
@@ -38,8 +38,11 @@ struct CreationView: View {
                         TextEditor(text: $logImageCap)
                             .background(.blue)
                     }
+                    .background(.pink)
+                    .padding(EdgeInsets(top: 1, leading: 15, bottom: 4, trailing: 15))
+                
                 TextEditor(text: $logText)
-                    .background(.blue)
+                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             }
             .navigationTitle("New Log")
             .navigationBarItems(

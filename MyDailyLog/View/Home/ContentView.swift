@@ -11,21 +11,22 @@ struct ContentView: View {
     @EnvironmentObject var loggedIn: Authentification
     
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            CreationView()
-                .tabItem() {
-                    Label("New", systemImage: "plus")
-                }
-            ProfileView()
-                .tabItem() {
-                    Label("Profile", systemImage: "person")
-                }
-        }
-        .tabViewStyle(.automatic)
+        CreationView()
+//        TabView {
+//            HomeView()
+//                .tabItem {
+//                    Label("Home", systemImage: "house")
+//                }
+//            CreationView()
+//                .tabItem() {
+//                    Label("New", systemImage: "plus")
+//                }
+//            ProfileView()
+//                .tabItem() {
+//                    Label("Profile", systemImage: "person")
+//                }
+//        }
+//        .tabViewStyle(.automatic)
     }
 }
 

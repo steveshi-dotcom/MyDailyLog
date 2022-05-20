@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 class ProfileModel: ObservableObject {
-    //
+    @Published var username: String = ""
     
     let db = Firestore.firestore()
     private init() { }

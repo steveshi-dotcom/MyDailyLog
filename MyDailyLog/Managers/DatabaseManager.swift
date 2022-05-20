@@ -35,7 +35,7 @@ class DatabaseManager {
             "timestamp": log.timeStamp,
             "headerImageCap": log.headerImageCap,
             "bodyText": log.bodyText,
-            "imagePath": "images/\(email)/\(log.id)"
+            "imagePath": "images/\(replacedEmail)/\(log.id).jpg"
         ]
         db
             .collection("users")

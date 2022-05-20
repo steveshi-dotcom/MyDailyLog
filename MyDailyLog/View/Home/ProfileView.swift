@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @State private var image: Image = Image("noah-eleazar-9p6R1IDCXNg-unsplash")
     var body: some View {
-        Text("Hello, Profile!")
+        VStack {
+            image
+                .resizable()
+                .frame(width: 200, height: 200)
+            Button(role: .none) {
+                add()
+            } label: {
+                Label("jsdflasdfkj", systemImage: "alarm")
+            }
+        }
+    }
+    
+    func add() {
+        StorageManager.shared.getLogHeaderImage(withPath: "images/st3v5_s2i_gmail_com/46021F1A-CA5D-4889-B049-0FB2C4AEE129.jpg") { (result: Result<UIImage, StorageManager.StorageError>) in
+            switch result {
+            case .success(let iImage):
+                image = Image(uiImage: iImage)
+            case .failure:
+                print("asfdi")
+            }
+        }
     }
 }
 

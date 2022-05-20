@@ -34,8 +34,8 @@ class StorageManager {
         }
     }
     
-    func getLogHeaderImage(withID id: String, withEmail email: String, completion: @escaping (Result<UIImage, StorageError>) -> Void) {
-        let fileRef = storage.child("images/\(email)/\(id).jpg")
+    func getLogHeaderImage(withPath path: String, completion: @escaping (Result<UIImage, StorageError>) -> Void) {
+        let fileRef = storage.child(path)
         let _ = fileRef.getData(maxSize: .max) { data, err in
             if err == nil && data != nil {
                 if let image = UIImage(data: data!) {
@@ -44,9 +44,12 @@ class StorageManager {
                         return
                     }
                 }
+            } else {
+                completion(.failure(.failedRetrieval))
             }
-            completion(.failure(.failedRetrieval))
         }
     }
+    
+    
 }
 

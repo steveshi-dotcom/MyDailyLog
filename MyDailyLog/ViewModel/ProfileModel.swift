@@ -18,11 +18,14 @@ class ProfileModel: ObservableObject {
         guard let email = Auth.auth().currentUser?.email else {
             return
         }
+        let replacedEmail = email
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: "@", with: "_")
         db
             .collection("user")
-            .document(email)
-            .collection("userInfo")
-            .document("Info")
+            .document(replacedEmail)
+            .collection("logs")
+            .document("userMetaData")
             .getDocument() { snapshot, err in
                 if err != nil {
                     completion(.failure(.failedRetrieval))

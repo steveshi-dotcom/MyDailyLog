@@ -45,10 +45,10 @@ struct CreationView: View {
                                 .padding(.trailing, 10)
                         }
                     }
-                    .background(.gray)
+                    .background(Color(UIColor.systemCyan))
                     .cornerRadius(12.5)
                 ZStack {
-                    LinearGradient(gradient: Gradient(colors: [.gray]), startPoint: .leading, endPoint: .trailing)
+                    LinearGradient(gradient: Gradient(colors: [.cyan]), startPoint: .leading, endPoint: .trailing)
                     TextEditor(text: $logText)
                         .cornerRadius(12.5)
                         .padding()
@@ -56,7 +56,7 @@ struct CreationView: View {
                         .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 2 - 20)
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .border(.gray, width: 10)
+                .border(Color(UIColor.systemCyan), width: 10)
                 .cornerRadius(12.5)
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))

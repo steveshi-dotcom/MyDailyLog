@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import Inject
 
 struct CreationView: View {
+    @ObserveInjection var io
     @StateObject private var creationVM = CreationModel()
     @State private var showingCameraPicker: Bool = false
-    @State private var logImage: Image = Image("mcgill-library-JcoZbI7Ve1Q-unsplash")
-    @State private var logImageCap: String = "Image Caption"
+    @State private var logImage: Image = Image("skyler-ewing-Djneft6JzNM-unsplash")
+    @State private var logImageCap: String = "Image Cap"
     @State private var logText: String = "Log Body"
     @State private var showInsufAlert: Bool = false
     @State private var ShowCheckMark: Bool = false  //TODO: NEED TO WORK ON A CHECK MARK VIEW
@@ -20,7 +22,7 @@ struct CreationView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(
-                    columns: Array(repeating: GridItem(.fixed(175), spacing: 5), count: 2)) {
+                    columns: Array(repeating: GridItem(.fixed(190), spacing: 10), count: 2)) {
                         ZStack(alignment: .center) {
                             if creationVM.images.count != 0 {
                                 Image(uiImage: creationVM.images[0])
@@ -29,25 +31,39 @@ struct CreationView: View {
                             } else {
                                 logImage
                                     .resizable()
-                                    .scaledToFill()
+                                    .scaledToFit()
                             }
                         }
+                        .border(.gray, width: 5)
                         .onTapGesture {
                             showingCameraPicker.toggle()
                         }
-                        TextEditor(text: $logImageCap)
-                            .background(.blue)
+                        ZStack {
+                            TextEditor(text: $logImageCap)
+                                .multilineTextAlignment(.center)
+                                .frame(width: 175, height: 150)
+                                .border((logImageCap.count > 99 ? .red : .black), width: 5)
+                                .cornerRadius(12)
+                                .padding(.trailing, 12)
+                        }
                     }
-                    .background(.pink)
-                    .padding(EdgeInsets(top: 1, leading: 15, bottom: 4, trailing: 15))
-                
-                TextEditor(text: $logText)
-                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+                    .background(.blue)
+                ZStack {
+                    LinearGradient(gradient: Gradient(colors: [.gray]), startPoint: .leading, endPoint: .trailing)
+                    TextEditor(text: $logText)
+                        .multilineTextAlignment(.center)
+                        .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 2 - 20)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .border(.gray, width: 10)
+                .background(.indigo)
             }
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
             .navigationTitle("New Log")
             .navigationBarItems(
                 trailing:
-                    Button("Save") {
+                    Button("Post") {
                         guard creationVM.images.count != 0 else {
                             showInsufAlert.toggle()
                             return
@@ -74,6 +90,7 @@ struct CreationView: View {
                 creationVM.handleAddedImage($0)
             }
         }
+        .enableInjection()
     }
 }
 

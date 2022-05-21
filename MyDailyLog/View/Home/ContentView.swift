@@ -6,27 +6,30 @@
 //
 
 import SwiftUI
+import Inject
 
 struct ContentView: View {
+    @ObserveInjection var inject
     @EnvironmentObject var loggedIn: Authentification
-    
-    var body: some View {
-        CreationView()
-//        TabView {
-//            HomeView()
-//                .tabItem {
-//                    Label("Home", systemImage: "house")
-//                }
-//            CreationView()
-//                .tabItem() {
-//                    Label("New", systemImage: "plus")
-//                }
-//            ProfileView()
-//                .tabItem() {
-//                    Label("Profile", systemImage: "person")
-//                }
-//        }
-//        .tabViewStyle(.automatic)
+
+    var body: some View {        
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            CreationView()
+                .tabItem() {
+                    Label("New", systemImage: "plus")
+                }
+            ProfileView()
+                .tabItem() {
+                    Label("Profile", systemImage: "person")
+                }
+        }
+        .tabViewStyle(.automatic)
+        
+            .enableInjection()
     }
 }
 

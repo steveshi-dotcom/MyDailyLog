@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Firebase
-import FirebaseAuth
 
 struct LoginView: View {
     @StateObject private var loginVM = LoginModel()
@@ -28,7 +27,7 @@ struct LoginView: View {
                     Text("My Daily Log")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                    TextField("email adress or phone number", text: $loginVM.userEmail)
+                    TextField("email adress", text: $loginVM.userEmail)
                         .font(.headline)
                         .foregroundColor(.black)
                         .padding()
@@ -48,7 +47,7 @@ struct LoginView: View {
                         Button(action: {
                             showRecoverySheet = true
                         }) {
-                            Text("Forgot password?")
+                            Text("Forgot pasword")
                         }
                     }
                     Button {

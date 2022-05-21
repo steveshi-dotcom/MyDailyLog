@@ -18,23 +18,24 @@ struct MyDailyLogApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            if showWelcome {
-                WelcomeView().onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
-                        showWelcome = false
-                    })
-                }
-            } else {
-                VStack {
-                    if authentification.isValidated {
-                        ContentView()
-                            .environmentObject(authentification)
-                    } else {
-                        LoginView()
-                            .environmentObject(authentification)
-                    }
-                }
-            }
+            CreationView()
+//            if showWelcome {
+//                WelcomeView().onAppear {
+//                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+//                        showWelcome = false
+//                    })
+//                }
+//            } else {
+//                VStack {
+//                    if authentification.isValidated {
+//                        ContentView()
+//                            .environmentObject(authentification)
+//                    } else {
+//                        LoginView()
+//                            .environmentObject(authentification)
+//                    }
+//                }
+//            }
         }
     }
 }

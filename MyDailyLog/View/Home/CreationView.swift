@@ -13,16 +13,16 @@ struct CreationView: View {
     @StateObject private var creationVM = CreationModel()
     @State private var showingCameraPicker: Bool = false
     @State private var logImage: Image = Image("skyler-ewing-Djneft6JzNM-unsplash")
-    @State private var logImageCap: String = "Image Cap"
+    @State private var logImageCap: String = "Image Caption"
     @State private var logText: String = "Log Body"
     @State private var showInsufAlert: Bool = false
-    @State private var ShowCheckMark: Bool = false  //TODO: NEED TO WORK ON A CHECK MARK VIEW
+    @State private var ShowCheckMark: Bool = false
     
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(
-                    columns: Array(repeating: GridItem(.fixed(190), spacing: 10), count: 2)) {
+                    columns: Array(repeating: GridItem(.fixed(190), spacing: 8), count: 2)) {
                         ZStack(alignment: .center) {
                             if creationVM.images.count != 0 {
                                 Image(uiImage: creationVM.images[0])
@@ -34,30 +34,30 @@ struct CreationView: View {
                                     .scaledToFit()
                             }
                         }
-                        .border(.gray, width: 5)
                         .onTapGesture {
                             showingCameraPicker.toggle()
                         }
                         ZStack {
                             TextEditor(text: $logImageCap)
+                                .cornerRadius(12)
                                 .multilineTextAlignment(.center)
                                 .frame(width: 175, height: 150)
-                                .border((logImageCap.count > 99 ? .red : .black), width: 5)
-                                .cornerRadius(12)
-                                .padding(.trailing, 12)
+                                .padding(.trailing, 10)
                         }
                     }
-                    .background(.blue)
+                    .background(.gray)
+                    .cornerRadius(12.5)
                 ZStack {
                     LinearGradient(gradient: Gradient(colors: [.gray]), startPoint: .leading, endPoint: .trailing)
                     TextEditor(text: $logText)
+                        .cornerRadius(12.5)
+                        .padding()
                         .multilineTextAlignment(.center)
                         .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 2 - 20)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .border(.gray, width: 10)
-                .background(.indigo)
+                .cornerRadius(12.5)
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
             .navigationTitle("New Log")

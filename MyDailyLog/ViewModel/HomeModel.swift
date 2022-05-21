@@ -10,4 +10,9 @@ import Firebase
 
 class HomeModel: ObservableObject {
     
+    var myName: String {
+        var currEmail = Auth.auth().currentUser?.email
+        
+        return "asfd"
+    }
 }

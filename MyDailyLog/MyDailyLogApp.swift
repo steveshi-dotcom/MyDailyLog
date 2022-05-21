@@ -18,7 +18,8 @@ struct MyDailyLogApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            CreationView()
+            //CreationView()
+            ContentView()
 //            if showWelcome {
 //                WelcomeView().onAppear {
 //                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {

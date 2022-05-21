@@ -93,5 +93,18 @@ class DatabaseManager {
                 }
             }
     }
+    
+    func getUser(withEmail email: String, completion: @escaping (String) -> Void) {
+        let replacedEmail = email
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: "@", with: "_")
+        db.collection("users")
+            .document(replacedEmail)
+            .collection("logs")
+            .document("userMetaData")
+            .getDocument { snapshot, err in
+                completion(snapshot?.documentID ?? "Bobby")
+            }
+    }
 }
 

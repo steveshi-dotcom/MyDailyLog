@@ -253,8 +253,8 @@
 			children = (
 				0F97FC662831E5BA00E822AF /* Authentification.swift */,
 				0F97FC642831E0B000E822AF /* LoginModel.swift */,
-				0F97FC752833D1E100E822AF /* CreationModel.swift */,
 				0FC268E02835C34F00091933 /* HomeModel.swift */,
+				0F97FC752833D1E100E822AF /* CreationModel.swift */,
 				0FC268E22835C35900091933 /* ProfileModel.swift */,
 			);
 			path = ViewModel;

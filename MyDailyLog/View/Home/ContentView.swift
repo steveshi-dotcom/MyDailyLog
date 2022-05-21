@@ -11,8 +11,8 @@ import Inject
 struct ContentView: View {
     @ObserveInjection var inject
     @EnvironmentObject var loggedIn: Authentification
-
-    var body: some View {        
+    
+    var body: some View {
         TabView {
             HomeView()
                 .tabItem {
@@ -29,7 +29,7 @@ struct ContentView: View {
         }
         .tabViewStyle(.automatic)
         
-            .enableInjection()
+        .enableInjection()
     }
 }
 

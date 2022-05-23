@@ -10,16 +10,48 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject private var homeVM = HomeModel()
     
+    let columns = [GridItem(.adaptive(minimum: 150))]
+    
+    init() {
+        homeVM.getName()
+    }
+    
     var body: some View {
         NavigationView {
-            VStack {
-                HomeTopView(currUser: homeVM.username)
-                ScrollView {
-                    Text("What")
-                    Text("Hello")
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(homeVM.logPost) { log in
+                        NavigationLink {
+                            LogDisplayView()
+                        } label: {
+                            VStack {
+                                Image("")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                    .padding()
+                                Text("\(log.timeStamp)")
+                            }
+                        }
+                    }
                 }
+                .padding([.horizontal, .bottom])
+                
             }
+            .navigationTitle("Logs")
+            .preferredColorScheme(.dark)
+            
         }
+        //        NavigationView {
+        //            VStack {
+        //                HomeTopView(currUser: "Steve")//homeVM.username)
+        //                ScrollView {
+        //                    ForEach(0..<homeVM.logPost.count, id: \.self) { ind in
+        //
+        //                    }
+        //                }
+        //            }
+        //        }
     }
 }
 

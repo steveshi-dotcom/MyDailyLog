@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F24BA8428366F1300F0B4D9 /* CreationCameraPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F24BA8328366F1300F0B4D9 /* CreationCameraPickerView.swift */; };
 		0F24BA882838814700F0B4D9 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = 0F24BA872838814700F0B4D9 /* Inject */; };
+		0F47840F283BB9DD00D96422 /* LogDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F47840E283BB9DD00D96422 /* LogDisplayView.swift */; };
 		0F4DC3AE2830069B0031B624 /* MyDailyLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */; };
 		0F4DC3B02830069B0031B624 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3AF2830069B0031B624 /* ContentView.swift */; };
 		0F4DC3B22830069B0031B624 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F4DC3B12830069B0031B624 /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		0F24BA8328366F1300F0B4D9 /* CreationCameraPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationCameraPickerView.swift; sourceTree = "<group>"; };
+		0F47840E283BB9DD00D96422 /* LogDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDisplayView.swift; sourceTree = "<group>"; };
 		0F4DC3AA2830069B0031B624 /* MyDailyLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDailyLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyLogApp.swift; sourceTree = "<group>"; };
 		0F4DC3AF2830069B0031B624 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				0FC268E42835C7CD00091933 /* HomeTopView.swift */,
+				0F47840E283BB9DD00D96422 /* LogDisplayView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				0F4DC3AE2830069B0031B624 /* MyDailyLogApp.swift in Sources */,
 				0F4DC3E028300E520031B624 /* CreationView.swift in Sources */,
 				0F97FC672831E5BA00E822AF /* Authentification.swift in Sources */,
+				0F47840F283BB9DD00D96422 /* LogDisplayView.swift in Sources */,
 				0FD3329E2835D3E4005D2029 /* CreationPhotoPickerView.swift in Sources */,
 				0F97FC5D2831A20700E822AF /* RecoveryView.swift in Sources */,
 			);

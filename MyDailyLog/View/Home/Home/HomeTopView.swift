@@ -9,7 +9,8 @@ import SwiftUI
 import FirebaseAuth
 
 struct HomeTopView: View {
-    var currUser = Auth.auth().currentUser?.displayName
+    var currUser: String
+
     var colWidth = UIScreen.main.bounds.width / 3
     var body: some View {
         LazyVGrid(columns: [GridItem(.fixed(colWidth)), GridItem(.fixed(colWidth)),
@@ -18,13 +19,13 @@ struct HomeTopView: View {
                 .font(.system(size: 21))
                 .fontWeight(.medium)
             Spacer()
-            Text(currUser ?? "Anon.Panda")
+            Text(currUser)
         }.padding()
     }
 }
 
 struct HomeTopView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeTopView()
+        HomeTopView(currUser: "Bobby")
     }
 }

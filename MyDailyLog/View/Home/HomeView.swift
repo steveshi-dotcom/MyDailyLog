@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject private var homeVM = HomeModel()
+    
     var body: some View {
         NavigationView {
             VStack {
-                HomeTopView()
-                Spacer()
-                Spacer()
+                HomeTopView(currUser: homeVM.username)
+                ScrollView {
+                    Text("What")
+                    Text("Hello")
+                }
             }
-            .navigationBarHidden(true)
         }
-    }
-    
-    func nextLog() {
-        
     }
 }
 

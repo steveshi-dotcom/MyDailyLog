@@ -9,10 +9,23 @@ import Foundation
 import Firebase
 
 class HomeModel: ObservableObject {
+    @Published var username: String = ""
+    @Published var logPost: [Log] = []
+ 
+    init() {
+        if username == "" {
+            getName()
+        }
+    }
     
-    var myName: String {
-        var currEmail = Auth.auth().currentUser?.email
+    func getName() {
+        let email = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
+        DatabaseManager.shared.getUser(withEmail: email) {[unowned self] name in
+            username = name
+        }
+    }
+    
+    func loadLog() {
         
-        return "asfd"
     }
 }

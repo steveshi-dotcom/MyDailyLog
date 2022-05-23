@@ -103,7 +103,12 @@ class DatabaseManager {
             .collection("logs")
             .document("userMetaData")
             .getDocument { snapshot, err in
-                completion(snapshot?.documentID ?? "Bobby")
+                if let data = snapshot?.data() {
+                    let name = data["userName"]
+                    completion(name as! String)
+                } else {
+                    completion("John Smith")
+                }
             }
     }
 }

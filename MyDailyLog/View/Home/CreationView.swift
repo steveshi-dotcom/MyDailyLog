@@ -17,6 +17,7 @@ struct CreationView: View {
     @State private var logText: String = "Log Body"
     @State private var showInsufAlert: Bool = false
     @State private var ShowCheckMark: Bool = false
+    @FocusState private var userInputFocus: Bool
     
     var body: some View {
         NavigationView {
@@ -43,6 +44,7 @@ struct CreationView: View {
                                 .multilineTextAlignment(.center)
                                 .frame(width: 175, height: 150)
                                 .padding(.trailing, 10)
+                                .focused($userInputFocus)
                         }
                     }
                     .background(Color(UIColor.systemCyan))
@@ -54,6 +56,7 @@ struct CreationView: View {
                         .padding()
                         .multilineTextAlignment(.center)
                         .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 2 - 20)
+                        .focused($userInputFocus)
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .border(Color(UIColor.systemCyan), width: 10)
@@ -64,6 +67,7 @@ struct CreationView: View {
             .navigationBarItems(
                 trailing:
                     Button("Post") {
+                        userInputFocus.toggle()
                         guard creationVM.images.count != 0 else {
                             showInsufAlert.toggle()
                             return

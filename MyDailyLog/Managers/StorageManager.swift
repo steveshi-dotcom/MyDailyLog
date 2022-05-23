@@ -46,9 +46,10 @@ class StorageManager {
                         return
                     }
                 }
+            } else {
+                completion(.failure(.failedRetrieval))
             }
         }
-        completion(.failure(.failedRetrieval))
     }
     
     //

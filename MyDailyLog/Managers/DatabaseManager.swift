@@ -92,20 +92,18 @@ class DatabaseManager {
                                           let timeStamp = data["timestamp"] as? TimeInterval,
                                           let headerImageCap = data["headerImageCap"] as? String,
                                           let bodyText = data["bodyText"] as? String else {
+                                        print("Returning")
                                         return
                                         
                                     }
                                     let retrievedLog = Log(id: id, timeStamp: timeStamp, headerImageUrl: iImage.jpegData(compressionQuality: 0.8)! , headerImageCap: headerImageCap, bodyText: bodyText)
+                                    print(retrievedLog.bodyText)
                                     logs.append(retrievedLog)
+                                    print("appended one")
                                 case .failure:
                                     print("Failed")
                                 }
                             }
-                            
-                            
-                           
-                            print(data)
-                            
                         }
                     }
                 }
@@ -120,7 +118,7 @@ class DatabaseManager {
         db
             .collection("users")
             .document(replacedEmail)
-            .collection("userData")
+            .collection("logs")
             .document("userMetaData")
             .setData(["userName": user.userName, "userEmail": user.userEmail]) { err in // TODO: Figure out why using the user model won't work
                 if err != nil {
@@ -153,7 +151,7 @@ class DatabaseManager {
             .replacingOccurrences(of: "@", with: "_")
         db.collection("users")
             .document(replacedEmail)
-            .collection("userData")
+            .collection("logs")
             .document("userMetaData")
             .getDocument { snapshot, err in
                 if let data = snapshot?.data() {

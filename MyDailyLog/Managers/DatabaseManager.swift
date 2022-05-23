@@ -61,11 +61,10 @@ class DatabaseManager {
     }
     
     func getLogs(withEmail email: String, completion: @escaping ([Log]) -> Void) {
-        var logs: [Log] = []
+        var retrievedLogs: [Log] = []
         let replacedEmail = email
             .replacingOccurrences(of: ".", with: "_")
             .replacingOccurrences(of: "@", with: "_")
-        
         db
             .collection("users")
             .document(replacedEmail)
@@ -74,38 +73,30 @@ class DatabaseManager {
                 if let _ = err {
                     print("Error getting the documents")
                     completion([])
-                    return
                 } else {
                     for document in querySnapshot!.documents {
                         if document.documentID != "userMetaData" {
                             let data = document.data()
-                            // Example what data constant is going to hold
-                            // ["timestamp": 1653312284.690641,"bodyText": Nothing happended, "headerImageCap": What happen, "imagePath": images/st3v5_s2i_gmail_com/721924CF-8C78-4C33-8B84-CD685B960758.jpg, "id": 721924CF-8C78-4C33-8B84-CD685B960758]
-                            
                             let imagePath = data["imagePath"] as? String
-                            //var retrievedImage: Data = Image("skyler-ewing-Djneft6JzNM-unsplash") as! Data
                             StorageManager.shared.getLogHeaderImage(withPath: imagePath!) { (result: Result<UIImage, StorageManager.StorageError>) in
                                 switch result {
                                 case .success(let iImage):
-                                    //retrievedImage = iImage.jpegData(compressionQuality: 0.8)!
                                     guard let id = data["id"] as? String,
                                           let timeStamp = data["timestamp"] as? TimeInterval,
                                           let headerImageCap = data["headerImageCap"] as? String,
                                           let bodyText = data["bodyText"] as? String else {
-                                        print("Returning")
                                         return
-                                        
                                     }
                                     let retrievedLog = Log(id: id, timeStamp: timeStamp, headerImageUrl: iImage.jpegData(compressionQuality: 0.8)! , headerImageCap: headerImageCap, bodyText: bodyText)
                                     print(retrievedLog.bodyText)
-                                    logs.append(retrievedLog)
-                                    print("appended one")
+                                    retrievedLogs.append(retrievedLog)
                                 case .failure:
-                                    print("Failed")
+                                    print("Failed to retrived an image")
                                 }
                             }
                         }
                     }
+                    completion(retrievedLogs)
                 }
             }
     }

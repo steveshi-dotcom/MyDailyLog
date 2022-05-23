@@ -23,6 +23,7 @@ class HomeModel: ObservableObject {
         let email = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
         DatabaseManager.shared.getLogs(withEmail: email) { result in
             if result.count != 0 {
+                print (result.count)
                 self.logPost = result
                 completion(true)
             } else {

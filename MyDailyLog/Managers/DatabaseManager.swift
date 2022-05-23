@@ -5,7 +5,6 @@
 //  Created by Steve Shi on 5/16/22.
 //
 
-import SwiftUI
 import Foundation
 import FirebaseFirestore
 
@@ -28,9 +27,7 @@ class DatabaseManager {
     // and store the image in FireStorage since the file size would be too big. Ex: one image captured
     // with jpg compressed to 0.8 is roughly 1.95mb, could possibly make that smaller but would reduce quality
     func insertLog(log: Log, email: String, completion: @escaping (Bool) -> Void) {
-        let replacedEmail = email
-            .replacingOccurrences(of: ".", with: "_")
-            .replacingOccurrences(of: "@", with: "_")
+        let replacedEmail = refractorEmail(withEmail: email)
         let data: [String: Any] = [
             "id": log.id,
             "timestamp": log.timeStamp,
@@ -43,7 +40,7 @@ class DatabaseManager {
             .document(replacedEmail)
             .collection("logs")
             .document(log.id)
-            .setData(data) { err in // If there are no error with storing the log text info then attempt to store the image within Storage
+            .setData(data) { err in
                 if err == nil {
                     StorageManager.shared.uploadLogHeaderImage(log: log, withEmail: replacedEmail) {(result: Result<Bool, StorageManager.StorageError>) in
                         switch result {
@@ -60,11 +57,11 @@ class DatabaseManager {
             }
     }
     
+    // Obtain all the logs for an specific user within Firestore, as well as retrieve each log post image
+    // for each individual logs from Firebase Storage   // TODO: Checkout Logic
     func getLogs(withEmail email: String, completion: @escaping ([Log]) -> Void) {
         var retrievedLogs: [Log] = []
-        let replacedEmail = email
-            .replacingOccurrences(of: ".", with: "_")
-            .replacingOccurrences(of: "@", with: "_")
+        let replacedEmail = refractorEmail(withEmail: email)
         db
             .collection("users")
             .document(replacedEmail)
@@ -101,11 +98,9 @@ class DatabaseManager {
             }
     }
     
-    // Insert an order within the path users/userEmail/logPost/userMetaData, each logPost collection will have one distinct userMetaData doc
+    // Insert the user by adding the email and create the log doc with userMetaData along with other logs
     func insertUser(user: User, completion: @escaping (Result<Bool, FireStoreError>) -> Void) {
-        let replacedEmail = user.userEmail
-            .replacingOccurrences(of: ".", with: "_")
-            .replacingOccurrences(of: "@", with: "_")
+        let replacedEmail = refractorEmail(withEmail: user.userEmail)
         db
             .collection("users")
             .document(replacedEmail)
@@ -120,11 +115,9 @@ class DatabaseManager {
             }
     }
     
-    // Deleting the user by simply deleting the email field thus deleting all information in the subcollection logPosts
+    // Delete the user by deleting the email document within users from firestore // TODO: delete image for user
     func deleteUser(user: User, completion: @escaping (Result<Bool, FireStoreError>) -> Void) {
-        let replacedEmail = user.userEmail
-            .replacingOccurrences(of: ".", with: "_")
-            .replacingOccurrences(of: "@", with: "_")
+        let replacedEmail = refractorEmail(withEmail: user.userEmail)
         db.collection("users")
             .document(replacedEmail)
             .delete() { err in
@@ -136,10 +129,9 @@ class DatabaseManager {
             }
     }
     
+    // Obtain the username from firestore
     func getUser(withEmail email: String, completion: @escaping (String) -> Void) {
-        let replacedEmail = email
-            .replacingOccurrences(of: ".", with: "_")
-            .replacingOccurrences(of: "@", with: "_")
+        let replacedEmail = refractorEmail(withEmail: email)
         db.collection("users")
             .document(replacedEmail)
             .collection("logs")
@@ -153,5 +145,13 @@ class DatabaseManager {
                 }
             }
     }
+    
+    // Refractor the email string, replacing '.' + '@' with '_'
+    func refractorEmail(withEmail email: String) -> String {
+        email
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: "@", with: "_")
+    }
+    
+    ///
 }
-

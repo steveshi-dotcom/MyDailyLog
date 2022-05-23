@@ -23,6 +23,7 @@ class StorageManager {
     
     private init() {}
     
+    // Upload the image to Firebase Storage with the path provided
     func uploadLogHeaderImage(log: Log, withEmail email: String, completion: @escaping (Result<Bool, StorageError>) -> Void) {
         let fileRef = storage.child("images/\(email)/\(log.id).jpg")
         let _ = fileRef.putData(log.headerImageUrl, metadata: nil) { metadata, err in
@@ -34,6 +35,7 @@ class StorageManager {
         }
     }
     
+    // Retrieve the image from Firebase Storage with the path provided
     func getLogHeaderImage(withPath path: String, completion: @escaping (Result<UIImage, StorageError>) -> Void) {
         let fileRef = storage.child(path)
         let _ = fileRef.getData(maxSize: .max) { data, err in
@@ -44,12 +46,11 @@ class StorageManager {
                         return
                     }
                 }
-            } else {
-                completion(.failure(.failedRetrieval))
             }
         }
+        completion(.failure(.failedRetrieval))
     }
     
-    
+    //
 }
 

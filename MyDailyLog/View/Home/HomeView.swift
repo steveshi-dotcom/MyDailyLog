@@ -69,14 +69,21 @@ struct HomeView: View {
                 LazyVGrid(columns: column, spacing: 20) {
                     ForEach(homeVM.logPost) { log in
                         NavigationLink(destination: LogDisplayView(currLog: log), label: {
-                            if UIImage(data: log.headerImageUrl) != nil {
-                                Image(uiImage: UIImage(data: log.headerImageUrl)!)
-                                    .resizable()
-                                    .frame(width: 160, height: 200)
-                                    .scaledToFill()
-                                    .cornerRadius(6)
-                                    .background(.primary)
-                                    .cornerRadius(10)
+                            ZStack {
+                                if UIImage(data: log.headerImageUrl) != nil {
+                                    Image(uiImage: UIImage(data: log.headerImageUrl)!)
+                                        .resizable()
+                                        .frame(width: 160, height: 200)
+                                        .scaledToFill()
+                                        .cornerRadius(6)
+                                        .background(.primary)
+                                        .cornerRadius(10)
+                                }
+                                VStack(alignment: .trailing) {
+                                    Spacer()
+                                    Text(NSDate(timeIntervalSince1970: log.timeStamp) as Date, style: .date)
+                                        .font(.title2)
+                                }
                             }
                         })
                     }

@@ -14,7 +14,9 @@ struct HomeView: View {
     let columns = [GridItem(.adaptive(minimum: 150))]
     
     init() {
-        //homeVM.getName()
+        homeVM.loadLogs { result in
+            print(result)
+        }
     }
     
     var body: some View {
@@ -23,21 +25,26 @@ struct HomeView: View {
                 NavigationLink {
                     LogDisplayView()
                 } label: {
-                    VStack {
+                    HStack(spacing: 10) {
                         if UIImage(data: log.headerImageUrl) != nil {
                             Image(uiImage: UIImage(data: log.headerImageUrl)!)
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100)
-                                .padding()
+                                .frame(width: 160, height: 200)
+                                .scaledToFill()
+                                .cornerRadius(6)
+                                .background(.primary)
+                                .cornerRadius(10)
                         } else {
                             Image("skyler-ewing-Djneft6JzNM-unsplash")
                                 .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100)
-                                .padding()
+                                .scaledToFill()
+                                .frame(width: 200, height: 200)
+                                .cornerRadius(6)
+                                .padding(2)
+                                .background(.primary)
+                                .cornerRadius(10)
                         }
-                        Text("\(log.timeStamp)")
+                        Text(log.headerImageCap)
                     }
                 }
             }

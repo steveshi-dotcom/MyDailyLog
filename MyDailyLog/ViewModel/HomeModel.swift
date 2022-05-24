@@ -7,9 +7,11 @@
 
 import Foundation
 import Firebase
+import SwiftUI
 
 class HomeModel: ObservableObject {
     @Published var logPost: [Log] = []
+    
     var userName: String {
         var retrievedname: String = ""
         let email = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
@@ -20,10 +22,10 @@ class HomeModel: ObservableObject {
     }
     
     func loadLogs(completion: @escaping (Bool) -> Void) {
-        let email = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
-        DatabaseManager.shared.getLogs(withEmail: email) { result in
+        //let email = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
+        DatabaseManager.shared.getLogs(withEmail: "st3v5.s2i@gmail.com") { result in
             if result.count != 0 {
-                print (result.count)
+                print (result[0])
                 self.logPost = result
                 completion(true)
             } else {

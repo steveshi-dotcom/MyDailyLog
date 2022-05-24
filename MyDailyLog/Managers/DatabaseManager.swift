@@ -84,7 +84,7 @@ class DatabaseManager {
                                           let bodyText = data["bodyText"] as? String else {
                                         return
                                     }
-                                    let retrievedLog = Log(id: id, timeStamp: timeStamp, headerImageUrl: iImage.jpegData(compressionQuality: 0.8)! , headerImageCap: headerImageCap, bodyText: bodyText)
+                                    let retrievedLog = Log(id: id, timeStamp: timeStamp, headerImageUrl: iImage.jpegData(compressionQuality: 0.8)!, headerImageCap: headerImageCap, bodyText: bodyText)
                                     print(retrievedLog.bodyText)
                                     retrievedLogs.append(retrievedLog)
                                 case .failure:
@@ -93,14 +93,14 @@ class DatabaseManager {
                             }
                         }
                     }
-                    // Not sure how to asynchronously await until firebase storage retrieval is finished
-                    // Run the completion method after 3 seconds ish, since it retrieval should be finished
-                    // and let the client know the result // TODO: Figure out how to async wait top func
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                        completion(retrievedLogs)
-                    }
                 }
             }
+        // Not sure how to asynchronously await until firebase storage retrieval is finished
+        // Run the completion method after 3 seconds ish, since it retrieval should be finished
+        // and let the client know the result // TODO: Figure out how to async wait top func
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            completion(retrievedLogs)
+        }
     }
     
     // Insert the user by adding the email and create the log doc with userMetaData along with other logs

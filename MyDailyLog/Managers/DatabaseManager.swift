@@ -115,7 +115,7 @@ class DatabaseManager {
             .setData(["userName": user.userName,
                       "userEmail": user.userEmail,
                       "userPicPath": profilePicPath]) { err in // TODO: Figure out why using the user model won't work
-                if err != nil {
+                if err == nil {
                     StorageManager.shared.uploadUserPic(withImage: user.userImage, withPath: profilePicPath) {(result: Result<Bool, StorageManager.StorageError>) in
                         switch result {
                         case .success:

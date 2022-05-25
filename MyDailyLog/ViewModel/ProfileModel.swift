@@ -9,12 +9,11 @@ import Foundation
 import Firebase
 
 class ProfileModel: ObservableObject {
-    @Published var username: String = ""
+    @Published var userInfo: User?
     
     let db = Firestore.firestore()
-    private init() { }
     
-    func returnUserName(completion: @escaping (Result<String, DatabaseManager.FireStoreError>) -> Void) {
+    func getUserInfo(completion: @escaping (Bool) -> Void) {
         guard let email = Auth.auth().currentUser?.email else {
             return
         }
@@ -28,10 +27,14 @@ class ProfileModel: ObservableObject {
             .document("userMetaData")
             .getDocument() { snapshot, err in
                 if err != nil {
-                    completion(.failure(.failedRetrieval))
+                    completion(false)
                 } else {
-                    completion(.success(snapshot.map(String.init(describing: )) ?? "nil"))
+                    
+                    completion(true)
                 }
             }
     }
+
+    
+    
 }

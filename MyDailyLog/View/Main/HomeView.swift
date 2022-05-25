@@ -30,7 +30,7 @@ struct HomeView: View {
                                 if UIImage(data: log.headerImageUrl) != nil {
                                     Image(uiImage: UIImage(data: log.headerImageUrl)!)
                                         .resizable()
-                                        .frame(width: 160, height: 200)
+                                        .frame(width: 175, height: 215)
                                         .scaledToFill()
                                         .cornerRadius(6)
                                         .background(.primary)
@@ -45,7 +45,7 @@ struct HomeView: View {
                         })
                     }
                     .refreshable {
-                        print("Refreshing")
+                        //print("Refreshing")
                         homeVM.loadLogs() { result in
                             if !result {
                                 showLoadingAlert.toggle()

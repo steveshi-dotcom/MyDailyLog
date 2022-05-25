@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @ObservedObject private var profileVM = ProfileModel()
+    
     @State private var image: Image = Image("noah-eleazar-9p6R1IDCXNg-unsplash")
+    
+    init() {
+        profileVM.getUserInfo() { result in
+            
+        }
+    }
     var body: some View {
         VStack {
-            image
+            Image(uiImage: UIImage(data: profileVM.userInfo!.userImage)!)
                 .resizable()
                 .frame(width: 200, height: 200)
-            Button(role: .none) {
-                add()
-            } label: {
-                Label("jsdflasdfkj", systemImage: "alarm")
-            }
+                .cornerRadius(100)
+            Text(profileVM.userInfo?.userName ?? "Anonomous.Panda")
         }
     }
     
@@ -26,14 +31,6 @@ struct ProfileView: View {
         DatabaseManager.shared.getLogs(withEmail: "st3v5.s2i@gmail.com") { result in
             print("Finished")
         }
-//        StorageManager.shared.getLogHeaderImage(withPath: "images/st3v5_s2i_gmail_com/46021F1A-CA5D-4889-B049-0FB2C4AEE129.jpg") { (result: Result<UIImage, StorageManager.StorageError>) in
-//            switch result {
-//            case .success(let iImage):
-//                image = Image(uiImage: iImage)
-//            case .failure:
-//                print("asfdi")
-//            }
-//        }
     }
 }
 

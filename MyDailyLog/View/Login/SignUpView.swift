@@ -18,6 +18,7 @@ struct SignUpView: View {
     @State private var confirmPassword: String = ""
     @State private var showPasswordAlert: Bool = false
     @State private var showRecoveryAlert: Bool = false
+    @State private var showingCameraPicker: Bool = false
     
     let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
@@ -27,6 +28,22 @@ struct SignUpView: View {
                     .ignoresSafeArea(.all)
                 VStack(alignment: .center, spacing: 15) {
                     Spacer()
+                    HStack {
+                        if loginM.profilePic.count != 0 {
+                            Image(uiImage: loginM.profilePic[0])
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .cornerRadius(50)
+                        } else {
+                            Image("skyler-ewing-Djneft6JzNM-unsplash")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .cornerRadius(50)
+                        }
+                    }
+                    .onTapGesture {
+                        showingCameraPicker.toggle()
+                    }
                     Text("Register for an account")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
@@ -70,9 +87,12 @@ struct SignUpView: View {
                             showPasswordAlert.toggle()
                             return
                         }
-                        loginM.signup(withName: newName, withEmail: newEmail, withPassword: newPassword) { result in
+                        print("Attempt to run")
+                        loginM.signup(withName: newName, withEmail: newEmail, withPassword: newPassword, withProfilePic: loginM.profilePic[0].jpegData(compressionQuality: 0.8)) { result in
                             if result {
                                 dismiss()
+                            } else {
+                                print("error")
                             }
                         }
                     } label: {
@@ -95,6 +115,11 @@ struct SignUpView: View {
         }
         .alert(isPresented: $showPasswordAlert) {
             Alert(title: Text("Registration Error"), message: Text("Please double check the input fields to make sure they are correct."))
+        }
+        .sheet(isPresented: $showingCameraPicker) {
+            CreationCameraPickerView(isPresented: $showingCameraPicker) {
+                loginM.handleAddedImage($0)
+            }
         }
     }
 }

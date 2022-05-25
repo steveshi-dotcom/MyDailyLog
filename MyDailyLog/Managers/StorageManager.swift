@@ -35,6 +35,20 @@ class StorageManager {
         }
     }
     
+    
+    // Upload the userPicture to Firebase Storage under name userPic within the userEmail
+    func uploadUserPic(withImage img: Data, withPath path: String, completion: @escaping (Result<Bool, StorageError>) -> Void) {
+        print("Working inner workings.")
+        let fileRef = storage.child(path)
+        let _ = fileRef.putData(img, metadata: nil) { metadata, err in
+            if err == nil && metadata != nil {
+                completion(.success(true))
+            } else {
+                completion(.failure(.failedUpload))
+            }
+        }
+    }
+    
     // Retrieve the image from Firebase Storage with the path provided
     func getLogHeaderImage(withPath path: String, completion: @escaping (Result<UIImage, StorageError>) -> Void) {
         let fileRef = storage.child(path)

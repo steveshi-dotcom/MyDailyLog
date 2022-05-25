@@ -209,7 +209,7 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		0F97FC5F2831CC9800E822AF /* Home */ = {
+		0F97FC5F2831CC9800E822AF /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				0F4DC3AF2830069B0031B624 /* ContentView.swift */,
@@ -219,7 +219,7 @@
 				0F24BA85283674B000F0B4D9 /* Creation */,
 				0F4DC3E128300E5F0031B624 /* ProfileView.swift */,
 			);
-			path = Home;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		0F97FC602831DEE800E822AF /* Model */ = {
@@ -235,7 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				0F97FC5E2831CC8D00E822AF /* Login */,
-				0F97FC5F2831CC9800E822AF /* Home */,
+				0F97FC5F2831CC9800E822AF /* Main */,
 			);
 			path = View;
 			sourceTree = "<group>";

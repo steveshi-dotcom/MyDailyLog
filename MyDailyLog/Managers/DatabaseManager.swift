@@ -106,16 +106,27 @@ class DatabaseManager {
     // Insert the user by adding the email and create the log doc with userMetaData along with other logs
     func insertUser(user: User, completion: @escaping (Result<Bool, FireStoreError>) -> Void) {
         let replacedEmail = refractorEmail(withEmail: user.userEmail)
+        let profilePicPath = "images/\(replacedEmail)/userPic"
         db
             .collection("users")
             .document(replacedEmail)
             .collection("logs")
             .document("userMetaData")
-            .setData(["userName": user.userName, "userEmail": user.userEmail]) { err in // TODO: Figure out why using the user model won't work
+            .setData(["userName": user.userName,
+                      "userEmail": user.userEmail,
+                      "userPicPath": profilePicPath]) { err in // TODO: Figure out why using the user model won't work
                 if err != nil {
-                    completion(.failure(.failedUpload))
+                    StorageManager.shared.uploadUserPic(withImage: user.userImage, withPath: profilePicPath) {(result: Result<Bool, StorageManager.StorageError>) in
+                        switch result {
+                        case .success:
+                            completion(.success(true))
+                        case .failure(let iError):
+                            print(iError.rawValue)
+                            completion(.failure(.failedUpload))
+                        }
+                    }
                 } else {
-                    completion(.success(true))
+                    completion(.failure(.failedUpload))
                 }
             }
     }

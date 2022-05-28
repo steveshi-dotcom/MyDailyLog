@@ -15,15 +15,20 @@ class HomeModel: ObservableObject {
     var userName: String {
         var retrievedname: String = ""
         let email = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
-        DatabaseManager.shared.getUser(withEmail: email) {name in
-            retrievedname = name
+        DatabaseManager.shared.getUser(withEmail: email) {(result: Result<User, DatabaseManager.FireStoreError>) in
+            switch result {
+            case .success(let iUser):
+                retrievedname = iUser.userName
+            case .failure:
+                retrievedname = "Anonomous Panda"
+            }
         }
         return retrievedname
     }
     
     func loadLogs(completion: @escaping (Bool) -> Void) {
-        //let email = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
-        DatabaseManager.shared.getLogs(withEmail: "st3v5.s2i@gmail.com") { result in
+        let email = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
+        DatabaseManager.shared.getLogs(withEmail: email) { result in
             if result.count != 0 {
                 print (result[0])
                 self.logPost = result
@@ -33,6 +38,4 @@ class HomeModel: ObservableObject {
             }
         }
     }
-    
-    //
 }

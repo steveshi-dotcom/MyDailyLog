@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 
 class DatabaseManager {
     static let shared = DatabaseManager()
@@ -114,7 +115,7 @@ class DatabaseManager {
             .document("userMetaData")
             .setData(["userName": user.userName,
                       "userEmail": user.userEmail,
-                      "userPicPath": profilePicPath]) { err in // TODO: Figure out why using the user model won't work
+                      "userPicPath": profilePicPath]) { err in
                 if err == nil {
                     StorageManager.shared.uploadUserPic(withImage: user.userImage, withPath: profilePicPath) {(result: Result<Bool, StorageManager.StorageError>) in
                         switch result {
@@ -146,7 +147,7 @@ class DatabaseManager {
     }
     
     // Obtain the username from firestore
-    func getUser(withEmail email: String, completion: @escaping (String) -> Void) {
+    func getUser(withEmail email: String, completion: @escaping (Result<User, FireStoreError>) -> Void) {
         let replacedEmail = refractorEmail(withEmail: email)
         db.collection("users")
             .document(replacedEmail)
@@ -154,10 +155,21 @@ class DatabaseManager {
             .document("userMetaData")
             .getDocument { snapshot, err in
                 if let data = snapshot?.data() {
-                    let name = data["userName"]
-                    completion(name as! String)
+                    let name = data["userName"] as! String
+                    let email = data["userEmail"] as! String
+                    
+                    let imagePath = data["userPicPath"] as! String
+                    StorageManager.shared.getLogHeaderImage(withPath: imagePath) { (result: Result<UIImage, StorageManager.StorageError>) in
+                        switch result {
+                        case .success(let image):
+                            let userInfo = User(userName: name, userEmail: email, userImage: image.jpegData(compressionQuality: 0.8)!)
+                            completion(.success(userInfo))
+                        case .failure:
+                            completion(.failure(.failedRetrieval))
+                        }
+                    }
                 } else {
-                    completion("John Smith")
+                    completion(.failure(.failedRetrieval))
                 }
             }
     }

@@ -7,8 +7,10 @@
 
 import SwiftUI
 import FirebaseAuthUI
+import Inject
 
 struct SignUpView: View {
+    @ObserveInjection var inject
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var loginM = LoginModel()
     @FocusState private var inputFocus: Bool
@@ -32,13 +34,15 @@ struct SignUpView: View {
                         if loginM.profilePic.count != 0 {
                             Image(uiImage: loginM.profilePic[0])
                                 .resizable()
-                                .frame(width: 100, height: 100)
-                                .cornerRadius(50)
+                                .frame(width: 150, height: 150)
+                                .padding(1)
+                                .cornerRadius(100)
                         } else {
                             Image("skyler-ewing-Djneft6JzNM-unsplash")
                                 .resizable()
-                                .frame(width: 100, height: 100)
-                                .cornerRadius(50)
+                                .frame(width: 150, height: 150)
+                                .padding(1)
+                                .cornerRadius(100)
                         }
                     }
                     .onTapGesture {
@@ -121,6 +125,7 @@ struct SignUpView: View {
                 loginM.handleAddedImage($0)
             }
         }
+        .enableInjection()
     }
 }
 

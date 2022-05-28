@@ -9,21 +9,48 @@ import SwiftUI
 
 struct ProfileView: View {
     @ObservedObject private var profileVM = ProfileModel()
+    @State private var showLoadingError: Bool = false
+    @State private var showSignOutError: Bool = false
     
     @State private var image: Image = Image("noah-eleazar-9p6R1IDCXNg-unsplash")
     
     init() {
         profileVM.getUserInfo() { result in
-            
+            if !result {
+                
+            }
         }
+        profileVM.getTotalLogCount()
     }
     var body: some View {
-        VStack {
-            Image(uiImage: UIImage(data: profileVM.userInfo!.userImage)!)
-                .resizable()
-                .frame(width: 200, height: 200)
-                .cornerRadius(100)
-            Text(profileVM.userInfo?.userName ?? "Anonomous.Panda")
+        NavigationView {
+            
+            
+            VStack(spacing: 20) {
+                Image(uiImage: UIImage(data: profileVM.userInfo!.userImage)!)
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .padding(1)
+                    .cornerRadius(100)
+                Text(profileVM.userInfo?.userName ?? "Anonoumous Panda")
+                Text("Total Log Filed: \(profileVM.totalLogCount)")
+            }
+            
+        }
+        .toolbar {
+            Button("Sign Out") {
+                LoginManager.shared.signOut { result in
+                    if !result {
+                        showSignOutError = true
+                    }
+                }
+            }
+        }
+        .alert(isPresented: $showLoadingError) {
+            Alert(title: Text("Loading Profile Error"), message: Text("Unexpected error occured while loading your profile, please try again later."))
+        }
+        .alert(isPresented: $showSignOutError) {
+            Alert(title: Text("Sign Out Error"), message: Text("Unexpected error occured while signing out, please try again later."))
         }
     }
     

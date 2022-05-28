@@ -7,8 +7,10 @@
 
 import SwiftUI
 import Firebase
+import Inject
 
 struct LoginView: View {
+    @ObserveInjection var inject
     @StateObject private var loginVM = LoginModel()
     @EnvironmentObject var authentification: Authentification
     @FocusState private var focusState: Bool
@@ -87,6 +89,8 @@ struct LoginView: View {
         .sheet(isPresented: $showSignUpSheet) {
             SignUpView()
         }
+        
+        .enableInjection()
     }
 }
 

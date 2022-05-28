@@ -55,5 +55,4 @@ class ProfileModel: ObservableObject {
     }
     
     
-    
 }

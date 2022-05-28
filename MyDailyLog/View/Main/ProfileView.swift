@@ -41,17 +41,18 @@ struct ProfileView: View {
                 Text(profileVM.userInfo?.userName ?? "Anonoumous Panda")
                 Text("Total Log Filed: \(profileVM.totalLogCount)")
             }
-            
-        }
-        .toolbar {
-            Button("Sign Out") {
-                LoginManager.shared.signOut { result in
-                    if !result {
-                        showSignOutError = true
+            .toolbar {
+                Button("Sign Out") {
+                    LoginManager.shared.signOut { result in
+                        print(result)
+                        if !result {
+                            showSignOutError = true
+                        }
                     }
                 }
             }
         }
+        
         .alert(isPresented: $showLoadingError) {
             Alert(title: Text("Loading Profile Error"), message: Text("Unexpected error occured while loading your profile, please try again later."))
         }

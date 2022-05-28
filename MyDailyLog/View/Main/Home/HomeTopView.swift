@@ -10,11 +10,11 @@ import FirebaseAuth
 
 struct HomeTopView: View {
     var currUser: String
-
+    
     var colWidth = UIScreen.main.bounds.width / 3
     var body: some View {
         LazyVGrid(columns: [GridItem(.fixed(colWidth)), GridItem(.fixed(colWidth)),
-                   GridItem(.fixed(colWidth))]) {
+                            GridItem(.fixed(colWidth))]) {
             Text("My DailyLog")
                 .font(.system(size: 21))
                 .fontWeight(.medium)

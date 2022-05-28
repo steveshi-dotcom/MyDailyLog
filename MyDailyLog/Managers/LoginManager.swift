@@ -50,7 +50,7 @@ class LoginManager {
         }
     }
     
-    // Sign out
+    // Sign out the user account
     func signOut(completion: @escaping (Bool) -> Void) {
         do {
             try auth.signOut()

@@ -28,15 +28,15 @@ struct ProfileView: View {
                 if profileVM.userInfo != nil {
                     Image(uiImage: UIImage(data: profileVM.userInfo!.userImage)!)
                         .resizable()
-                        .frame(width: 200, height: 200)
-                        .padding(1)
-                        .cornerRadius(100)
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .frame(height: 250, alignment: .center)
                 } else {
                     Image("skyler-ewing-Djneft6JzNM-unsplash")
                         .resizable()
-                        .frame(width: 200, height: 225)
-                        .padding(1)
-                        .cornerRadius(100)
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .frame(height: 250, alignment: .center)
                 }
                 Text(profileVM.userInfo?.userName ?? "Anonoumous Panda")
                 Text("Total Log Filed: \(profileVM.totalLogCount)")

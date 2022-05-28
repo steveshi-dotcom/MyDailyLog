@@ -86,7 +86,6 @@ class DatabaseManager {
                                         return
                                     }
                                     let retrievedLog = Log(id: id, timeStamp: timeStamp, headerImageUrl: iImage.jpegData(compressionQuality: 0.8)!, headerImageCap: headerImageCap, bodyText: bodyText)
-                                    print(retrievedLog.bodyText)
                                     retrievedLogs.append(retrievedLog)
                                 case .failure:
                                     print("Failed to retrived an image")

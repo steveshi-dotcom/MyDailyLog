@@ -24,12 +24,10 @@ struct ProfileView: View {
     }
     var body: some View {
         NavigationView {
-            
-            
             VStack(spacing: 20) {
                 Image(uiImage: UIImage(data: profileVM.userInfo!.userImage)!)
                     .resizable()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 200, height: 225)
                     .padding(1)
                     .cornerRadius(100)
                 Text(profileVM.userInfo?.userName ?? "Anonoumous Panda")

@@ -25,6 +25,7 @@ struct ContentView: View {
             ProfileView()
                 .tabItem() {
                     Label("Profile", systemImage: "person")
+                        .environmentObject(loggedIn)
                 }
         }
         .tabViewStyle(.automatic)

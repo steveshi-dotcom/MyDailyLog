@@ -18,7 +18,7 @@ struct SignUpView: View {
     @State private var newEmail: String = ""
     @State private var newPassword: String = ""
     @State private var confirmPassword: String = ""
-    @State private var showPasswordAlert: Bool = false
+    @State private var showInsufficientInputAlert: Bool = false
     @State private var showRecoveryAlert: Bool = false
     @State private var showingCameraPicker: Bool = false
     
@@ -87,8 +87,8 @@ struct SignUpView: View {
                         .padding(.bottom, 10)
                     Button {
                         inputFocus.toggle()
-                        guard newPassword == confirmPassword && FUIAuthBaseViewController.isValidEmail(newEmail) else {
-                            showPasswordAlert.toggle()
+                        guard newPassword == confirmPassword && FUIAuthBaseViewController.isValidEmail(newEmail) && loginM.profilePic.count != 0 else {
+                            showInsufficientInputAlert.toggle()
                             return
                         }
                         print("Attempt to run")
@@ -117,8 +117,8 @@ struct SignUpView: View {
         .alert(item: $loginM.error) {error in
             Alert(title: Text(error.rawValue),message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Account signup failed, please try again."))
         }
-        .alert(isPresented: $showPasswordAlert) {
-            Alert(title: Text("Registration Error"), message: Text("Please double check the input fields to make sure they are correct."))
+        .alert(isPresented: $showInsufficientInputAlert) {
+            Alert(title: Text("Registration Error"), message: Text("Please double check the input fields to make sure they are inputted and correct."))
         }
         .sheet(isPresented: $showingCameraPicker) {
             CreationCameraPickerView(isPresented: $showingCameraPicker) {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @ObservedObject private var profileVM = ProfileModel()
+    @EnvironmentObject var loggedIn: Authentification
     @State private var showLoadingError: Bool = false
     @State private var showSignOutError: Bool = false
     
@@ -30,7 +31,7 @@ struct ProfileView: View {
                         .resizable()
                         .scaledToFit()
                         .clipShape(Circle())
-                        .frame(height: 250, alignment: .center)
+                        .frame(height: 300, alignment: .center)
                 } else {
                     Image("skyler-ewing-Djneft6JzNM-unsplash")
                         .resizable()
@@ -39,7 +40,10 @@ struct ProfileView: View {
                         .frame(height: 250, alignment: .center)
                 }
                 Text(profileVM.userInfo?.userName ?? "Anonoumous Panda")
-                Text("Total Log Filed: \(profileVM.totalLogCount)")
+                    .font(.title)
+                Text("Total Logs Filed: \(profileVM.totalLogCount)")
+                    .font(.title)
+                Spacer()
             }
             .toolbar {
                 Button("Sign Out") {
@@ -47,12 +51,13 @@ struct ProfileView: View {
                         print(result)
                         if !result {
                             showSignOutError = true
+                        } else {
+                            loggedIn.isValidated = false
                         }
                     }
                 }
             }
         }
-        
         .alert(isPresented: $showLoadingError) {
             Alert(title: Text("Loading Profile Error"), message: Text("Unexpected error occured while loading your profile, please try again later."))
         }

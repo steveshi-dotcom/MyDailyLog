@@ -23,6 +23,7 @@ struct ProfileView: View {
                 print("ProfileView(Loading user profile): \(res)")
             }
         }
+        // Obtain total logs filed
         profileVM.getTotalLogCount()
     }
     var body: some View {

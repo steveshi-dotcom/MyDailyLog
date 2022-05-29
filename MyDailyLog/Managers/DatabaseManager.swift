@@ -54,7 +54,7 @@ class DatabaseManager {
                         case .success:
                             completion(true)
                         case .failure(let iError):
-                            print(iError.rawValue)
+                            print("Error uploading image \(iError.rawValue)")
                             completion(false)
                         }
                     }
@@ -77,7 +77,7 @@ class DatabaseManager {
             .collection("logs")
             .getDocuments { querySnapshot, err in
                 if let _ = err {
-                    print("Error getting the documents")
+                    print("Error getting the documents: \(err)")
                     completion([])
                 } else {
                     for document in querySnapshot!.documents {
@@ -97,8 +97,8 @@ class DatabaseManager {
                                     }
                                     let retrievedLog = Log(id: id, timeStamp: timeStamp, headerImageUrl: iImage.jpegData(compressionQuality: 0.8)!, headerImageCap: headerImageCap, bodyText: bodyText)
                                     retrievedLogs.append(retrievedLog)
-                                case .failure:
-                                    print("Failed to retrived an image")
+                                case .failure(let iError):
+                                    print("Failed to retrived an image: \(iError.rawValue)")
                                 }
                             }
                         }
@@ -134,7 +134,7 @@ class DatabaseManager {
                         case .success:
                             completion(.success(true))
                         case .failure(let iError):
-                            print(iError.rawValue)
+                            print("Error uploading userPic: \(iError.rawValue)")
                             completion(.failure(.failedUpload))
                         }
                     }

@@ -18,9 +18,9 @@ struct ProfileView: View {
     
     init() {
         // Attempt to get all the information for the profileView when the user first gets in
-        profileVM.getUserInfo() { result in
-            if !result {
-                print("Not working for some reason")
+        profileVM.getUserInfo() { res in
+            if !res {
+                print("ProfileView(Loading user profile): \(res)")
             }
         }
         profileVM.getTotalLogCount()

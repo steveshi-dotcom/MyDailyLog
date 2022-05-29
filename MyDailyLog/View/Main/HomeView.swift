@@ -16,8 +16,8 @@ struct HomeView: View {
     
     init() {
         // load all logs captured on start
-        homeVM.loadLogs { result in
-            print(result)
+        homeVM.loadLogs { res in
+            print("HomeView(Loading all log): \(res)")
         }
     }
     

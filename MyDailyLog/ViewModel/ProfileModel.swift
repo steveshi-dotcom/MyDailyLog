@@ -45,7 +45,6 @@ class ProfileModel: ObservableObject {
         DatabaseManager.shared.getUser(withEmail: replacedEmail) { result in
             switch result {
             case .success(let user):
-                print("---------Success---------")
                 self.userInfo = user
             case .failure(let err):
                 print(err.rawValue)

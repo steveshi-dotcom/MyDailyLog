@@ -56,7 +56,7 @@ class LoginManager {
             try auth.signOut()
             completion(true)
         } catch {
-            print("\(error)")
+            print("Error signing out: \(error)")
             completion(false)
         }
     }

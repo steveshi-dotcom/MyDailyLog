@@ -8,6 +8,7 @@
 import Foundation
 import PhotosUI
 
+// LoginViewModel to keep track of the account state, such as username, password, profilepicture, etc
 class LoginModel: ObservableObject {
     @Published var error: Authentification.AuthentificationError?
     @Published var userEmail = ""
@@ -17,6 +18,8 @@ class LoginModel: ObservableObject {
     var canTakePictures: Bool {
         UIImagePickerController.isSourceTypeAvailable(.camera)
     }
+    
+    // UIImage that was takened from camera picker
     func handleAddedImage(_ image: UIImage) {
         DispatchQueue.main.async {
             if self.profilePic.count == 0 {
@@ -26,6 +29,8 @@ class LoginModel: ObservableObject {
             }
         }
     }
+    
+    // Photos picked from PhotoPicker
     func handleResults(_ results: [PHPickerResult]) {
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] imageObject, error in
@@ -37,6 +42,7 @@ class LoginModel: ObservableObject {
         }
     }
     
+    // Attempt to login to MyDailyLog
     func login(completion: @escaping (Bool) -> Void) {
         LoginManager.shared.login(withEmail: userEmail, withPassword: userPassword) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
@@ -49,6 +55,7 @@ class LoginModel: ObservableObject {
         }
     }
     
+    // Attempt to send email link to reset password
     func resetPassword(completion: @escaping (Bool) -> Void) {
         LoginManager.shared.resetPassword(withEmail: userEmail) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
@@ -62,10 +69,12 @@ class LoginModel: ObservableObject {
         userEmail = ""
     }
     
+    // Attempt to sign up for an account for MyDailyLog
     func signup(withName name: String, withEmail userEmail: String, withPassword userPassword: String, withProfilePic pic: Data?, completion: @escaping (Bool) -> Void) {
         LoginManager.shared.signUp(withEmail: userEmail, withPassword: userPassword) { [unowned self](result: Result<Bool, Authentification.AuthentificationError>) in
             switch result {
             case .success:
+                // After uploading metadata to FireStore, upload profileImage to Storage, due to large size
                 DatabaseManager.shared.insertUser(user: User(userName: name, userEmail: userEmail, userImage: pic!)) { (result: Result<Bool, DatabaseManager.FireStoreError>) in
                     switch result {
                     case .success:
@@ -80,4 +89,5 @@ class LoginModel: ObservableObject {
             }
         }
     }
+    
 }

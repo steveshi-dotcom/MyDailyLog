@@ -14,15 +14,14 @@ struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var loginM = LoginModel()
     @FocusState private var inputFocus: Bool
-    @State private var newName: String = ""
-    @State private var newEmail: String = ""
-    @State private var newPassword: String = ""
-    @State private var confirmPassword: String = ""
-    @State private var showInsufficientInputAlert: Bool = false
-    @State private var showRecoveryAlert: Bool = false
-    @State private var showingCameraPicker: Bool = false
     
-    let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
+    @State private var signupName = ""
+    @State private var signupEmail = ""
+    @State private var signupPswd = ""
+    @State private var signupPswdConfirm = ""
+    @State private var insufficientInputAlert = false
+    @State private var showingCameraPicker = false
+    
     var body: some View {
         VStack {
             ZStack {
@@ -30,73 +29,69 @@ struct SignUpView: View {
                     .ignoresSafeArea(.all)
                 VStack(alignment: .center, spacing: 15) {
                     Spacer()
+                    Text("Let's get started!")
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
                     HStack {
+                        // Present a placeholder puppy pic until user take a profile picture for use
                         if loginM.profilePic.count != 0 {
                             Image(uiImage: loginM.profilePic[0])
                                 .resizable()
-                                .frame(width: 150, height: 150)
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(height: 200, alignment: .center)
                                 .padding(1)
-                                .cornerRadius(100)
                         } else {
                             Image("skyler-ewing-Djneft6JzNM-unsplash")
                                 .resizable()
-                                .frame(width: 150, height: 150)
-                                .padding(1)
-                                .cornerRadius(100)
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(height: 200, alignment: .center)
                         }
                     }
                     .onTapGesture {
+                        // Toggle camera picker for user to take picture
                         showingCameraPicker.toggle()
                     }
-                    Text("Register for an account")
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
-                    TextField("name", text: $newName)
+                    TextField("name", text: $signupName)
                         .padding()
-                        .background(lightGreyColor)
+                        .background(.white)
                         .foregroundColor(.black)
-                        .cornerRadius(5.0)
-                        .foregroundColor(.primary)
-                        .padding(.bottom, 10)
-                    TextField("email address", text: $newEmail)
+                        .cornerRadius(7.5)
+                        .padding(.bottom, 5)
+                    TextField("email address", text: $signupEmail)
                         .padding()
-                        .background(lightGreyColor)
+                        .background(.white)
                         .foregroundColor(.black)
-                        .cornerRadius(5.0)
+                        .cornerRadius(7.5)
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
-                        .foregroundColor(.primary)
-                        .padding(.bottom, 10)
-                    SecureField("password", text: $newPassword)
+                        .padding(.bottom, 5)
+                    SecureField("password", text: $signupPswd)
                         .padding()
-                        .background(lightGreyColor)
+                        .background(.white)
                         .foregroundColor(.black)
-                        .cornerRadius(5.0)
+                        .cornerRadius(7.5)
                         .autocapitalization(.none)
-                        .keyboardType(.emailAddress)
-                        .foregroundColor(.primary)
-                        .padding(.bottom, 10)
-                    SecureField("confirm password", text: $confirmPassword)
+                        .padding(.bottom, 5)
+                    SecureField("confirm password", text: $signupPswdConfirm)
                         .padding()
-                        .background(lightGreyColor)
+                        .background(.white)
                         .foregroundColor(.black)
-                        .cornerRadius(5.0)
+                        .cornerRadius(7.5)
                         .autocapitalization(.none)
-                        .keyboardType(.emailAddress)
-                        .foregroundColor(.primary)
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 5)
                     Button {
-                        inputFocus.toggle()
-                        guard newPassword == confirmPassword && FUIAuthBaseViewController.isValidEmail(newEmail) && loginM.profilePic.count != 0 else {
-                            showInsufficientInputAlert.toggle()
+                        // Attempt to signup with the provided information and if successful dimiss signup sheet
+                        inputFocus = false
+                        guard signupPswd == signupPswdConfirm && FUIAuthBaseViewController.isValidEmail(signupEmail) && loginM.profilePic.count != 0 else {
+                            insufficientInputAlert.toggle()
                             return
                         }
-                        print("Attempt to run")
-                        loginM.signup(withName: newName, withEmail: newEmail, withPassword: newPassword, withProfilePic: loginM.profilePic[0].jpegData(compressionQuality: 0.8)) { result in
-                            if result {
+                        loginM.signup(withName: signupName, withEmail: signupEmail, withPassword: signupPswd, withProfilePic: loginM.profilePic[0].jpegData(compressionQuality: 0.8)) { res in
+                            // dimiss if attemp successful, else a error should've popped up from backend
+                            if res {
                                 dismiss()
-                            } else {
-                                print("error")
                             }
                         }
                     } label: {
@@ -107,20 +102,22 @@ struct SignUpView: View {
                             .background(Color.blue)
                             .cornerRadius(30.0)
                     }
-                    .padding(.bottom, 10)
                     Spacer()
                     Spacer()
                 }
                 .padding()
             }
         }
-        .alert(item: $loginM.error) {error in
-            Alert(title: Text(error.rawValue),message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Account signup failed, please try again."))
+        .alert(item: $loginM.error) { err in
+            // Present signup error if any from loginViewModel
+            Alert(title: Text(err.rawValue), message: Text("Account signup failed, please try again."))
         }
-        .alert(isPresented: $showInsufficientInputAlert) {
+        .alert(isPresented: $insufficientInputAlert) {
+            // Present insufficent information error if user did not input all information
             Alert(title: Text("Registration Error"), message: Text("Please double check the input fields to make sure they are inputted and correct."))
         }
         .sheet(isPresented: $showingCameraPicker) {
+            // Present a camera view for user to take image and use it for profile pic
             CreationCameraPickerView(isPresented: $showingCameraPicker) {
                 loginM.handleAddedImage($0)
             }

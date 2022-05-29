@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// A plain profile view where user can see their profile pic, name and total # of logs filed
 struct ProfileView: View {
     @ObservedObject private var profileVM = ProfileModel()
     @EnvironmentObject var loggedIn: Authentification
@@ -16,9 +17,10 @@ struct ProfileView: View {
     @State private var image: Image = Image("noah-eleazar-9p6R1IDCXNg-unsplash")
     
     init() {
+        // Attempt to get all the information for the profileView when the user first gets in
         profileVM.getUserInfo() { result in
             if !result {
-                
+                print("Not working for some reason")
             }
         }
         profileVM.getTotalLogCount()
@@ -26,6 +28,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
+                // Image placeholder if image is not yet loaded from Firebase Storage
                 if profileVM.userInfo != nil {
                     Image(uiImage: UIImage(data: profileVM.userInfo!.userImage)!)
                         .resizable()
@@ -37,7 +40,7 @@ struct ProfileView: View {
                         .resizable()
                         .scaledToFit()
                         .clipShape(Circle())
-                        .frame(height: 250, alignment: .center)
+                        .frame(height: 300, alignment: .center)
                 }
                 Text(profileVM.userInfo?.userName ?? "Anonoumous Panda")
                     .font(.title)
@@ -46,6 +49,7 @@ struct ProfileView: View {
                 Spacer()
             }
             .toolbar {
+                // Top right handcorner btn allowing user to sign out and go back to login page
                 Button("Sign Out") {
                     LoginManager.shared.signOut { result in
                         print(result)
@@ -59,16 +63,12 @@ struct ProfileView: View {
             }
         }
         .alert(isPresented: $showLoadingError) {
+            // Present any error while loading the profile page
             Alert(title: Text("Loading Profile Error"), message: Text("Unexpected error occured while loading your profile, please try again later."))
         }
         .alert(isPresented: $showSignOutError) {
+            // Present any error while attempting to sign out of the account
             Alert(title: Text("Sign Out Error"), message: Text("Unexpected error occured while signing out, please try again later."))
-        }
-    }
-    
-    func add() {
-        DatabaseManager.shared.getLogs(withEmail: "st3v5.s2i@gmail.com") { result in
-            print("Finished")
         }
     }
 }

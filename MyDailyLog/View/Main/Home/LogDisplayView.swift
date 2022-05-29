@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+// Nav view showing each specific log post based on the logImage the user clicked on in HomeView
 struct LogDisplayView: View {
     let currLog: Log
     
     var body: some View {
         NavigationView {
+            // Two row with the top row containing two columns showing the image plus the caption on the right
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.fixed(190), spacing: 8), count: 2)) {
                     ZStack(alignment: .center) {

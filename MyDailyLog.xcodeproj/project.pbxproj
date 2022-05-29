@@ -38,7 +38,6 @@
 		0F97FC7C2833E18E00E822AF /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97FC7B2833E18E00E822AF /* StorageManager.swift */; };
 		0FC268E12835C34F00091933 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC268E02835C34F00091933 /* HomeModel.swift */; };
 		0FC268E32835C35900091933 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC268E22835C35900091933 /* ProfileModel.swift */; };
-		0FC268E52835C7CD00091933 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC268E42835C7CD00091933 /* HomeTopView.swift */; };
 		0FD3329E2835D3E4005D2029 /* CreationPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */; };
 		64A39840E6C769C60B6509EB /* Pods_MyDailyLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A455613E2A994E8F69CF76C6 /* Pods_MyDailyLog.framework */; };
 /* End PBXBuildFile section */
@@ -92,7 +91,6 @@
 		0F97FC7B2833E18E00E822AF /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0FC268E02835C34F00091933 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		0FC268E22835C35900091933 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
-		0FC268E42835C7CD00091933 /* HomeTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
 		0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPhotoPickerView.swift; sourceTree = "<group>"; };
 		4D06DCDCC7634CFDBE99FF62 /* Pods-MyDailyLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.release.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.release.xcconfig"; sourceTree = "<group>"; };
 		8EEFDFC8F8EAD25A64279A44 /* Pods-MyDailyLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.debug.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 		0FA7AB4E283A6C4F002F257B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				0FC268E42835C7CD00091933 /* HomeTopView.swift */,
 				0F47840E283BB9DD00D96422 /* LogDisplayView.swift */,
 			);
 			path = Home;
@@ -502,7 +499,6 @@
 				0F97FC652831E0B000E822AF /* LoginModel.swift in Sources */,
 				0F97FC7A2833DD0800E822AF /* User.swift in Sources */,
 				0F97FC742833303600E822AF /* DatabaseManager.swift in Sources */,
-				0FC268E52835C7CD00091933 /* HomeTopView.swift in Sources */,
 				0F97FC762833D1E100E822AF /* CreationModel.swift in Sources */,
 				0F4DC3DC28300E020031B624 /* LoginView.swift in Sources */,
 				0F97FC6A2832778B00E822AF /* LoginManager.swift in Sources */,

@@ -12,12 +12,11 @@ struct RecoveryView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var loginVM = LoginModel()
     @FocusState private var inputFocus: Bool
-    @State private var showRecoveryAlert: Bool = false
     
-    let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
         VStack {
             ZStack {
+                // place a blue/purple ish gradient in the back stack
                 LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.5), .purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
                     .ignoresSafeArea(.all)
                 VStack(alignment: .center, spacing: 15) {
@@ -27,7 +26,7 @@ struct RecoveryView: View {
                         .fontWeight(.semibold)
                     TextField("email adress or phone number", text: $loginVM.userEmail)
                         .padding()
-                        .background(lightGreyColor)
+                        .background(.white)
                         .foregroundColor(.black)
                         .cornerRadius(5.0)
                         .autocapitalization(.none)
@@ -35,12 +34,14 @@ struct RecoveryView: View {
                         .foregroundColor(.primary)
                         .padding(.bottom, 10)
                     Button {
+                        // Attempt to send reset password link via FirebaseAuth with provided email address
                         inputFocus.toggle()
                         guard FUIAuthBaseViewController.isValidEmail(loginVM.userEmail) else {
                             return;
                         }
-                        loginVM.resetPassword() { result in
-                            if result {
+                        loginVM.resetPassword() { res in
+                            // dimiss if attemp successful, else nothing since a error should've popped up
+                            if res {
                                 dismiss()
                             }
                         }
@@ -59,8 +60,9 @@ struct RecoveryView: View {
                 .padding()
             }
         }
-        .alert(item: $loginVM.error) {error in
-            Alert(title: Text(error.rawValue),message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Password recovery failed, Please try again."))
+        .alert(item: $loginVM.error) { err in
+            // Present alert to notify recovery failure, possible due to invalid email address
+            Alert(title: Text(err.rawValue), message: Text("Password recovery failed, Please try again."))
         }
     }
 }

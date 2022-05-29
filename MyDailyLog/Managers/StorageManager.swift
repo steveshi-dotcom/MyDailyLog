@@ -12,6 +12,7 @@ class StorageManager {
     static let shared = StorageManager()
     private let storage = Storage.storage().reference()
     
+    // Possible Storage Errors encounted when retrieving and uploading image data
     enum StorageError: String, Error, LocalizedError, Identifiable {
         case failedUpload = "Failed to upload data to Firebase Storage"
         case failedRetrieval = "Failed to retrieve data from Firebase Storage"
@@ -65,7 +66,6 @@ class StorageManager {
             }
         }
     }
-    
-    //
+
 }
 

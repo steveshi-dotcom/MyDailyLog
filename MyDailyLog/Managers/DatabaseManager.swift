@@ -13,6 +13,7 @@ class DatabaseManager {
     static let shared = DatabaseManager()
     private let db = Firestore.firestore()
     
+    // FireStore Error for reference in case failed operation
     enum FireStoreError: String, Error, LocalizedError, Identifiable {
         case failedUpload = "Failed to upload data to Firebase FireStore"
         case failedRetrieval = "Failed to retrieve data from Firebase FireStore"
@@ -29,6 +30,8 @@ class DatabaseManager {
     // with jpg compressed to 0.8 is roughly 1.95mb, could possibly make that smaller but would reduce quality
     func insertLog(log: Log, email: String, completion: @escaping (Bool) -> Void) {
         let replacedEmail = refractorEmail(withEmail: email)
+        
+        // Doc data under the log collection for each log post
         let data: [String: Any] = [
             "id": log.id,
             "timestamp": log.timeStamp,
@@ -36,6 +39,8 @@ class DatabaseManager {
             "bodyText": log.bodyText,
             "imagePath": "images/\(replacedEmail)/\(log.id).jpg"
         ]
+        
+        // Create the document under the logs collection for the specified email and add the data
         db
             .collection("users")
             .document(replacedEmail)
@@ -43,8 +48,9 @@ class DatabaseManager {
             .document(log.id)
             .setData(data) { err in
                 if err == nil {
-                    StorageManager.shared.uploadLogHeaderImage(log: log, withEmail: replacedEmail) {(result: Result<Bool, StorageManager.StorageError>) in
-                        switch result {
+                    // After uploading the log data to FireStore, upload the logImage to Storage
+                    StorageManager.shared.uploadLogHeaderImage(log: log, withEmail: replacedEmail) {(res: Result<Bool, StorageManager.StorageError>) in
+                        switch res {
                         case .success:
                             completion(true)
                         case .failure(let iError):
@@ -59,10 +65,12 @@ class DatabaseManager {
     }
     
     // Obtain all the logs for an specific user within Firestore, as well as retrieve each log post image
-    // for each individual logs from Firebase Storage   // TODO: Checkout Logic
+    // for each individual logs from Firebase Storage
     func getLogs(withEmail email: String, completion: @escaping ([Log]) -> Void) {
         var retrievedLogs: [Log] = []
         let replacedEmail = refractorEmail(withEmail: email)
+        
+        // Obtain every log post from log collection, and obtain image for each of the log post and append it to retrievedLogs
         db
             .collection("users")
             .document(replacedEmail)
@@ -73,8 +81,10 @@ class DatabaseManager {
                     completion([])
                 } else {
                     for document in querySnapshot!.documents {
-                        if document.documentID != "userMetaData" {
+                        if document.documentID != "userMetaData" {  // ignore userMetaData doc within snapshot
                             let data = document.data()
+                            
+                            // Find the image path and attempt to retrive log image and create the log obj for retrievedLog
                             let imagePath = data["imagePath"] as? String
                             StorageManager.shared.getLogHeaderImage(withPath: imagePath!) { (result: Result<UIImage, StorageManager.StorageError>) in
                                 switch result {
@@ -106,6 +116,8 @@ class DatabaseManager {
     // Insert the user by adding the email and create the log doc with userMetaData along with other logs
     func insertUser(user: User, completion: @escaping (Result<Bool, FireStoreError>) -> Void) {
         let replacedEmail = refractorEmail(withEmail: user.userEmail)
+        
+        // Insert the userMeta data under the logs Collection
         let profilePicPath = "images/\(replacedEmail)/userPic"
         db
             .collection("users")
@@ -116,6 +128,7 @@ class DatabaseManager {
                       "userEmail": user.userEmail,
                       "userPicPath": profilePicPath]) { err in
                 if err == nil {
+                    // If successfully uploaded userMetadata, then add the image with the path specified in userMetaData doc
                     StorageManager.shared.uploadUserPic(withImage: user.userImage, withPath: profilePicPath) {(result: Result<Bool, StorageManager.StorageError>) in
                         switch result {
                         case .success:
@@ -134,6 +147,7 @@ class DatabaseManager {
     // Delete the user by deleting the email document within users from firestore // TODO: delete image for user
     func deleteUser(user: User, completion: @escaping (Result<Bool, FireStoreError>) -> Void) {
         let replacedEmail = refractorEmail(withEmail: user.userEmail)
+        // delete the replacedEmail field within users collection to delete everything for that specific user
         db.collection("users")
             .document(replacedEmail)
             .delete() { err in
@@ -143,11 +157,15 @@ class DatabaseManager {
                     completion(.success(true))
                 }
             }
+        
+        //TODO: Need to delete every image in FireBase Storage after deleting the email from collection
     }
     
-    // Obtain the username from firestore
+    // Obtain the User from FireBase
     func getUser(withEmail email: String, completion: @escaping (Result<User, FireStoreError>) -> Void) {
         let replacedEmail = refractorEmail(withEmail: email)
+        
+        // Find the userName from FireStore and user the imagePath from the doc to find the image in Storage
         db.collection("users")
             .document(replacedEmail)
             .collection("logs")
@@ -157,6 +175,7 @@ class DatabaseManager {
                     let name = data["userName"] as! String
                     let email = data["userEmail"] as! String
                     
+                    // Use the imagePath to retrieve profile pic from Firebase Storage
                     let imagePath = data["userPicPath"] as! String
                     StorageManager.shared.getLogHeaderImage(withPath: imagePath) { (result: Result<UIImage, StorageManager.StorageError>) in
                         switch result {
@@ -173,12 +192,12 @@ class DatabaseManager {
             }
     }
     
-    // Refractor the email string, replacing '.' + '@' with '_'
+    // Refractor the email string, replacing '.' + '@' with '_',
+    // Ex: Bob.Builder@gmail.com => Bob_Builder_gmail_com
     func refractorEmail(withEmail email: String) -> String {
         email
             .replacingOccurrences(of: ".", with: "_")
             .replacingOccurrences(of: "@", with: "_")
     }
     
-    ///
 }

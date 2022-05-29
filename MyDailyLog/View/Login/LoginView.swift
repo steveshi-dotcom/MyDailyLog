@@ -9,16 +9,17 @@ import SwiftUI
 import Firebase
 import Inject
 
+// Typical login screen for a standard app
+// User will input email + password to login to their account
+// User will have option recover password, signup for new account
 struct LoginView: View {
     @ObserveInjection var inject
     @StateObject private var loginVM = LoginModel()
     @EnvironmentObject var authentification: Authentification
     @FocusState private var focusState: Bool
-    @State private var showLogin: Bool = false
-    @State private var showRecoverySheet: Bool = false
-    @State private var showSignUpSheet: Bool = false
+    @State private var showRecoverySheet = false
+    @State private var showSignUpSheet = false
     
-    let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
     var body: some View {
         VStack {
             ZStack {
@@ -46,25 +47,28 @@ struct LoginView: View {
                         .focused($focusState)
                     HStack {
                         Spacer()
-                        Button(action: {
-                            showRecoverySheet = true
-                        }) {
-                            Text("Forgot pasword")
+                        Button("Forgot password") {
+                            showRecoverySheet  = true
                         }
                     }
                     Button {
-                        showLogin.toggle()
-                        focusState.toggle()
+                        // LoginBtn to attempt to login with their inputted credentials
+                        focusState = false
                         loginVM.login() { result in
                             authentification.updateValidation(result)
                         }
-                        showLogin.toggle()
                     } label: {
-                        loadingView(showLogin)
+                        Text("Log In")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(width: 300, height: 60)
+                            .background(Color.blue)
+                            .cornerRadius(30.0)
                     }
                     .padding(.bottom, 10)
-                    labelledDivider(label: "or")
+                    labelledDivider(label: "OR")    // A divider view with 'OR' in the middle
                     Button {
+                        // Toggle SignUpSheet view for user to make an account
                         showSignUpSheet = true
                     } label: {
                         Text("Sign Up")
@@ -79,14 +83,18 @@ struct LoginView: View {
                 }
                 .padding()
             }
-            .alert(item: $loginVM.error) {error in
-                Alert(title: Text(error.rawValue), message: Text(Authentification.AuthentificationError.invalidCredentials.errorDescription ?? "Double check to make sure the email/password is correct"))
+            .alert(item: $loginVM.error) { err in
+                // Alert authentification error that pops up while loging in
+                Alert(title: Text(err.rawValue),
+                      message: Text("Double check to make sure the email/password is correct"))
             }
         }
         .sheet(isPresented: $showRecoverySheet) {
+            // Present sheet for user to enter their email address to reset password
             RecoveryView()
         }
         .sheet(isPresented: $showSignUpSheet) {
+            // Present sheet for user to enter enter info(name, profilePic, email, password) to create account
             SignUpView()
         }
         
@@ -94,48 +102,25 @@ struct LoginView: View {
     }
 }
 
-// Loading Icon when the user clicked on log in //NOT WORKING, maybe everything loads too fast
-struct loadingView: View {
-    var showLoading: Bool = false
-    
-    init(_ showLoading: Bool = false){
-        self.showLoading = showLoading
-    }
-    var body: some View {
-        if !showLoading {
-            Text("Log In")
-                .font(.headline)
-                .foregroundColor(.white)
-                .frame(width: 300, height: 60)
-                .background(Color.blue)
-                .cornerRadius(30.0)
-        } else {
-            ProgressView()
-        }
-    }
-}
-
 // An divider with text in the middle   -----??-----
 struct labelledDivider: View {
     let label: String
     let horizontalPadding: CGFloat
-    let color: Color
     
-    init(label: String, horizontalPadding: CGFloat = 5, color: Color = .black) {
+    init(label: String, horizontalPadding: CGFloat = 5) {
         self.label = label
         self.horizontalPadding = horizontalPadding
-        self.color = color
     }
     var body: some View {
         HStack {
             line
-            Text(label).foregroundColor(color)
+            Text(label).foregroundColor(.black)
             line
         }
     }
     var line: some View {
         VStack {
-            Divider().background(color)
+            Divider().background(.black)
         }.padding(horizontalPadding)
     }
 }

@@ -15,6 +15,7 @@ struct HomeView: View {
                   GridItem(.flexible(minimum: 175, maximum: 175))]
     
     init() {
+        // load all logs captured on start
         homeVM.loadLogs { result in
             print(result)
         }
@@ -24,6 +25,7 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: column, spacing: 20) {
+                    // Two column grid where each row has two logPost that a user posted with the date
                     ForEach(homeVM.logPost) { log in
                         NavigationLink(destination: LogDisplayView(currLog: log), label: {
                             ZStack {
@@ -44,8 +46,7 @@ struct HomeView: View {
                             }
                         })
                     }
-                    .refreshable {
-                        //print("Refreshing")
+                    .refreshable { // Allow user to refresh the page to load up all logs // Not working
                         homeVM.loadLogs() { result in
                             if !result {
                                 showLoadingAlert.toggle()
@@ -57,6 +58,7 @@ struct HomeView: View {
             .navigationTitle("Logs")
         }
         .alert(isPresented: $showLoadingAlert) {
+            // Present any error while pulling logs posted by user from FireBase
             Alert(title: Text("Error pulling all logs"), message: Text("Plese try again later"))
         }
     }

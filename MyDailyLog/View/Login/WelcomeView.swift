@@ -12,6 +12,9 @@ struct WelcomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                // stack a image of a library with a chair in the back
+                // stack a linear gradient of blue/purple ish coloring on top of the library image
+                // stack the title + shortDescription on top of the two
                 Image("noah-eleazar-9p6R1IDCXNg-unsplash")
                     .resizable()
                     .edgesIgnoringSafeArea(.all)

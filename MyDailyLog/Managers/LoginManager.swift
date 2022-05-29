@@ -17,8 +17,8 @@ class LoginManager {
     // Loggin in with the provided credentials
     func login(withEmail email: String, withPassword password: String,
                completion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
-        auth.signIn(withEmail: email, password: password) { result, error in
-            if let _ = error {
+        auth.signIn(withEmail: email, password: password) { res, err in
+            if let _ = err {
                 completion(.failure(.invalidCredentials))
             } else {
                 completion(.success(true))
@@ -28,12 +28,12 @@ class LoginManager {
     
     // Resetting the password for the provided email adress
     func resetPassword(withEmail email: String,
-                       resetCompletion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
-        auth.sendPasswordReset(withEmail: email, completion: { error in
-            if let _ = error {
-                resetCompletion(.failure(.failedPasswordRecovery))
+                       completion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
+        auth.sendPasswordReset(withEmail: email, completion: { err in
+            if let _ = err {
+                completion(.failure(.failedPasswordRecovery))
             } else {
-                resetCompletion(.success(true))
+                completion(.success(true))
             }
         })
     }
@@ -41,8 +41,8 @@ class LoginManager {
     // Signing up for an account with the provided information
     func signUp(withEmail email: String, withPassword password: String,
                 completion: @escaping (Result<Bool, Authentification.AuthentificationError>) -> Void) {
-        auth.createUser(withEmail: email, password: password) { result, error in
-            if let _ = error {
+        auth.createUser(withEmail: email, password: password) { res, err in
+            if let _ = err {
                 completion(.failure(.failedAccountSignUp))
             } else {
                 completion(.success(true))
@@ -60,4 +60,5 @@ class LoginManager {
             completion(false)
         }
     }
+    
 }

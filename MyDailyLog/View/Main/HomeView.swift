@@ -23,7 +23,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: column, spacing: 30) {
                     // Two column grid where each row has two logPost that a user posted with the date
                     ForEach(homeVM.logPost) { log in

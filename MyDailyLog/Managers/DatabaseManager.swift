@@ -106,9 +106,7 @@ class DatabaseManager {
                     }
                 }
             }
-        // Not sure how to asynchronously await until firebase storage retrieval is finished
-        // Run the completion method after 3 seconds ish, since it retrieval should be finished
-        // and let the client know the result // TODO: Figure out how to async wait top func
+        // TODO: Completion closure after retrieve all the logs under log collection...
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             completion(retrievedLogs)
         }

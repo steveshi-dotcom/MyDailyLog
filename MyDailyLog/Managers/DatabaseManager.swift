@@ -70,6 +70,7 @@ class DatabaseManager {
         var retrievedLogs: [Log] = []
         let replacedEmail = refractorEmail(withEmail: email)
         
+        let myGroup = DispatchGroup()
         // Obtain every log post from log collection, and obtain image for each of the log post and append it to retrievedLogs
         db
             .collection("users")
@@ -82,6 +83,7 @@ class DatabaseManager {
                 } else {
                     for document in querySnapshot!.documents {
                         if document.documentID != "userMetaData" {  // ignore userMetaData doc within snapshot
+                            myGroup.enter()
                             let data = document.data()
                             
                             // Find the image path and attempt to retrive log image and create the log obj for retrievedLog
@@ -97,7 +99,8 @@ class DatabaseManager {
                                     }
                                     let retrievedLog = Log(id: id, timeStamp: timeStamp, headerImageUrl: iImage.jpegData(compressionQuality: 0.8)!, headerImageCap: headerImageCap, bodyText: bodyText)
                                     retrievedLogs.append(retrievedLog)
-                                    print(retrievedLog.bodyText)
+                                    myGroup.leave()
+                                    print(retrievedLog.id)
                                 case .failure(let iError):
                                     print("Failed to retrived an image: \(iError.rawValue)")
                                 }
@@ -106,9 +109,13 @@ class DatabaseManager {
                     }
                 }
             }
-        // TODO: Completion closure after retrieve all the logs under log collection...
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            completion(retrievedLogs)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            myGroup.notify(queue: .main) {
+                print("Finished")
+                retrievedLogs = retrievedLogs.sorted { $0.timeStamp > $1.timeStamp }
+                completion(retrievedLogs)
+            }
         }
     }
     

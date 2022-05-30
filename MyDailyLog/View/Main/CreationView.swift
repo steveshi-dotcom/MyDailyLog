@@ -75,7 +75,7 @@ struct CreationView: View {
                 // A post btn on the top right handcorner that will allow the user to post the log to FireBase
                 trailing:
                     Button("Post") {
-                        userInputFocus.toggle()
+                        userInputFocus = false
                         guard creationVM.images.count != 0 else {
                             showInsufAlert.toggle()
                             return

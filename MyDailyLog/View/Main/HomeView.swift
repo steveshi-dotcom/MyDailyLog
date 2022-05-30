@@ -24,7 +24,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: column, spacing: 20) {
+                LazyVGrid(columns: column, spacing: 30) {
                     // Two column grid where each row has two logPost that a user posted with the date
                     ForEach(homeVM.logPost) { log in
                         NavigationLink(destination: LogDisplayView(currLog: log), label: {
@@ -46,11 +46,11 @@ struct HomeView: View {
                             }
                         })
                     }
-                    .refreshable { // Allow user to refresh the page to load up all logs // Not working
-                        homeVM.loadLogs() { result in
-                            if !result {
-                                showLoadingAlert.toggle()
-                            }
+                }
+                .refreshable { // Allow user to refresh the page to load up all logs // Not working
+                    homeVM.loadLogs() { result in
+                        if !result {
+                            showLoadingAlert.toggle()
                         }
                     }
                 }

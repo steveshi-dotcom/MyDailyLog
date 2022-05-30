@@ -53,5 +53,9 @@ class ProfileModel: ObservableObject {
         }
     }
     
+    func incrementLogCount() {
+        totalLogCount += 1
+    }
+    
     
 }

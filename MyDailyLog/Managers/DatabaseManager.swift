@@ -76,8 +76,8 @@ class DatabaseManager {
             .document(replacedEmail)
             .collection("logs")
             .getDocuments { querySnapshot, err in
-                if let _ = err {
-                    print("Error getting the documents: \(err)")
+                if let err = err {
+                    print("Error getting the documents: \(err.localizedDescription)")
                     completion([])
                 } else {
                     for document in querySnapshot!.documents {
@@ -97,6 +97,7 @@ class DatabaseManager {
                                     }
                                     let retrievedLog = Log(id: id, timeStamp: timeStamp, headerImageUrl: iImage.jpegData(compressionQuality: 0.8)!, headerImageCap: headerImageCap, bodyText: bodyText)
                                     retrievedLogs.append(retrievedLog)
+                                    print(retrievedLog.bodyText)
                                 case .failure(let iError):
                                     print("Failed to retrived an image: \(iError.rawValue)")
                                 }
@@ -108,7 +109,7 @@ class DatabaseManager {
         // Not sure how to asynchronously await until firebase storage retrieval is finished
         // Run the completion method after 3 seconds ish, since it retrieval should be finished
         // and let the client know the result // TODO: Figure out how to async wait top func
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             completion(retrievedLogs)
         }
     }

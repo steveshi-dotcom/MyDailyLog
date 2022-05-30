@@ -7,6 +7,7 @@
 
 import Firebase
 import PhotosUI
+import SwiftUI
 
 class CreationModel: ObservableObject {
     @Published var images: [UIImage] = []
@@ -36,8 +37,12 @@ class CreationModel: ObservableObject {
     
     func saveLog(withLog newLog: Log, completion: @escaping (Bool) -> Void) {
         let currUser = Auth.auth().currentUser?.email ?? "Bob.Builder@gmail.com"
-        DatabaseManager.shared.insertLog(log: newLog, email: currUser) { result in
-            completion(result)
+        DatabaseManager.shared.insertLog(log: newLog, email: currUser) { res in
+            if res {
+                @ObservedObject var profileVM = ProfileModel()
+                profileVM.incrementLogCount()
+            }
+            completion(res)
         }
     }
     

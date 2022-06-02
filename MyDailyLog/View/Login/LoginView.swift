@@ -55,6 +55,10 @@ struct LoginView: View {
                         // LoginBtn to attempt to login with their inputted credentials
                         focusState = false
                         loginVM.login() { result in
+                            if result {
+                                UserDefaults.standard.set(["email": loginVM.userEmail, "password": loginVM.userPassword], forKey: "uCredentials")
+                                UserDefaults.standard.set(true, forKey: "uLogin")
+                            }
                             authentification.updateValidation(result)
                         }
                     } label: {

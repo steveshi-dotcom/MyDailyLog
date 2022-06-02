@@ -102,7 +102,7 @@ class DatabaseManager {
                                     myGroup.leave()
                                     print(retrievedLog.id)
                                 case .failure(let iError):
-                                    print("Failed to retrived an image: \(iError.rawValue)")
+                                    print("DatabaseManager ->Failed to retrived an image: \(iError.rawValue)")
                                 }
                             }
                         }

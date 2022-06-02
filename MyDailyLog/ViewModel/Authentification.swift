@@ -10,6 +10,16 @@ import SwiftUI
 class Authentification: ObservableObject {
     @Published var isValidated: Bool = false
     
+    init() {
+//        let uLogin = UserDefaults.standard.bool(forKey: "uLogin")
+//        if uLogin {
+//            if let uCredentials: [String:String] = UserDefaults.standard.data(forKey: "uCredentials") as? [String: String] {
+//                LoginManager.shared.login(withEmail: uCredentials["email"]!, withPassword: uCredentials["password"]!) { [unowned self](result: Result<Bool, AuthentificationError>) in
+//                    isValidated = true
+//                }
+//            }
+//        }
+    }
     // List of authentification errors used for login/logout purposes
     enum AuthentificationError: String, Error, LocalizedError, Identifiable {
         case invalidCredentials = "Email or Password Incorrect"

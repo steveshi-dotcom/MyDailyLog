@@ -24,7 +24,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
-                LazyVGrid(columns: column, spacing: 30) {
+                LazyVGrid(columns: column, spacing: 10) {
                     // Two column grid where each row has two logPost that a user posted with the date
                     ForEach(homeVM.logPost) { log in
                         NavigationLink(destination: LogDisplayView(currLog: log), label: {
@@ -41,7 +41,12 @@ struct HomeView: View {
                                 VStack(alignment: .trailing) {
                                     Spacer()
                                     Text(NSDate(timeIntervalSince1970: log.timeStamp) as Date, style: .date)
-                                        .font(.title2)
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .padding(5)
+                                        .foregroundColor(.white)
+                                        .background(.black)
+                                        .cornerRadius(20)
                                 }
                             }
                         })

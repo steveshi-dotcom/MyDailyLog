@@ -20,9 +20,7 @@ struct MyDailyLogApp: App {
         WindowGroup {
             if showWelcome {
                 WelcomeView().onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
-                        showWelcome = false
-                    })
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) { showWelcome = false }
                 }
             } else {
                 VStack {

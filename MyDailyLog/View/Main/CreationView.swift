@@ -24,7 +24,7 @@ struct CreationView: View {
     var body: some View {
         NavigationView {
             // Two row view with the top row as two column for an picture(left) + pictureCaption(right)
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 LazyVGrid(
                     columns: Array(repeating: GridItem(.fixed(190), spacing: 8), count: 2)) {
                         ZStack(alignment: .center) {
@@ -89,6 +89,8 @@ struct CreationView: View {
                                 logText = ""
                                 logImageCap = ""
                                 ShowCheckMark = true
+                                @ObservedObject var homeVM = HomeModel()
+                                homeVM.logPost.insert(dailyLog, at: 0)
                             }
                         }
                     }

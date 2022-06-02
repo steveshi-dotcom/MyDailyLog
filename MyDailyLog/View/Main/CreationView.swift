@@ -62,7 +62,7 @@ struct CreationView: View {
                         .cornerRadius(12.5)
                         .padding()
                         .multilineTextAlignment(.center)
-                        .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 2 - 20)
+                        .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 2.5 - 20)
                         .focused($userInputFocus)
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))

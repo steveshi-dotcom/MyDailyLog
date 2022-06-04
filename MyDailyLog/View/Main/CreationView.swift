@@ -13,11 +13,11 @@ struct CreationView: View {
     @ObserveInjection var io
     @StateObject private var creationVM = CreationModel()
     @FocusState private var userInputFocus: Bool
-
+    
     @State private var showingCameraPicker: Bool = false
     @State private var logImage: Image = Image("skyler-ewing-Djneft6JzNM-unsplash")
-    @State private var logImageCap: String = "Image Caption"
-    @State private var logText: String = "Log Body"
+    @State private var logImageCap: String = "Image caption.."
+    @State private var logText: String = "Log Body.."
     @State private var showInsufAlert: Bool = false
     @State private var ShowCheckMark: Bool = false
     
@@ -50,6 +50,25 @@ struct CreationView: View {
                                 .frame(width: 175, height: 150)
                                 .padding(.trailing, 10)
                                 .focused($userInputFocus)
+                                .foregroundColor(self.logImageCap == "Image caption.." ? .gray : .primary)
+                                .onAppear {
+                                    // remove the placeholder text when keyboard appears
+                                    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
+                                        withAnimation {
+                                            if self.logImageCap == "Image caption.." {
+                                                self.logImageCap = ""
+                                            }
+                                        }
+                                    }
+                                    // PUt back the placeholder if still empty
+                                    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
+                                        withAnimation {
+                                            if self.logImageCap == "" {
+                                                self.logImageCap = "Image caption.."
+                                            }
+                                        }
+                                    }
+                                }
                         }
                     }
                     .background(Color(UIColor.systemCyan))
@@ -64,6 +83,25 @@ struct CreationView: View {
                         .multilineTextAlignment(.center)
                         .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 2.5 - 20)
                         .focused($userInputFocus)
+                        .foregroundColor(self.logText == "Log Body.." ? .gray : .primary)
+                        .onAppear {
+                            // remove the placeholder text when keyboard appears
+                            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (noti) in
+                                withAnimation {
+                                    if self.logText == "Log Body.." {
+                                        self.logText = ""
+                                    }
+                                }
+                            }
+                            // PUt back the placeholder if still empty
+                            NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (noti) in
+                                withAnimation {
+                                    if self.logText == "" {
+                                        self.logText = "Log Body.."
+                                    }
+                                }
+                            }
+                        }
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .border(Color(UIColor.systemCyan), width: 10)

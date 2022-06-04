@@ -61,6 +61,7 @@ class StorageManager {
                     }
                 }
             } else {
+                print(err)  // there was some issue with some of the picture not uploaded to storage
                 completion(.failure(.failedRetrieval))
             }
         }

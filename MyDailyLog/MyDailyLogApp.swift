@@ -11,7 +11,7 @@ import Firebase
 @main
 struct MyDailyLogApp: App {
     @StateObject var authentification = Authentification()
-    @State private var showWelcome: Bool = false
+    @State private var showWelcome: Bool = true
     
     init() {
         FirebaseApp.configure()

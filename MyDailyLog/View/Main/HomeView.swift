@@ -27,11 +27,11 @@ struct HomeView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 PullToRefreshSwiftUI(needRefresh: $refresh,
                                      coordinateSpaceName: "pullToRefresh") {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.async {
                         withAnimation {
-                            refresh = false
                             homeVM.loadLogs { res in
                                 print("HomeView(Loading all log): \(res)")
+                                refresh = false
                             }
                         }
                     }
@@ -103,7 +103,7 @@ struct PullToRefreshSwiftUI: View {
         })
         .onPreferenceChange(ScrollViewOffsetPreferenceKey.self) { offset in
             guard !needRefresh else { return }
-            if abs(offset) > 50 {
+            if offset > 75 {
                 needRefresh = true
                 onRefresh()
             }

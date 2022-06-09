@@ -11,7 +11,7 @@ import Firebase
 @main
 struct MyDailyLogApp: App {
     @StateObject var authentification = Authentification()
-    @State private var showWelcome: Bool = true
+    @State private var showWelcome: Bool = false
     
     init() {
         FirebaseApp.configure()
@@ -20,7 +20,7 @@ struct MyDailyLogApp: App {
         WindowGroup {
             if showWelcome {
                 WelcomeView().onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) { showWelcome = false }
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) { showWelcome = false }
                 }
             } else {
                 VStack {

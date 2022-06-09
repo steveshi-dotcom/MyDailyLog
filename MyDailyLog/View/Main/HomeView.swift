@@ -68,10 +68,10 @@ struct HomeView: View {
             .coordinateSpace(name: "pullToRefresh")
             .navigationTitle("Logs")
         }
-        //        .alert(isPresented: $showLoadingAlert) {
-        //            // Present any error while pulling logs posted by user from FireBase
-        //            Alert(title: Text("Error pulling all logs"), message: Text("Plese try again later"))
-        //        }
+        .alert(isPresented: $showLoadingAlert) {
+            // Present any error while pulling logs posted by user from FireBase
+            Alert(title: Text("Error pulling all logs"), message: Text("Plese try again later"))
+        }
     }
 }
 
@@ -94,7 +94,7 @@ struct PullToRefreshSwiftUI: View {
                     ProgressView()
                     Spacer()
                 }
-                .frame(height: 100)
+                .frame(height: 50)
             }
         }
         .background(GeometryReader {

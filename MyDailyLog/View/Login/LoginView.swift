@@ -14,6 +14,7 @@ import Inject
 // User will have option recover password, signup for new account
 struct LoginView: View {
     @ObserveInjection var inject
+    @Environment(\.colorScheme) var colorScheme
     @StateObject private var loginVM = LoginModel()
     @EnvironmentObject var authentification: Authentification
     @FocusState private var focusState: Bool
@@ -23,27 +24,26 @@ struct LoginView: View {
     var body: some View {
         VStack {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [.blue.opacity(0.5), .purple.opacity(0.5)]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                    .ignoresSafeArea(.all)
                 VStack(alignment: .center, spacing: 15) {
                     Spacer()
                     Text("My Daily Log")
                         .font(.largeTitle)
                         .fontWeight(.semibold)
-                    TextField("email adress", text: $loginVM.userEmail)
+                        .padding(.bottom, 6)
+                    TextField("Email adress", text: $loginVM.userEmail)
                         .font(.headline)
-                        .foregroundColor(.black)
                         .padding()
-                        .background(.white)
-                        .cornerRadius(5.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5.0)
+                            .strokeBorder(colorScheme == .dark ? .white : .black, style: StrokeStyle(lineWidth: 1.0)))
                         .autocapitalization(.none)
                         .keyboardType(.emailAddress)
                     SecureField("Password", text: $loginVM.userPassword)
                         .font(.headline)
-                        .foregroundColor(.black)
                         .padding()
-                        .background(.white)
-                        .cornerRadius(5.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5.0)
+                            .strokeBorder(colorScheme == .dark ? .white : .black, style: StrokeStyle(lineWidth: 1.0)))
                         .focused($focusState)
                     HStack {
                         Spacer()
@@ -56,8 +56,7 @@ struct LoginView: View {
                         focusState = false
                         loginVM.login() { result in
                             if result {
-                                UserDefaults.standard.set(["email": loginVM.userEmail, "password": loginVM.userPassword], forKey: "uCredentials")
-                                UserDefaults.standard.set(true, forKey: "uLogin")
+                                
                             }
                             authentification.updateValidation(result)
                         }
@@ -66,7 +65,7 @@ struct LoginView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(width: 300, height: 60)
-                            .background(Color.blue)
+                            .background(.blue)
                             .cornerRadius(30.0)
                     }
                     .padding(.bottom, 10)
@@ -79,7 +78,7 @@ struct LoginView: View {
                             .font(.headline)
                             .foregroundColor(.black)
                             .frame(width: 300, height: 60)
-                            .background(Color.white)
+                            .background(.purple)
                             .cornerRadius(30.0)
                     }
                     Spacer()

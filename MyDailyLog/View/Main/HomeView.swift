@@ -36,7 +36,7 @@ struct HomeView: View {
                         }
                     }
                 }
-                LazyVGrid(columns: column, spacing: 10) {
+                LazyVGrid(columns: column, spacing: 5) {
                     // Two column grid where each row has two logPost that a user posted with the date
                     ForEach(homeVM.logPost) { log in
                         NavigationLink(destination: LogDisplayView(currLog: log), label: {
@@ -48,7 +48,7 @@ struct HomeView: View {
                                         .scaledToFill()
                                         .cornerRadius(6)
                                         .background(.primary)
-                                        .cornerRadius(10)
+                                        .cornerRadius(5)
                                 }
                                 VStack(alignment: .trailing) {
                                     Spacer()
@@ -67,6 +67,7 @@ struct HomeView: View {
             }
             .coordinateSpace(name: "pullToRefresh")
             .navigationTitle("Logs")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .alert(isPresented: $showLoadingAlert) {
             // Present any error while pulling logs posted by user from FireBase
@@ -75,6 +76,7 @@ struct HomeView: View {
     }
 }
 
+// A loading progressview when the user attempts to load the screen
 struct PullToRefreshSwiftUI: View {
     @Binding private var needRefresh: Bool
     private let coordinateSpaceName: String

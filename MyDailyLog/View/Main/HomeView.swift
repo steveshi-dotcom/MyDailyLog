@@ -48,8 +48,7 @@ struct HomeView: View {
                                         .scaledToFill()
                                         .cornerRadius(6)
                                         .background(.primary)
-                                        .cornerRadius(5)
-                                        .cornerRadius(.infinity, antialiased: true)
+                                        .cornerRadius(10)
                                 }
                                 VStack(alignment: .trailing) {
                                     Spacer()

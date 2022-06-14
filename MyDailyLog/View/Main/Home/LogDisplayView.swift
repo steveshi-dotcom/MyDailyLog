@@ -29,7 +29,6 @@ struct LogDisplayView: View {
                         .padding(.trailing, 10)
                 }
                 ZStack {
-                    LinearGradient(gradient: Gradient(colors: [.cyan]), startPoint: .leading, endPoint: .trailing)
                     Text(currLog.bodyText)
                         .cornerRadius(12.5)
                         .padding()

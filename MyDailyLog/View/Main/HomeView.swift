@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject private var homeVM = HomeModel()
-    @State private var showLoadingAlert: Bool = false
-    @State private var refresh: Bool = false
+    @State private var showLoadingAlert = false
+    @State private var refresh = false
     
     let column = [GridItem(.flexible(minimum: 175, maximum: 175)),
                   GridItem(.flexible(minimum: 175, maximum: 175))]

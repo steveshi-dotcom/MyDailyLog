@@ -26,25 +26,31 @@ struct LoginView: View {
             ZStack {
                 VStack(alignment: .center, spacing: 15) {
                     Spacer()
-                    Text("My Daily Log")
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
-                        .padding(.bottom, 6)
-                    TextField("Email adress", text: $loginVM.userEmail)
-                        .font(.headline)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5.0)
-                            .strokeBorder(colorScheme == .dark ? .white : .black, style: StrokeStyle(lineWidth: 1.0)))
-                        .autocapitalization(.none)
-                        .keyboardType(.emailAddress)
-                    SecureField("Password", text: $loginVM.userPassword)
-                        .font(.headline)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5.0)
-                            .strokeBorder(colorScheme == .dark ? .white : .black, style: StrokeStyle(lineWidth: 1.0)))
-                        .focused($focusState)
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 150, height: 150, alignment: .center)
+                        .cornerRadius(7.5)
+                    Group {
+                        Text("Log you day to day")
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                            .padding(.bottom, 6)
+                        TextField("Email adress", text: $loginVM.userEmail)
+                            .font(.headline)
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5.0)
+                                    .strokeBorder(colorScheme == .dark ? .white : .black, style: StrokeStyle(lineWidth: 1.0)))
+                            .autocapitalization(.none)
+                            .keyboardType(.emailAddress)
+                        SecureField("Password", text: $loginVM.userPassword)
+                            .font(.headline)
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5.0)
+                                    .strokeBorder(colorScheme == .dark ? .white : .black, style: StrokeStyle(lineWidth: 1.0)))
+                            .focused($focusState)
+                    }
                     HStack {
                         Spacer()
                         Button("Forgot password") {

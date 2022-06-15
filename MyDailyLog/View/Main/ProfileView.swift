@@ -11,8 +11,8 @@ import SwiftUI
 struct ProfileView: View {
     @ObservedObject private var profileVM = ProfileModel()
     @EnvironmentObject var loggedIn: Authentification
-    @State private var showLoadingError: Bool = false
-    @State private var showSignOutError: Bool = false
+    @State private var showLoadingError = false
+    @State private var showSignOutError = false
     
     @State private var image: Image = Image("noah-eleazar-9p6R1IDCXNg-unsplash")
     

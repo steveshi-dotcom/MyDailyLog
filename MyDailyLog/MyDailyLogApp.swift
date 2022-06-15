@@ -12,7 +12,7 @@ import Firebase
 struct MyDailyLogApp: App {
     @StateObject var authentification = Authentification()
     @State private var showWelcome: Bool = false
-    //TODO: ProgressView when adding an new post, show an message and delay when signing out
+    //TODO: ProgressView when adding an new post, show an message and delay when signing out.
     init() {
         FirebaseApp.configure()
     }

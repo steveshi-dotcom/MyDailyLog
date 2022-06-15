@@ -1,7 +1,7 @@
 # MyDailyLog
 
 ## Introduction
-<img src="https://github.com/steveshi0/MyDailyLog/blob/main/MyDailyLogIcon.png" width="600">
+<img src="https://github.com/steveshi0/MyDailyLog/blob/main/MyDailyLogIcon.png" width="200">
 
 A blogging iOS app written in Swift where users can log their daily day to day activies. The apps offers functionalities such as account creation, log creation, log list view and browse their profile where they can sign out and view the total amount of logs posted in the account lifetime.
 

@@ -45,7 +45,7 @@
 		0FC268E12835C34F00091933 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC268E02835C34F00091933 /* HomeModel.swift */; };
 		0FC268E32835C35900091933 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC268E22835C35900091933 /* ProfileModel.swift */; };
 		0FD3329E2835D3E4005D2029 /* CreationPhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */; };
-		64A39840E6C769C60B6509EB /* Pods_MyDailyLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A455613E2A994E8F69CF76C6 /* Pods_MyDailyLog.framework */; };
+		A7213271E856AF46CFAB9E15 /* Pods_MyDailyLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08446633ED378D57C03AE3C8 /* Pods_MyDailyLog.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08446633ED378D57C03AE3C8 /* Pods_MyDailyLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDailyLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		09264BBFA176FBE70EEE6DB5 /* Pods-MyDailyLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.debug.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.debug.xcconfig"; sourceTree = "<group>"; };
 		0F24BA8328366F1300F0B4D9 /* CreationCameraPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationCameraPickerView.swift; sourceTree = "<group>"; };
 		0F331C9B2859686800ACAC7D /* MyDailyLogIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyDailyLogIcon.png; sourceTree = "<group>"; };
 		0F3EBBFB2868D32F00917496 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
@@ -104,9 +106,7 @@
 		0FC268E02835C34F00091933 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		0FC268E22835C35900091933 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		0FD3329D2835D3E4005D2029 /* CreationPhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationPhotoPickerView.swift; sourceTree = "<group>"; };
-		4D06DCDCC7634CFDBE99FF62 /* Pods-MyDailyLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.release.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.release.xcconfig"; sourceTree = "<group>"; };
-		8EEFDFC8F8EAD25A64279A44 /* Pods-MyDailyLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.debug.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.debug.xcconfig"; sourceTree = "<group>"; };
-		A455613E2A994E8F69CF76C6 /* Pods_MyDailyLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDailyLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0949FA34B9D6752223653C7 /* Pods-MyDailyLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDailyLog.release.xcconfig"; path = "Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +114,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64A39840E6C769C60B6509EB /* Pods_MyDailyLog.framework in Frameworks */,
 				0F24BA882838814700F0B4D9 /* Inject in Frameworks */,
+				A7213271E856AF46CFAB9E15 /* Pods_MyDailyLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +168,7 @@
 				0F4DC3C72830069B0031B624 /* MyDailyLogUITests */,
 				0F4DC3AB2830069B0031B624 /* Products */,
 				7E7FDEA00A89AAE3C7E668A0 /* Pods */,
-				C0C5E721A7D2A37EC55F5713 /* Frameworks */,
+				AC70064C6460BDC6A34EBEEE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -297,16 +297,16 @@
 		7E7FDEA00A89AAE3C7E668A0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8EEFDFC8F8EAD25A64279A44 /* Pods-MyDailyLog.debug.xcconfig */,
-				4D06DCDCC7634CFDBE99FF62 /* Pods-MyDailyLog.release.xcconfig */,
+				09264BBFA176FBE70EEE6DB5 /* Pods-MyDailyLog.debug.xcconfig */,
+				D0949FA34B9D6752223653C7 /* Pods-MyDailyLog.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C0C5E721A7D2A37EC55F5713 /* Frameworks */ = {
+		AC70064C6460BDC6A34EBEEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A455613E2A994E8F69CF76C6 /* Pods_MyDailyLog.framework */,
+				08446633ED378D57C03AE3C8 /* Pods_MyDailyLog.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -318,12 +318,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F4DC3CE2830069B0031B624 /* Build configuration list for PBXNativeTarget "MyDailyLog" */;
 			buildPhases = (
-				3F70EDD6F13766BE69A27A98 /* [CP] Check Pods Manifest.lock */,
+				834FB820FC7B3F8E70A81882 /* [CP] Check Pods Manifest.lock */,
 				0F4DC3A62830069B0031B624 /* Sources */,
 				0F4DC3A72830069B0031B624 /* Frameworks */,
 				0F4DC3A82830069B0031B624 /* Resources */,
-				7D0141C98F4E42ED911B370A /* [CP] Embed Pods Frameworks */,
-				1EA24FF548DA3E68D5EEC19E /* [CP] Copy Pods Resources */,
+				F6EA7E71EF82AFC2F129509B /* [CP] Embed Pods Frameworks */,
+				5A9081259E1778606EAF8335 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -406,7 +406,7 @@
 			);
 			mainGroup = 0F4DC3A12830069B0031B624;
 			packageReferences = (
-				0F24BA862838814700F0B4D9 /* XCRemoteSwiftPackageReference "Inject" */,
+				0F24BA862838814700F0B4D9 /* XCRemoteSwiftPackageReference "Inject.git" */,
 			);
 			productRefGroup = 0F4DC3AB2830069B0031B624 /* Products */;
 			projectDirPath = "";
@@ -456,7 +456,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1EA24FF548DA3E68D5EEC19E /* [CP] Copy Pods Resources */ = {
+		5A9081259E1778606EAF8335 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -473,7 +473,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyDailyLog/Pods-MyDailyLog-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3F70EDD6F13766BE69A27A98 /* [CP] Check Pods Manifest.lock */ = {
+		834FB820FC7B3F8E70A81882 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -495,7 +495,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7D0141C98F4E42ED911B370A /* [CP] Embed Pods Frameworks */ = {
+		F6EA7E71EF82AFC2F129509B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -703,7 +703,7 @@
 		};
 		0F4DC3CF2830069B0031B624 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EEFDFC8F8EAD25A64279A44 /* Pods-MyDailyLog.debug.xcconfig */;
+			baseConfigurationReference = 09264BBFA176FBE70EEE6DB5 /* Pods-MyDailyLog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -736,7 +736,7 @@
 		};
 		0F4DC3D02830069B0031B624 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D06DCDCC7634CFDBE99FF62 /* Pods-MyDailyLog.release.xcconfig */;
+			baseConfigurationReference = D0949FA34B9D6752223653C7 /* Pods-MyDailyLog.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -885,7 +885,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0F24BA862838814700F0B4D9 /* XCRemoteSwiftPackageReference "Inject" */ = {
+		0F24BA862838814700F0B4D9 /* XCRemoteSwiftPackageReference "Inject.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzysztofzablocki/Inject.git";
 			requirement = {
@@ -898,7 +898,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		0F24BA872838814700F0B4D9 /* Inject */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0F24BA862838814700F0B4D9 /* XCRemoteSwiftPackageReference "Inject" */;
+			package = 0F24BA862838814700F0B4D9 /* XCRemoteSwiftPackageReference "Inject.git" */;
 			productName = Inject;
 		};
 /* End XCSwiftPackageProductDependency section */

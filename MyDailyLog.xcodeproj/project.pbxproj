@@ -10,6 +10,11 @@
 		0F24BA8428366F1300F0B4D9 /* CreationCameraPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F24BA8328366F1300F0B4D9 /* CreationCameraPickerView.swift */; };
 		0F24BA882838814700F0B4D9 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = 0F24BA872838814700F0B4D9 /* Inject */; };
 		0F331C9C2859686800ACAC7D /* MyDailyLogIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F331C9B2859686800ACAC7D /* MyDailyLogIcon.png */; };
+		0F3EBC002868D32F00917496 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3EBBFB2868D32F00917496 /* login.png */; };
+		0F3EBC012868D32F00917496 /* newLog.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3EBBFC2868D32F00917496 /* newLog.png */; };
+		0F3EBC022868D32F00917496 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3EBBFD2868D32F00917496 /* home.png */; };
+		0F3EBC032868D32F00917496 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3EBBFE2868D32F00917496 /* profile.png */; };
+		0F3EBC042868D32F00917496 /* logInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F3EBBFF2868D32F00917496 /* logInfo.png */; };
 		0F47840F283BB9DD00D96422 /* LogDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F47840E283BB9DD00D96422 /* LogDisplayView.swift */; };
 		0F4DC3AE2830069B0031B624 /* MyDailyLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */; };
 		0F4DC3B02830069B0031B624 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4DC3AF2830069B0031B624 /* ContentView.swift */; };
@@ -63,6 +68,11 @@
 /* Begin PBXFileReference section */
 		0F24BA8328366F1300F0B4D9 /* CreationCameraPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationCameraPickerView.swift; sourceTree = "<group>"; };
 		0F331C9B2859686800ACAC7D /* MyDailyLogIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MyDailyLogIcon.png; sourceTree = "<group>"; };
+		0F3EBBFB2868D32F00917496 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
+		0F3EBBFC2868D32F00917496 /* newLog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newLog.png; sourceTree = "<group>"; };
+		0F3EBBFD2868D32F00917496 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		0F3EBBFE2868D32F00917496 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		0F3EBBFF2868D32F00917496 /* logInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logInfo.png; sourceTree = "<group>"; };
 		0F47840E283BB9DD00D96422 /* LogDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDisplayView.swift; sourceTree = "<group>"; };
 		0F4DC3AA2830069B0031B624 /* MyDailyLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDailyLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4DC3AD2830069B0031B624 /* MyDailyLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyLogApp.swift; sourceTree = "<group>"; };
@@ -135,9 +145,22 @@
 			path = Creation;
 			sourceTree = "<group>";
 		};
+		0F3EBBFA2868D32F00917496 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				0F3EBBFB2868D32F00917496 /* login.png */,
+				0F3EBBFC2868D32F00917496 /* newLog.png */,
+				0F3EBBFD2868D32F00917496 /* home.png */,
+				0F3EBBFE2868D32F00917496 /* profile.png */,
+				0F3EBBFF2868D32F00917496 /* logInfo.png */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 		0F4DC3A12830069B0031B624 = {
 			isa = PBXGroup;
 			children = (
+				0F3EBBFA2868D32F00917496 /* screenshots */,
 				0F331C9B2859686800ACAC7D /* MyDailyLogIcon.png */,
 				0F4DC3D72830087E0031B624 /* Readme.md */,
 				0F4DC3AC2830069B0031B624 /* MyDailyLog */,
@@ -401,8 +424,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F3EBC042868D32F00917496 /* logInfo.png in Resources */,
 				0F4DC3B52830069B0031B624 /* Preview Assets.xcassets in Resources */,
+				0F3EBC012868D32F00917496 /* newLog.png in Resources */,
+				0F3EBC002868D32F00917496 /* login.png in Resources */,
 				0F4DC42D28315B660031B624 /* GoogleService-Info.plist in Resources */,
+				0F3EBC032868D32F00917496 /* profile.png in Resources */,
+				0F3EBC022868D32F00917496 /* home.png in Resources */,
 				0F331C9C2859686800ACAC7D /* MyDailyLogIcon.png in Resources */,
 				0F4DC3B22830069B0031B624 /* Assets.xcassets in Resources */,
 				0F4DC3D82830087E0031B624 /* Readme.md in Resources */,
